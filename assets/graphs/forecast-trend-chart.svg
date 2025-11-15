@@ -1,0 +1,47 @@
+<svg width="600" height="400" xmlns="http://www.w3.org/2000/svg">
+  <rect width="600" height="400" fill="#131829" rx="8"/>
+  
+  <!-- Title -->
+  <text x="300" y="30" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#e2e8f0" text-anchor="middle">Historical vs Forecast Trends</text>
+  
+  <!-- Y-axis -->
+  <line x1="50" y1="50" x2="50" y2="350" stroke="#64748b" stroke-width="2"/>
+  <text x="30" y="50" font-family="Arial" font-size="12" fill="#94a3b8" text-anchor="end">$2M</text>
+  <text x="30" y="150" font-family="Arial" font-size="12" fill="#94a3b8" text-anchor="end">$1M</text>
+  <text x="30" y="250" font-family="Arial" font-size="12" fill="#94a3b8" text-anchor="end">$500K</text>
+  <text x="30" y="350" font-family="Arial" font-size="12" fill="#94a3b8" text-anchor="end">$0</text>
+  
+  <!-- X-axis -->
+  <line x1="50" y1="350" x2="550" y2="350" stroke="#64748b" stroke-width="2"/>
+  
+  <!-- Historical Data Line -->
+  <polyline points="80,280 140,260 200,250 260,240 320,230 380,220 440,210" 
+            fill="none" stroke="#06b6d4" stroke-width="3"/>
+  
+  <!-- Forecast Line -->
+  <polyline points="440,210 500,200 560,190" 
+            fill="none" stroke="#2563eb" stroke-width="3" stroke-dasharray="5,5"/>
+  
+  <!-- Data Points Historical -->
+  <circle cx="80" cy="280" r="4" fill="#06b6d4"/>
+  <circle cx="140" cy="260" r="4" fill="#06b6d4"/>
+  <circle cx="200" cy="250" r="4" fill="#06b6d4"/>
+  <circle cx="260" cy="240" r="4" fill="#06b6d4"/>
+  <circle cx="320" cy="230" r="4" fill="#06b6d4"/>
+  <circle cx="380" cy="220" r="4" fill="#06b6d4"/>
+  <circle cx="440" cy="210" r="4" fill="#06b6d4"/>
+  
+  <!-- Data Points Forecast -->
+  <circle cx="500" cy="200" r="4" fill="#2563eb"/>
+  <circle cx="560" cy="190" r="4" fill="#2563eb"/>
+  
+  <!-- Vertical separator line -->
+  <line x1="440" y1="50" x2="440" y2="350" stroke="#ef4444" stroke-width="2" stroke-dasharray="3,3" opacity="0.5"/>
+  <text x="435" y="45" font-family="Arial" font-size="10" fill="#ef4444" text-anchor="middle">NOW</text>
+  
+  <!-- Legend -->
+  <rect x="380" y="60" width="160" height="60" fill="#1a1f35" rx="4" stroke="#64748b" stroke-width="1"/>
+  <text x="395" y="80" font-family="Arial" font-size="12" fill="#06b6d4">● Historical Actual</text>
+  <text x="395" y="100" font-family="Arial" font-size="12" fill="#2563eb">● Forecast (Model)</text>
+</svg>
+

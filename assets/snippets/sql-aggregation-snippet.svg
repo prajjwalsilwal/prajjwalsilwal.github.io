@@ -1,0 +1,62 @@
+<svg width="700" height="400" xmlns="http://www.w3.org/2000/svg">
+  <rect width="700" height="400" fill="#1a1f35" rx="8" stroke="#64748b" stroke-width="1"/>
+  
+  <!-- Header -->
+  <rect x="10" y="10" width="680" height="40" fill="#131829" rx="4"/>
+  <text x="30" y="35" font-family="Courier New, monospace" font-size="14" font-weight="bold" fill="#e2e8f0">SQL: Regional Sales Aggregation</text>
+  
+  <!-- Code Content -->
+  <text x="30" y="70" font-family="Courier New, monospace" font-size="13" fill="#7c3aed">--</text>
+  <text x="50" y="70" font-family="Courier New, monospace" font-size="13" fill="#94a3b8"> Regional Sales Aggregation</text>
+  
+  <text x="30" y="100" font-family="Courier New, monospace" font-size="13" fill="#06b6d4">SELECT</text>
+  
+  <text x="50" y="125" font-family="Courier New, monospace" font-size="13" fill="#e2e8f0">    region,</text>
+  <text x="50" y="150" font-family="Courier New, monospace" font-size="13" fill="#e2e8f0">    DATE_TRUNC('month', date) </text>
+  <text x="230" y="150" font-family="Courier New, monospace" font-size="13" fill="#7c3aed">AS</text>
+  <text x="260" y="150" font-family="Courier New, monospace" font-size="13" fill="#e2e8f0"> month,</text>
+  <text x="50" y="175" font-family="Courier New, monospace" font-size="13" fill="#e2e8f0">    </text>
+  <text x="70" y="175" font-family="Courier New, monospace" font-size="13" fill="#10b981">SUM</text>
+  <text x="105" y="175" font-family="Courier New, monospace" font-size="13" fill="#e2e8f0">(revenue) </text>
+  <text x="200" y="175" font-family="Courier New, monospace" font-size="13" fill="#7c3aed">AS</text>
+  <text x="230" y="175" font-family="Courier New, monospace" font-size="13" fill="#e2e8f0"> total_revenue,</text>
+  <text x="50" y="200" font-family="Courier New, monospace" font-size="13" fill="#e2e8f0">    </text>
+  <text x="70" y="200" font-family="Courier New, monospace" font-size="13" fill="#10b981">SUM</text>
+  <text x="105" y="200" font-family="Courier New, monospace" font-size="13" fill="#e2e8f0">(units_sold) </text>
+  <text x="210" y="200" font-family="Courier New, monospace" font-size="13" fill="#7c3aed">AS</text>
+  <text x="235" y="200" font-family="Courier New, monospace" font-size="13" fill="#e2e8f0"> total_units,</text>
+  <text x="50" y="225" font-family="Courier New, monospace" font-size="13" fill="#e2e8f0">    </text>
+  <text x="70" y="225" font-family="Courier New, monospace" font-size="13" fill="#10b981">AVG</text>
+  <text x="105" y="225" font-family="Courier New, monospace" font-size="13" fill="#e2e8f0">(revenue / </text>
+  <text x="210" y="225" font-family="Courier New, monospace" font-size="13" fill="#f59e0b">NULLIF</text>
+  <text x="260" y="225" font-family="Courier New, monospace" font-size="13" fill="#e2e8f0">(units_sold, 0)) </text>
+  <text x="400" y="225" font-family="Courier New, monospace" font-size="13" fill="#7c3aed">AS</text>
+  <text x="425" y="225" font-family="Courier New, monospace" font-size="13" fill="#e2e8f0"> avg_unit_price,</text>
+  <text x="50" y="250" font-family="Courier New, monospace" font-size="13" fill="#e2e8f0">    (</text>
+  <text x="70" y="250" font-family="Courier New, monospace" font-size="13" fill="#10b981">SUM</text>
+  <text x="105" y="250" font-family="Courier New, monospace" font-size="13" fill="#e2e8f0">(revenue) - </text>
+  <text x="200" y="250" font-family="Courier New, monospace" font-size="13" fill="#10b981">SUM</text>
+  <text x="235" y="250" font-family="Courier New, monospace" font-size="13" fill="#e2e8f0">(sales_target)) / </text>
+  <text x="380" y="250" font-family="Courier New, monospace" font-size="13" fill="#10b981">SUM</text>
+  <text x="415" y="250" font-family="Courier New, monospace" font-size="13" fill="#e2e8f0">(sales_target) * 100 </text>
+  <text x="590" y="250" font-family="Courier New, monospace" font-size="13" fill="#7c3aed">AS</text>
+  <text x="615" y="250" font-family="Courier New, monospace" font-size="13" fill="#e2e8f0"> variance_pct</text>
+  
+  <text x="30" y="285" font-family="Courier New, monospace" font-size="13" fill="#06b6d4">FROM</text>
+  <text x="90" y="285" font-family="Courier New, monospace" font-size="13" fill="#e2e8f0"> sales_data</text>
+  
+  <text x="30" y="310" font-family="Courier New, monospace" font-size="13" fill="#f59e0b">WHERE</text>
+  <text x="100" y="310" font-family="Courier New, monospace" font-size="13" fill="#e2e8f0"> date &gt;= </text>
+  <text x="210" y="310" font-family="Courier New, monospace" font-size="13" fill="#10b981">'2023-01-01'</text>
+  
+  <text x="30" y="335" font-family="Courier New, monospace" font-size="13" fill="#7c3aed">GROUP BY</text>
+  <text x="140" y="335" font-family="Courier New, monospace" font-size="13" fill="#e2e8f0"> region, DATE_TRUNC('month', date)</text>
+  
+  <text x="30" y="360" font-family="Courier New, monospace" font-size="13" fill="#7c3aed">ORDER BY</text>
+  <text x="140" y="360" font-family="Courier New, monospace" font-size="13" fill="#e2e8f0"> month </text>
+  <text x="220" y="360" font-family="Courier New, monospace" font-size="13" fill="#7c3aed">DESC</text>
+  <text x="270" y="360" font-family="Courier New, monospace" font-size="13" fill="#e2e8f0">, total_revenue </text>
+  <text x="430" y="360" font-family="Courier New, monospace" font-size="13" fill="#7c3aed">DESC</text>
+  <text x="480" y="360" font-family="Courier New, monospace" font-size="13" fill="#e2e8f0">;</text>
+</svg>
+

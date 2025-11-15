@@ -1,0 +1,52 @@
+<svg width="600" height="400" xmlns="http://www.w3.org/2000/svg">
+  <rect width="600" height="400" fill="#131829" rx="8"/>
+  
+  <!-- Title -->
+  <text x="300" y="30" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#e2e8f0" text-anchor="middle">Scenario Comparison Analysis</text>
+  
+  <!-- Y-axis -->
+  <line x1="50" y1="50" x2="50" y2="350" stroke="#64748b" stroke-width="2"/>
+  <text x="30" y="50" font-family="Arial" font-size="12" fill="#94a3b8" text-anchor="end">$2M</text>
+  <text x="30" y="150" font-family="Arial" font-size="12" fill="#94a3b8" text-anchor="end">$1M</text>
+  <text x="30" y="250" font-family="Arial" font-size="12" fill="#94a3b8" text-anchor="end">$500K</text>
+  <text x="30" y="350" font-family="Arial" font-size="12" fill="#94a3b8" text-anchor="end">$0</text>
+  
+  <!-- X-axis -->
+  <line x1="50" y1="350" x2="550" y2="350" stroke="#64748b" stroke-width="2"/>
+  <text x="150" y="370" font-family="Arial" font-size="12" fill="#94a3b8" text-anchor="middle">Q1</text>
+  <text x="250" y="370" font-family="Arial" font-size="12" fill="#94a3b8" text-anchor="middle">Q2</text>
+  <text x="350" y="370" font-family="Arial" font-size="12" fill="#94a3b8" text-anchor="middle">Q3</text>
+  <text x="450" y="370" font-family="Arial" font-size="12" fill="#94a3b8" text-anchor="middle">Q4</text>
+  
+  <!-- Baseline Scenario -->
+  <polyline points="150,220 250,210 350,200 450,190" 
+            fill="none" stroke="#2563eb" stroke-width="3"/>
+  <circle cx="150" cy="220" r="4" fill="#2563eb"/>
+  <circle cx="250" cy="210" r="4" fill="#2563eb"/>
+  <circle cx="350" cy="200" r="4" fill="#2563eb"/>
+  <circle cx="450" cy="190" r="4" fill="#2563eb"/>
+  
+  <!-- Optimistic Scenario -->
+  <polyline points="150,180 250,160 350,140 450,120" 
+            fill="none" stroke="#10b981" stroke-width="3" stroke-dasharray="5,5"/>
+  <circle cx="150" cy="180" r="4" fill="#10b981"/>
+  <circle cx="250" cy="160" r="4" fill="#10b981"/>
+  <circle cx="350" cy="140" r="4" fill="#10b981"/>
+  <circle cx="450" cy="120" r="4" fill="#10b981"/>
+  
+  <!-- Pessimistic Scenario -->
+  <polyline points="150,260 250,270 350,280 450,290" 
+            fill="none" stroke="#ef4444" stroke-width="3" stroke-dasharray="5,5"/>
+  <circle cx="150" cy="260" r="4" fill="#ef4444"/>
+  <circle cx="250" cy="270" r="4" fill="#ef4444"/>
+  <circle cx="350" cy="280" r="4" fill="#ef4444"/>
+  <circle cx="450" cy="290" r="4" fill="#ef4444"/>
+  
+  <!-- Legend -->
+  <rect x="380" y="60" width="180" height="90" fill="#1a1f35" rx="4" stroke="#64748b" stroke-width="1"/>
+  <text x="395" y="80" font-family="Arial" font-size="14" font-weight="bold" fill="#e2e8f0">Scenarios</text>
+  <text x="395" y="100" font-family="Arial" font-size="12" fill="#2563eb">● Baseline</text>
+  <text x="395" y="120" font-family="Arial" font-size="12" fill="#10b981">● Optimistic (+10%)</text>
+  <text x="395" y="140" font-family="Arial" font-size="12" fill="#ef4444">● Pessimistic (-5%)</text>
+</svg>
+

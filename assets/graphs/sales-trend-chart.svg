@@ -1,0 +1,63 @@
+<svg width="600" height="400" xmlns="http://www.w3.org/2000/svg">
+  <rect width="600" height="400" fill="#131829" rx="8"/>
+  
+  <!-- Title -->
+  <text x="300" y="30" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#e2e8f0" text-anchor="middle">Regional Sales Trends Over Time</text>
+  
+  <!-- Y-axis -->
+  <line x1="50" y1="50" x2="50" y2="350" stroke="#64748b" stroke-width="2"/>
+  <text x="30" y="50" font-family="Arial" font-size="12" fill="#94a3b8" text-anchor="end">$1M</text>
+  <text x="30" y="150" font-family="Arial" font-size="12" fill="#94a3b8" text-anchor="end">$500K</text>
+  <text x="30" y="250" font-family="Arial" font-size="12" fill="#94a3b8" text-anchor="end">$250K</text>
+  <text x="30" y="350" font-family="Arial" font-size="12" fill="#94a3b8" text-anchor="end">$0</text>
+  
+  <!-- X-axis -->
+  <line x1="50" y1="350" x2="550" y2="350" stroke="#64748b" stroke-width="2"/>
+  <text x="120" y="370" font-family="Arial" font-size="12" fill="#94a3b8" text-anchor="middle">Jan</text>
+  <text x="200" y="370" font-family="Arial" font-size="12" fill="#94a3b8" text-anchor="middle">Feb</text>
+  <text x="280" y="370" font-family="Arial" font-size="12" fill="#94a3b8" text-anchor="middle">Mar</text>
+  <text x="360" y="370" font-family="Arial" font-size="12" fill="#94a3b8" text-anchor="middle">Apr</text>
+  <text x="440" y="370" font-family="Arial" font-size="12" fill="#94a3b8" text-anchor="middle">May</text>
+  <text x="520" y="370" font-family="Arial" font-size="12" fill="#94a3b8" text-anchor="middle">Jun</text>
+  
+  <!-- North Region Line -->
+  <polyline points="120,200 200,180 280,170 360,160 440,150 520,140" 
+            fill="none" stroke="#2563eb" stroke-width="3"/>
+  <circle cx="120" cy="200" r="4" fill="#2563eb"/>
+  <circle cx="200" cy="180" r="4" fill="#2563eb"/>
+  <circle cx="280" cy="170" r="4" fill="#2563eb"/>
+  <circle cx="360" cy="160" r="4" fill="#2563eb"/>
+  <circle cx="440" cy="150" r="4" fill="#2563eb"/>
+  <circle cx="520" cy="140" r="4" fill="#2563eb"/>
+  
+  <!-- South Region Line -->
+  <polyline points="120,280 200,260 280,250 360,240 440,230 520,220" 
+            fill="none" stroke="#7c3aed" stroke-width="3"/>
+  <circle cx="120" cy="280" r="4" fill="#7c3aed"/>
+  <circle cx="200" cy="260" r="4" fill="#7c3aed"/>
+  <circle cx="280" cy="250" r="4" fill="#7c3aed"/>
+  <circle cx="360" cy="240" r="4" fill="#7c3aed"/>
+  <circle cx="440" cy="230" r="4" fill="#7c3aed"/>
+  <circle cx="520" cy="220" r="4" fill="#7c3aed"/>
+  
+  <!-- West Region Line -->
+  <polyline points="120,150 200,130 280,110 360,100 440,90 520,80" 
+            fill="none" stroke="#10b981" stroke-width="3"/>
+  <circle cx="120" cy="150" r="4" fill="#10b981"/>
+  <circle cx="200" cy="130" r="4" fill="#10b981"/>
+  <circle cx="280" cy="110" r="4" fill="#10b981"/>
+  <circle cx="360" cy="100" r="4" fill="#10b981"/>
+  <circle cx="440" cy="90" r="4" fill="#10b981"/>
+  <circle cx="520" cy="80" r="4" fill="#10b981"/>
+  
+  <!-- Legend -->
+  <rect x="380" y="60" width="180" height="80" fill="#1a1f35" rx="4" stroke="#64748b" stroke-width="1"/>
+  <text x="395" y="80" font-family="Arial" font-size="14" font-weight="bold" fill="#e2e8f0">Legend</text>
+  <circle cx="395" cy="100" r="5" fill="#2563eb"/>
+  <text x="410" y="105" font-family="Arial" font-size="12" fill="#94a3b8">North Region</text>
+  <circle cx="395" cy="120" r="5" fill="#7c3aed"/>
+  <text x="410" y="125" font-family="Arial" font-size="12" fill="#94a3b8">South Region</text>
+  <circle cx="395" cy="140" r="5" fill="#10b981"/>
+  <text x="410" y="145" font-family="Arial" font-size="12" fill="#94a3b8">West Region</text>
+</svg>
+

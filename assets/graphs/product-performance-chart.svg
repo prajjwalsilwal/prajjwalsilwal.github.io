@@ -1,0 +1,38 @@
+<svg width="600" height="400" xmlns="http://www.w3.org/2000/svg">
+  <rect width="600" height="400" fill="#131829" rx="8"/>
+  
+  <!-- Title -->
+  <text x="300" y="30" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#e2e8f0" text-anchor="middle">Product Category Performance</text>
+  
+  <!-- Y-axis -->
+  <line x1="50" y1="50" x2="50" y2="350" stroke="#64748b" stroke-width="2"/>
+  <text x="30" y="50" font-family="Arial" font-size="12" fill="#94a3b8" text-anchor="end">$1M</text>
+  <text x="30" y="150" font-family="Arial" font-size="12" fill="#94a3b8" text-anchor="end">$500K</text>
+  <text x="30" y="250" font-family="Arial" font-size="12" fill="#94a3b8" text-anchor="end">$250K</text>
+  <text x="30" y="350" font-family="Arial" font-size="12" fill="#94a3b8" text-anchor="end">$0</text>
+  
+  <!-- X-axis -->
+  <line x1="50" y1="350" x2="550" y2="350" stroke="#64748b" stroke-width="2"/>
+  
+  <!-- Bar Chart -->
+  <rect x="80" y="200" width="70" height="150" fill="#2563eb" rx="4"/>
+  <text x="115" y="370" font-family="Arial" font-size="12" fill="#94a3b8" text-anchor="middle">Electronics</text>
+  <text x="115" y="190" font-family="Arial" font-size="14" font-weight="bold" fill="#2563eb" text-anchor="middle">$750K</text>
+  
+  <rect x="170" y="240" width="70" height="110" fill="#7c3aed" rx="4"/>
+  <text x="205" y="370" font-family="Arial" font-size="12" fill="#94a3b8" text-anchor="middle">Clothing</text>
+  <text x="205" y="230" font-family="Arial" font-size="14" font-weight="bold" fill="#7c3aed" text-anchor="middle">$550K</text>
+  
+  <rect x="260" y="180" width="70" height="170" fill="#06b6d4" rx="4"/>
+  <text x="295" y="370" font-family="Arial" font-size="12" fill="#94a3b8" text-anchor="middle">Home &amp; Garden</text>
+  <text x="295" y="170" font-family="Arial" font-size="14" font-weight="bold" fill="#06b6d4" text-anchor="middle">$850K</text>
+  
+  <rect x="350" y="270" width="70" height="80" fill="#10b981" rx="4"/>
+  <text x="385" y="370" font-family="Arial" font-size="12" fill="#94a3b8" text-anchor="middle">Sports</text>
+  <text x="385" y="260" font-family="Arial" font-size="14" font-weight="bold" fill="#10b981" text-anchor="middle">$400K</text>
+  
+  <rect x="440" y="290" width="70" height="60" fill="#f59e0b" rx="4"/>
+  <text x="475" y="370" font-family="Arial" font-size="12" fill="#94a3b8" text-anchor="middle">Books</text>
+  <text x="475" y="280" font-family="Arial" font-size="14" font-weight="bold" fill="#f59e0b" text-anchor="middle">$300K</text>
+</svg>
+

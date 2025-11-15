@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
     
     <!-- Styles -->
-    <link rel="stylesheet" href="../website/style.css">
+    <link rel="stylesheet" href="../style.css">
     
     <style>
         .case-study-hero {
@@ -149,29 +149,36 @@
     <header class="header" id="header" role="banner">
         <nav class="navbar container" role="navigation" aria-label="Main navigation">
             <div class="nav-brand">
-                <a href="../website/index.html" style="color: inherit;">Prajjwal Silwal</a>
+                <a href="../index.html" style="color: inherit;">Prajjwal Silwal</a>
             </div>
             <ul class="nav-menu" role="menubar">
-                <li role="none"><a href="../website/index.html#about" class="nav-link" role="menuitem">About</a></li>
-                <li role="none"><a href="../website/index.html#skills" class="nav-link" role="menuitem">Skills</a></li>
-                <li role="none"><a href="../website/index.html#projects" class="nav-link" role="menuitem">Projects</a></li>
-                <li role="none"><a href="../website/index.html#contact" class="nav-link" role="menuitem">Contact</a></li>
+                <li role="none"><a href="../index.html#about" class="nav-link" role="menuitem">About</a></li>
+                <li role="none"><a href="../index.html#skills" class="nav-link" role="menuitem">Skills</a></li>
+                <li role="none"><a href="../index.html#projects" class="nav-link" role="menuitem">Projects</a></li>
+                <li role="none"><a href="../index.html#contact" class="nav-link" role="menuitem">Contact</a></li>
+                <li role="none">
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
+                        <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                        <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </button>
+                </li>
             </ul>
-            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
-                <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="12" cy="12" r="5"></circle>
-                    <line x1="12" y1="1" x2="12" y2="3"></line>
-                    <line x1="12" y1="21" x2="12" y2="23"></line>
-                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                    <line x1="1" y1="12" x2="3" y2="12"></line>
-                    <line x1="21" y1="12" x2="23" y2="12"></line>
-                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                </svg>
-                <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                </svg>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
             </button>
         </nav>
     </header>
@@ -180,7 +187,7 @@
     <section class="case-study-hero">
         <div class="container">
             <div class="case-study-content">
-                <a href="../website/index.html#projects" class="back-button">
+                <a href="../index.html#projects" class="back-button">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M19 12H5M12 19l-7-7 7-7"></path>
                     </svg>
@@ -404,7 +411,7 @@ ORDER BY month DESC, total_revenue DESC;</code></pre>
                         </svg>
                         View on GitHub
                     </a>
-                    <a href="../website/index.html#projects" class="btn btn-secondary">Back to Portfolio</a>
+                    <a href="../index.html#projects" class="btn btn-secondary">Back to Portfolio</a>
                 </div>
             </div>
         </div>
@@ -418,6 +425,6 @@ ORDER BY month DESC, total_revenue DESC;</code></pre>
     </footer>
 
     <!-- JavaScript -->
-    <script src="../website/script.js"></script>
+    <script src="../script.js"></script>
 </body>
 </html>

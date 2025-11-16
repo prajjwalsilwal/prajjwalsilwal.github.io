@@ -1,0 +1,9 @@
+department_id,department_name,cost_center,head_of_dept
+1,Engineering,CC1001,Allison Hill
+2,Sales,CC1002,Noah Rhodes
+3,Marketing,CC1003,Angie Henderson
+4,Operations,CC1004,Daniel Wagner
+5,Finance,CC1005,Cristian Santos
+6,HR,CC1006,Connie Lawrence
+7,Customer Support,CC1007,Abigail Shaffer
+8,Product,CC1008,Gina Moore

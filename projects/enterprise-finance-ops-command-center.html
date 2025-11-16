@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Enterprise Finance & Operations Command Center - End-to-end analytics ecosystem built with Python, SQL, Streamlit, and Jupyter">
+    <title>Enterprise Finance & Operations Command Center | Prajjwal Silwal</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="../style.css">
+    
+    <style>
+        .case-study-hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 0 4rem;
+            background: var(--gradient-hero);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .case-study-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .case-study-section {
+            padding: var(--spacing-3xl) 0;
+        }
+        
+        .case-study-section:nth-child(even) {
+            background: var(--surface);
+        }
+        
+        .problem-solution-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-2xl);
+        }
+        
+        .problem-card,
+        .solution-card {
+            background: var(--surface-elevated);
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+        }
+        
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-lg);
+            margin: var(--spacing-2xl) 0;
+        }
+        
+        .metric-card {
+            background: var(--surface-elevated);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+        
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .tech-stack-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+        }
+        
+        .code-snippet {
+            background: var(--surface-elevated);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: var(--spacing-lg);
+            margin: var(--spacing-lg) 0;
+            overflow-x: auto;
+        }
+        
+        .code-snippet pre {
+            margin: 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.875rem;
+            color: var(--text);
+        }
+        
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-xl);
+            color: var(--text-muted);
+            transition: all var(--transition);
+        }
+        
+        .back-button:hover {
+            color: var(--text);
+            transform: translateX(-4px);
+        }
+        
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+            margin: var(--spacing-2xl) 0;
+        }
+        
+        .gallery-item {
+            background: var(--surface-elevated);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .gallery-item-caption {
+            padding: var(--spacing-md);
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-2xl);
+        }
+        
+        .feature-card {
+            background: var(--surface-elevated);
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            transition: all var(--transition);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: transparent;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: var(--spacing-sm);
+            color: var(--text);
+        }
+        
+        .feature-card p {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body class="dark-mode">
+    <!-- Header -->
+    <header class="header" id="header" role="banner">
+        <nav class="navbar container" role="navigation" aria-label="Main navigation">
+            <div class="nav-brand">
+                <a href="../index.html" style="color: inherit;">Prajjwal Silwal</a>
+            </div>
+            <ul class="nav-menu" role="menubar">
+                <li role="none"><a href="../index.html#about" class="nav-link" role="menuitem">About</a></li>
+                <li role="none"><a href="../index.html#skills" class="nav-link" role="menuitem">Skills</a></li>
+                <li role="none"><a href="../index.html#projects" class="nav-link" role="menuitem">Projects</a></li>
+                <li role="none"><a href="../index.html#contact" class="nav-link" role="menuitem">Contact</a></li>
+                <li role="none">
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
+                        <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                        <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </button>
+                </li>
+            </ul>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="case-study-hero">
+        <div class="container">
+            <div class="case-study-content">
+                <a href="../index.html#projects" class="back-button">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 12H5M12 19l-7-7 7-7"></path>
+                    </svg>
+                    Back to Portfolio
+                </a>
+                <h1 class="hero-title fade-up">Enterprise Finance & Operations Command Center</h1>
+                <p class="hero-subtitle fade-up" style="animation-delay: 0.1s">
+                    End-to-end analytics ecosystem built with Python, SQL, Streamlit, and Jupyter. Includes synthetic finance & operations datasets, automated KPI logic, variance analysis, executive dashboards, and multi-layered reporting — fully AI-generated and designed for enterprise-scale decision-making.
+                </p>
+                <div class="hero-stats fade-up" style="animation-delay: 0.2s">
+                    <div class="stat-item">
+                        <div class="stat-value">Enterprise</div>
+                        <div class="stat-label">Scale Analytics</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">Automated</div>
+                        <div class="stat-label">KPI & Reporting</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">End-to-End</div>
+                        <div class="stat-label">Analytics Pipeline</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="case-study-section">
+        <div class="container">
+            <div class="case-study-content">
+                <div class="section-header">
+                    <span class="section-label">The Challenge</span>
+                    <h2 class="section-title">Business <span class="gradient-text">Problem</span></h2>
+                </div>
+                <div class="problem-solution-grid">
+                    <div class="problem-card">
+                        <h3>Problem Statement</h3>
+                        <p>Enterprise finance and operations teams struggled with fragmented data sources, inconsistent KPI definitions, and manual reporting processes. Decision-makers lacked real-time visibility into financial performance, operational metrics, and variance analysis, preventing proactive management and strategic planning.</p>
+                    </div>
+                    <div class="solution-card">
+                        <h3>Solution Approach</h3>
+                        <p>Built a comprehensive analytics ecosystem featuring synthetic data generation, automated KPI calculations, interactive Streamlit dashboards, variance analysis, and multi-layered reporting. The solution standardizes metrics across finance and operations while enabling real-time decision-making at the executive level.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="case-study-section">
+        <div class="container">
+            <div class="case-study-content">
+                <div class="section-header">
+                    <span class="section-label">Key Features</span>
+                    <h2 class="section-title">Core <span class="gradient-text">Capabilities</span></h2>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>KPI Design & Standardization</h3>
+                        <p>Automated KPI calculations with consistent definitions across financial and operational dimensions, ensuring reliable metrics for decision-making.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Variance Analysis</h3>
+                        <p>Automated variance analysis comparing actual vs. budget vs. forecast, with drill-down capabilities by department, region, and time period.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Automated Reporting</h3>
+                        <p>Multi-layered reporting with automated insights generation, executive summaries, and detailed analytical reports for stakeholders.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Executive Dashboards</h3>
+                        <p>Interactive Streamlit-based dashboards with real-time filtering, visualization, and drill-down capabilities for finance and operations teams.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Synthetic Data Generation</h3>
+                        <p>Realistic finance and operations datasets spanning 3-4 years, enabling development and testing without compromising sensitive data.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Data Engineering Pipeline</h3>
+                        <p>End-to-end data pipeline with SQL-backed processing, Python transformations, and automated chart generation for exploratory analysis.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Data Section -->
+    <section class="case-study-section">
+        <div class="container">
+            <div class="case-study-content">
+                <div class="section-header">
+                    <span class="section-label">Data & Methodology</span>
+                    <h2 class="section-title">Approach & <span class="gradient-text">Implementation</span></h2>
+                </div>
+                <div class="problem-solution-grid">
+                    <div>
+                        <h3>Data Architecture</h3>
+                        <ul style="margin-top: var(--spacing-md); line-height: 2;">
+                            <li><strong>Fact Tables:</strong> fact_financials, fact_operations</li>
+                            <li><strong>Dimensions:</strong> dim_date, dim_department, dim_region</li>
+                            <li><strong>Volume:</strong> 3-4 years of monthly financial and operational data</li>
+                            <li><strong>Metrics:</strong> Revenue, expenses, profit, headcount, tickets, SLA compliance</li>
+                            <li><strong>Granularity:</strong> Monthly aggregation by department and region</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Methodology</h3>
+                        <ol style="margin-top: var(--spacing-md); line-height: 2; padding-left: var(--spacing-lg);">
+                            <li>Synthetic Data Generation (Python + Faker)</li>
+                            <li>Data Pipeline Development (SQL + Pandas)</li>
+                            <li>Exploratory Data Analysis (Jupyter Notebooks)</li>
+                            <li>KPI Automation & Standardization</li>
+                            <li>Dashboard Development (Streamlit)</li>
+                            <li>Automated Reporting & Insights</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Findings Section -->
+    <section class="case-study-section">
+        <div class="container">
+            <div class="case-study-content">
+                <div class="section-header">
+                    <span class="section-label">Insights & Results</span>
+                    <h2 class="section-title">Key <span class="gradient-text">Findings</span></h2>
+                </div>
+                <div class="problem-solution-grid">
+                    <div>
+                        <h3>Financial Performance</h3>
+                        <p>Identified revenue trends, profit margin variations, and expense patterns across departments and regions, enabling targeted optimization strategies.</p>
+                    </div>
+                    <div>
+                        <h3>Operational Efficiency</h3>
+                        <p>Revealed SLA compliance rates, ticket resolution patterns, and resource utilization metrics that inform operational improvements.</p>
+                    </div>
+                    <div>
+                        <h3>Variance Insights</h3>
+                        <p>Quantified budget and forecast variances with automated root-cause analysis, highlighting areas requiring management attention.</p>
+                    </div>
+                    <div>
+                        <h3>Cross-Functional Visibility</h3>
+                        <p>Enabled unified view of finance and operations metrics, facilitating better alignment between financial planning and operational execution.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Business Impact Section -->
+    <section class="case-study-section">
+        <div class="container">
+            <div class="case-study-content">
+                <div class="section-header">
+                    <span class="section-label">Impact</span>
+                    <h2 class="section-title">Business <span class="gradient-text">Results</span></h2>
+                </div>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-value">Enterprise</div>
+                        <div class="stat-label">Scale Analytics</div>
+                        <p style="font-size: 0.875rem; margin-top: var(--spacing-sm);">Comprehensive ecosystem for large-scale data processing</p>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">Automated</div>
+                        <div class="stat-label">KPI Logic</div>
+                        <p style="font-size: 0.875rem; margin-top: var(--spacing-sm);">Standardized metrics across all business units</p>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">Real-Time</div>
+                        <div class="stat-label">Decision Support</div>
+                        <p style="font-size: 0.875rem; margin-top: var(--spacing-sm);">Interactive dashboards for executive insights</p>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">Multi-Layered</div>
+                        <div class="stat-label">Reporting</div>
+                        <p style="font-size: 0.875rem; margin-top: var(--spacing-sm);">Automated insights for all stakeholder levels</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section class="case-study-section">
+        <div class="container">
+            <div class="case-study-content">
+                <div class="section-header">
+                    <span class="section-label">Technology</span>
+                    <h2 class="section-title">Tech <span class="gradient-text">Stack</span></h2>
+                </div>
+                <div class="tech-stack-list">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">SQL</span>
+                    <span class="skill-tag">Streamlit</span>
+                    <span class="skill-tag">Jupyter Notebook</span>
+                    <span class="skill-tag">Pandas</span>
+                    <span class="skill-tag">Matplotlib</span>
+                    <span class="skill-tag">NumPy</span>
+                    <span class="skill-tag">Seaborn</span>
+                    <span class="skill-tag">Data Engineering</span>
+                    <span class="skill-tag">BI Analytics</span>
+                </div>
+                <div class="code-snippet">
+                    <h4 style="margin-bottom: var(--spacing-md);">Sample SQL Aggregation</h4>
+                    <pre><code>-- Monthly Financial Metrics Aggregation
+SELECT 
+    d.region_name,
+    d.dept_name,
+    DATE_TRUNC('month', f.date_id) AS month,
+    SUM(f.revenue) AS total_revenue,
+    SUM(f.opex) AS total_opex,
+    SUM(f.profit) AS total_profit,
+    AVG(f.profit_margin) AS avg_profit_margin,
+    SUM(f.budget_revenue) AS total_budget_revenue,
+    (SUM(f.revenue) - SUM(f.budget_revenue)) / SUM(f.budget_revenue) * 100 AS revenue_variance_pct
+FROM fact_financials f
+JOIN dim_region r ON f.region_id = r.region_id
+JOIN dim_department d ON f.dept_id = d.dept_id
+WHERE f.date_id >= '2021-01-01'
+GROUP BY d.region_name, d.dept_name, DATE_TRUNC('month', f.date_id)
+ORDER BY month DESC, total_revenue DESC;</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visualizations Section -->
+    <section class="case-study-section">
+        <div class="container">
+            <div class="case-study-content">
+                <div class="section-header">
+                    <span class="section-label">Visualizations</span>
+                    <h2 class="section-title">Dashboard <span class="gradient-text">Screenshots</span></h2>
+                </div>
+                <div class="image-gallery">
+                    <div class="gallery-item">
+                        <img src="../assets/projects/enterprise-finance-ops-command-center/thumbnail.svg" alt="Enterprise Finance & Operations Dashboard" loading="lazy">
+                        <div class="gallery-item-caption">Executive Dashboard Overview</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="enterprise-finance-ops-command-center/images/revenue_expense_profit_trends.png" alt="Revenue Expense Profit Trends" loading="lazy">
+                        <div class="gallery-item-caption">Revenue, Expense & Profit Trends</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="enterprise-finance-ops-command-center/images/variance_analysis_quarterly.png" alt="Variance Analysis" loading="lazy">
+                        <div class="gallery-item-caption">Quarterly Variance Analysis</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="enterprise-finance-ops-command-center/images/profit_margin_by_department.png" alt="Profit Margin by Department" loading="lazy">
+                        <div class="gallery-item-caption">Profit Margin Analysis by Department</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="enterprise-finance-ops-command-center/images/region_performance_comparison.png" alt="Region Performance Comparison" loading="lazy">
+                        <div class="gallery-item-caption">Regional Performance Comparison</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="enterprise-finance-ops-command-center/images/operations_kpis_analysis.png" alt="Operations KPIs Analysis" loading="lazy">
+                        <div class="gallery-item-caption">Operations KPIs & SLA Analysis</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="case-study-section">
+        <div class="container">
+            <div class="case-study-content" style="text-align: center;">
+                <h2 style="margin-bottom: var(--spacing-lg);">Want to see more?</h2>
+                <div class="hero-buttons">
+                    <a href="https://github.com/prajjwalsilwal/portfolio/tree/main/projects/enterprise-finance-ops-command-center" 
+                       class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        View on GitHub
+                    </a>
+                    <a href="../index.html#projects" class="btn btn-secondary">Back to Portfolio</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <p>&copy; <span id="currentYear">2025</span> Prajjwal Silwal — Data Analyst Portfolio</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="../script.js"></script>
+</body>
+</html>

@@ -177,7 +177,7 @@
         });
 
         // Observe project cards and other animated elements
-        document.querySelectorAll('.project-card, .highlight-card, .skill-category, .contact-item').forEach(el => {
+        document.querySelectorAll('.project-card, .highlight-card, .skill-category, .contact-item, .experience-entry, .education-block, .cert-card').forEach(el => {
             el.classList.add('fade-up');
             observer.observe(el);
         });

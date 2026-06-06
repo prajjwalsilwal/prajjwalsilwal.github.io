@@ -685,6 +685,15 @@ a { color: inherit; text-decoration: none; }
   margin-top: 0.5rem;
 }
 
+.about__photo {
+  width: 88px;
+  height: 88px;
+  border-radius: var(--radius-full);
+  margin-bottom: 1.5rem;
+  border: 2px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+
 .about__bento {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1336,6 +1345,11 @@ a { color: inherit; text-decoration: none; }
   object-fit: cover;
 }
 
+.cs-hero__image img + .cs-hero__image-fallback,
+.project-card__image-wrap img + .project-card__image-fallback {
+  display: none;
+}
+
 .cs-hero__image-fallback {
   position: absolute;
   inset: 0;
@@ -1584,8 +1598,10 @@ a { color: inherit; text-decoration: none; }
 
 .cs-gallery__item img {
   width: 100%;
-  height: 280px;
-  object-fit: cover;
+  height: auto;
+  min-height: 280px;
+  object-fit: contain;
+  background: var(--bg-base);
 }
 
 .cs-gallery__item--placeholder img {

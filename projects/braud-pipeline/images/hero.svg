@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Braud dashboard morning briefing mockup">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0E1116"/>
+      <stop offset="100%" stop-color="#1847B1"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a2030"/>
+      <stop offset="100%" stop-color="#121820"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="60" y="50" width="1080" height="530" rx="16" fill="#0d1117" stroke="#2a3344" stroke-width="2"/>
+  <rect x="60" y="50" width="1080" height="44" rx="16" fill="#161b22"/>
+  <rect x="60" y="78" width="1080" height="16" fill="#161b22"/>
+  <circle cx="88" cy="72" r="7" fill="#FF5F57"/><circle cx="110" cy="72" r="7" fill="#FEBC2E"/><circle cx="132" cy="72" r="7" fill="#28C840"/>
+  <text x="600" y="78" fill="#8C8C8C" font-family="monospace" font-size="14" text-anchor="middle">Braud Dashboard  Morning Briefing</text>
+  <rect x="80" y="110" width="72" height="400" rx="10" fill="#0f141b" stroke="#262f3c"/>
+  <text x="116" y="150" fill="#93c5fd" font-family="sans-serif" font-size="11" text-anchor="middle">Home</text>
+  <text x="116" y="210" fill="#6b7280" font-family="sans-serif" font-size="11" text-anchor="middle">Inbox</text>
+  <text x="116" y="270" fill="#6b7280" font-family="sans-serif" font-size="11" text-anchor="middle">Exec</text>
+  <text x="116" y="330" fill="#6b7280" font-family="sans-serif" font-size="11" text-anchor="middle">Occ.</text>
+  <rect x="170" y="110" width="160" height="400" rx="10" fill="#151a21" stroke="#262f3c"/>
+  <text x="190" y="140" fill="#e7ebf2" font-family="sans-serif" font-size="13" font-weight="600">Morning Briefing</text>
+  <text x="190" y="168" fill="#22c55e" font-family="monospace" font-size="11">Delinquent (3)</text>
+  <text x="190" y="192" fill="#9aa7b8" font-family="monospace" font-size="11">Vacant (2)</text>
+  <text x="190" y="216" fill="#9aa7b8" font-family="monospace" font-size="11">Maintenance (2)</text>
+  <g transform="translate(350,110)">
+    <rect width="180" height="90" rx="10" fill="url(#panel)" stroke="#262f3c"/>
+    <text x="16" y="28" fill="#9aa7b8" font-size="12" font-family="sans-serif">Occupancy</text>
+    <text x="16" y="58" fill="#22c55e" font-size="28" font-weight="700" font-family="sans-serif">94.2%</text>
+    <text x="16" y="78" fill="#22c55e" font-size="11" font-family="monospace">+0.8%</text>
+    <rect x="200" width="180" height="90" rx="10" fill="url(#panel)" stroke="#262f3c"/>
+    <text x="216" y="28" fill="#9aa7b8" font-size="12" font-family="sans-serif">Collection rate</text>
+    <text x="216" y="58" fill="#e7ebf2" font-size="28" font-weight="700" font-family="sans-serif">97.1%</text>
+    <rect x="400" width="180" height="90" rx="10" fill="url(#panel)" stroke="#262f3c"/>
+    <text x="416" y="28" fill="#9aa7b8" font-size="12" font-family="sans-serif">Delinquent</text>
+    <text x="416" y="58" fill="#f59e0b" font-size="28" font-weight="700" font-family="sans-serif">$12,480</text>
+    <rect x="600" width="180" height="90" rx="10" fill="url(#panel)" stroke="#262f3c"/>
+    <text x="616" y="28" fill="#9aa7b8" font-size="12" font-family="sans-serif">Vacant units</text>
+    <text x="616" y="58" fill="#3b82f6" font-size="28" font-weight="700" font-family="sans-serif">7</text>
+    <rect y="110" width="780" height="200" rx="10" fill="#151a21" stroke="#262f3c"/>
+    <text x="16" y="136" fill="#e7ebf2" font-size="14" font-weight="600" font-family="sans-serif">Delinquent tenants</text>
+    <text x="720" y="136" fill="#9aa7b8" font-size="12" font-family="monospace">3</text>
+    <text x="16" y="168" fill="#6b7280" font-size="11" font-family="monospace">Tenant · Unit · Balance · Age</text>
+    <text x="16" y="198" fill="#e7ebf2" font-size="12" font-family="sans-serif">Alex Morgan · Maple Court 12B · $825 · 12d</text>
+    <text x="16" y="222" fill="#e7ebf2" font-size="12" font-family="sans-serif">Jordan Lee · Riverside 4A · $700 · 8d</text>
+    <text x="16" y="246" fill="#e7ebf2" font-size="12" font-family="sans-serif">Sam Rivera · Harbor View 201 · $640 · 31d</text>
+    <rect y="330" width="380" height="120" rx="10" fill="#151a21" stroke="#262f3c"/>
+    <text x="16" y="356" fill="#e7ebf2" font-size="14" font-weight="600" font-family="sans-serif">Overdue maintenance</text>
+    <text x="16" y="386" fill="#ef4444" font-size="12" font-family="sans-serif">Harbor View 105  Kitchen sink · 72h · critical</text>
+    <text x="16" y="410" fill="#f59e0b" font-size="12" font-family="sans-serif">Riverside 2B  HVAC · 56h · high</text>
+    <rect x="400" y="330" width="380" height="120" rx="10" fill="#151a21" stroke="#262f3c"/>
+    <text x="416" y="356" fill="#e7ebf2" font-size="14" font-weight="600" font-family="sans-serif">Expiring leases</text>
+    <text x="416" y="386" fill="#e7ebf2" font-size="12" font-family="sans-serif">Taylor Brooks · Maple Court 3A · 28 days</text>
+    <text x="416" y="410" fill="#e7ebf2" font-size="12" font-family="sans-serif">Casey Nguyen · Oak Street A · 45 days</text>
+  </g>
+  <text x="600" y="600" fill="rgba(255,255,255,0.35)" font-family="monospace" font-size="12" text-anchor="middle">Fictional demo data · Sanitized portfolio preview</text>
+</svg>

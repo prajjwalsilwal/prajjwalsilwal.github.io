@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Prajjwal Silwal profile">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1847B1"/>
+      <stop offset="100%" stop-color="#0E1116"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#bg)"/>
+  <circle cx="200" cy="200" r="160" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.15)" stroke-width="2"/>
+  <text x="200" y="225" fill="#F7F5F0" font-family="Georgia, serif" font-size="120" font-weight="700" text-anchor="middle">PS</text>
+  <circle cx="320" cy="320" r="12" fill="#16A34A" stroke="#F7F5F0" stroke-width="3"/>
+</svg>

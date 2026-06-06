@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-label="Lead intelligence output dataset sample">
+  <rect width="1200" height="675" fill="#F7F5F0"/>
+  <text x="48" y="48" fill="#0D0D0D" font-family="Georgia, serif" font-size="24" font-weight="700">leads_clean.csv  Sample Output</text>
+  <text x="48" y="76" fill="#4A4A4A" font-family="monospace" font-size="13">498 records · 38 categories · Monroe, LA market</text>
+  <rect x="48" y="100" width="1104" height="520" rx="12" fill="#FFFFFF" stroke="#E4E1D8" stroke-width="2"/>
+  <rect x="48" y="100" width="1104" height="44" rx="12" fill="#EBF0FF"/>
+  <rect x="48" y="132" width="1104" height="12" fill="#EBF0FF"/>
+  <text x="68" y="128" fill="#1847B1" font-size="12" font-weight="600" font-family="monospace">business_name</text>
+  <text x="320" y="128" fill="#1847B1" font-size="12" font-weight="600" font-family="monospace">category</text>
+  <text x="520" y="128" fill="#1847B1" font-size="12" font-weight="600" font-family="monospace">phone</text>
+  <text x="720" y="128" fill="#1847B1" font-size="12" font-weight="600" font-family="monospace">city</text>
+  <text x="920" y="128" fill="#1847B1" font-size="12" font-weight="600" font-family="monospace">source</text>
+  <line x1="68" y1="144" x2="1132" y2="144" stroke="#E4E1D8"/>
+  <g font-family="sans-serif" font-size="13" fill="#0D0D0D">
+    <text x="68" y="172">Bayou Auto Repair</text><text x="320" y="172">Automotive</text><text x="520" y="172" font-family="monospace">(318) 555-0142</text><text x="720" y="172">Monroe</text><text x="920" y="172" fill="#4A4A4A">yellowpages</text>
+    <line x1="68" y1="184" x2="1132" y2="184" stroke="#F0EDE4"/>
+    <text x="68" y="212">Cypress Dental Group</text><text x="320" y="212">Healthcare</text><text x="520" y="212" font-family="monospace">(318) 555-0198</text><text x="720" y="212">West Monroe</text><text x="920" y="212" fill="#4A4A4A">google_maps</text>
+    <line x1="68" y1="224" x2="1132" y2="224" stroke="#F0EDE4"/>
+    <text x="68" y="252">Delta HVAC Services</text><text x="320" y="252">Home Services</text><text x="520" y="252" font-family="monospace">(318) 555-0211</text><text x="720" y="252">Monroe</text><text x="920" y="252" fill="#4A4A4A">chamber_dir</text>
+    <line x1="68" y1="264" x2="1132" y2="264" stroke="#F0EDE4"/>
+    <text x="68" y="292">Magnolia Law Firm</text><text x="320" y="292">Legal</text><text x="520" y="292" font-family="monospace">(318) 555-0267</text><text x="720" y="292">Monroe</text><text x="920" y="292" fill="#4A4A4A">yellowpages</text>
+    <line x1="68" y1="304" x2="1132" y2="304" stroke="#F0EDE4"/>
+    <text x="68" y="332">Red River Realty</text><text x="320" y="332">Real Estate</text><text x="520" y="332" font-family="monospace">(318) 555-0314</text><text x="720" y="332">Monroe</text><text x="920" y="332" fill="#4A4A4A">google_maps</text>
+    <line x1="68" y1="344" x2="1132" y2="344" stroke="#F0EDE4"/>
+    <text x="68" y="372">Sterling Accounting</text><text x="320" y="372">Professional Services</text><text x="520" y="372" font-family="monospace">(318) 555-0339</text><text x="720" y="372">Monroe</text><text x="920" y="372" fill="#4A4A4A">chamber_dir</text>
+    <line x1="68" y1="384" x2="1132" y2="384" stroke="#F0EDE4"/>
+    <text x="68" y="412">Twin Oaks Restaurant</text><text x="320" y="412">Food &amp; Beverage</text><text x="520" y="412" font-family="monospace">(318) 555-0388</text><text x="720" y="412">Monroe</text><text x="920" y="412" fill="#4A4A4A">yellowpages</text>
+    <line x1="68" y1="424" x2="1132" y2="424" stroke="#F0EDE4"/>
+    <text x="68" y="452" fill="#8C8C8C">& 491 additional rows</text>
+  </g>
+  <rect x="68" y="500" width="300" height="90" rx="10" fill="#F0FDF4" stroke="#16A34A"/>
+  <text x="88" y="530" fill="#16A34A" font-size="12" font-weight="600" font-family="monospace">EXPORT READY</text>
+  <text x="88" y="555" fill="#4A4A4A" font-size="12" font-family="sans-serif">CSV + PostgreSQL table</text>
+  <text x="88" y="575" fill="#4A4A4A" font-size="12" font-family="sans-serif">Used for client outreach</text>
+  <rect x="400" y="500" width="300" height="90" rx="10" fill="#EBF0FF" stroke="#1847B1"/>
+  <text x="420" y="530" fill="#1847B1" font-size="12" font-weight="600" font-family="monospace">DEDUPED</text>
+  <text x="420" y="555" fill="#4A4A4A" font-size="12" font-family="sans-serif">26 duplicates removed</text>
+  <text x="420" y="575" fill="#4A4A4A" font-size="12" font-family="sans-serif">Normalized phone formats</text>
+</svg>

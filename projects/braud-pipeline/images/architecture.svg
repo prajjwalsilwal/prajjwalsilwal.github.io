@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-label="Braud pipeline architecture diagram">
+  <rect width="1200" height="675" fill="#F7F5F0"/>
+  <text x="600" y="48" fill="#0D0D0D" font-family="Georgia, serif" font-size="28" font-weight="700" text-anchor="middle">Braud Pipeline Architecture</text>
+  <text x="600" y="78" fill="#4A4A4A" font-family="sans-serif" font-size="14" text-anchor="middle">Buildium ’ PostgreSQL ’ Owner Dashboard</text>
+  <!-- Extract -->
+  <rect x="80" y="140" width="220" height="120" rx="14" fill="#FFFFFF" stroke="#1847B1" stroke-width="2"/>
+  <text x="190" y="175" fill="#1847B1" font-family="monospace" font-size="12" text-anchor="middle">01 EXTRACT</text>
+  <text x="190" y="205" fill="#0D0D0D" font-size="16" font-weight="600" text-anchor="middle" font-family="sans-serif">Playwright</text>
+  <text x="190" y="230" fill="#4A4A4A" font-size="12" text-anchor="middle" font-family="sans-serif">1719 Buildium reports</text>
+  <text x="190" y="248" fill="#4A4A4A" font-size="12" text-anchor="middle" font-family="sans-serif">Headless login + download</text>
+  <!-- Arrow 1 -->
+  <path d="M300 200 H360" stroke="#1847B1" stroke-width="2" marker-end="url(#arrow)"/>
+  <!-- Transform -->
+  <rect x="360" y="140" width="220" height="120" rx="14" fill="#FFFFFF" stroke="#1847B1" stroke-width="2"/>
+  <text x="470" y="175" fill="#1847B1" font-family="monospace" font-size="12" text-anchor="middle">02 TRANSFORM</text>
+  <text x="470" y="205" fill="#0D0D0D" font-size="16" font-weight="600" text-anchor="middle" font-family="sans-serif">Python ETL</text>
+  <text x="470" y="230" fill="#4A4A4A" font-size="12" text-anchor="middle" font-family="sans-serif">Normalize · validate</text>
+  <text x="470" y="248" fill="#4A4A4A" font-size="12" text-anchor="middle" font-family="sans-serif">Dedupe · schema mapping</text>
+  <path d="M580 200 H640" stroke="#1847B1" stroke-width="2"/>
+  <!-- Orchestrate -->
+  <rect x="640" y="140" width="220" height="120" rx="14" fill="#EBF0FF" stroke="#1847B1" stroke-width="2"/>
+  <text x="750" y="175" fill="#1847B1" font-family="monospace" font-size="12" text-anchor="middle">ORCHESTRATE</text>
+  <text x="750" y="205" fill="#0D0D0D" font-size="16" font-weight="600" text-anchor="middle" font-family="sans-serif">Prefect</text>
+  <text x="750" y="230" fill="#4A4A4A" font-size="12" text-anchor="middle" font-family="sans-serif">Scheduled runs</text>
+  <text x="750" y="248" fill="#4A4A4A" font-size="12" text-anchor="middle" font-family="sans-serif">Retries · monitoring</text>
+  <path d="M860 200 H920" stroke="#1847B1" stroke-width="2"/>
+  <!-- Load -->
+  <rect x="920" y="140" width="200" height="120" rx="14" fill="#FFFFFF" stroke="#1847B1" stroke-width="2"/>
+  <text x="1020" y="175" fill="#1847B1" font-family="monospace" font-size="12" text-anchor="middle">03 LOAD</text>
+  <text x="1020" y="205" fill="#0D0D0D" font-size="16" font-weight="600" text-anchor="middle" font-family="sans-serif">PostgreSQL</text>
+  <text x="1020" y="230" fill="#4A4A4A" font-size="12" text-anchor="middle" font-family="sans-serif">Structured analytics DB</text>
+  <text x="1020" y="248" fill="#4A4A4A" font-size="12" text-anchor="middle" font-family="sans-serif">Occupancy · delinquency</text>
+  <!-- Down arrow to dashboard -->
+  <path d="M1020 260 V320" stroke="#1847B1" stroke-width="2"/>
+  <path d="M600 320 H1020 V380 H600 Z" fill="none" stroke="#1847B1" stroke-width="2"/>
+  <path d="M600 350 H180 V380 H600" fill="none" stroke="#1847B1" stroke-width="2"/>
+  <path d="M180 350 V410" stroke="#1847B1" stroke-width="2"/>
+  <!-- Surface -->
+  <rect x="80" y="410" width="1040" height="200" rx="14" fill="#0E1116" stroke="#262f3c" stroke-width="2"/>
+  <text x="600" y="445" fill="#1847B1" font-family="monospace" font-size="12" text-anchor="middle">04 SURFACE  Dashboard Layer</text>
+  <rect x="110" y="470" width="220" height="110" rx="10" fill="#161B22" stroke="#333"/>
+  <text x="220" y="500" fill="#F7F5F0" font-size="14" font-weight="600" text-anchor="middle" font-family="sans-serif">Morning Briefing</text>
+  <text x="220" y="525" fill="#9aa7b8" font-size="11" text-anchor="middle" font-family="sans-serif">Delinquent · vacant · maint.</text>
+  <rect x="350" y="470" width="220" height="110" rx="10" fill="#161B22" stroke="#333"/>
+  <text x="460" y="500" fill="#F7F5F0" font-size="14" font-weight="600" text-anchor="middle" font-family="sans-serif">Executive KPIs</text>
+  <text x="460" y="525" fill="#9aa7b8" font-size="11" text-anchor="middle" font-family="sans-serif">Occupancy · collections</text>
+  <rect x="590" y="470" width="220" height="110" rx="10" fill="#161B22" stroke="#333"/>
+  <text x="700" y="500" fill="#F7F5F0" font-size="14" font-weight="600" text-anchor="middle" font-family="sans-serif">Decision Inbox</text>
+  <text x="700" y="525" fill="#9aa7b8" font-size="11" text-anchor="middle" font-family="sans-serif">Workflow action drafts</text>
+  <rect x="830" y="470" width="220" height="110" rx="10" fill="#161B22" stroke="#333"/>
+  <text x="940" y="500" fill="#F7F5F0" font-size="14" font-weight="600" text-anchor="middle" font-family="sans-serif">Occupancy</text>
+  <text x="940" y="525" fill="#9aa7b8" font-size="11" text-anchor="middle" font-family="sans-serif">Portfolio + by property</text>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#1847B1"/>
+    </marker>
+  </defs>
+</svg>

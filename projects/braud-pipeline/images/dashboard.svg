@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-label="Executive KPI dashboard mockup">
+  <rect width="1200" height="675" fill="#0d0f12"/>
+  <text x="48" y="48" fill="#e7ebf2" font-family="sans-serif" font-size="22" font-weight="700">Executive Summary</text>
+  <text x="48" y="74" fill="#9aa7b8" font-family="sans-serif" font-size="13">Portfolio KPIs at a glance · Demo data</text>
+  <rect x="900" y="28" width="252" height="32" rx="16" fill="#151a21" stroke="#262f3c"/>
+  <text x="1026" y="49" fill="#9aa7b8" font-size="12" font-family="monospace" text-anchor="middle">Demo snapshot · Jun 6, 2026</text>
+  <g transform="translate(48,100)">
+    <rect width="260" height="130" rx="12" fill="#151a21" stroke="#262f3c"/>
+    <text x="20" y="36" fill="#9aa7b8" font-size="13" font-family="sans-serif">Occupancy</text>
+    <text x="20" y="78" fill="#22c55e" font-size="36" font-weight="700" font-family="sans-serif">94.2%</text>
+    <text x="20" y="104" fill="#22c55e" font-size="12" font-family="monospace">+0.8% vs last month</text>
+    <rect x="280" width="260" height="130" rx="12" fill="#151a21" stroke="#262f3c"/>
+    <text x="300" y="36" fill="#9aa7b8" font-size="13" font-family="sans-serif">Collection rate</text>
+    <text x="300" y="78" fill="#e7ebf2" font-size="36" font-weight="700" font-family="sans-serif">97.1%</text>
+    <text x="300" y="104" fill="#f59e0b" font-size="12" font-family="monospace">-0.3% MTD collected</text>
+    <rect x="560" width="260" height="130" rx="12" fill="#151a21" stroke="#262f3c"/>
+    <text x="580" y="36" fill="#9aa7b8" font-size="13" font-family="sans-serif">Delinquent balance</text>
+    <text x="580" y="78" fill="#f59e0b" font-size="36" font-weight="700" font-family="sans-serif">$12,480</text>
+    <text x="580" y="104" fill="#9aa7b8" font-size="12" font-family="sans-serif">18 tenants</text>
+    <rect x="840" width="260" height="130" rx="12" fill="#151a21" stroke="#262f3c"/>
+    <text x="860" y="36" fill="#9aa7b8" font-size="13" font-family="sans-serif">Vacant units</text>
+    <text x="860" y="78" fill="#3b82f6" font-size="36" font-weight="700" font-family="sans-serif">7</text>
+    <text x="860" y="104" fill="#9aa7b8" font-size="12" font-family="sans-serif">3 listed</text>
+  </g>
+  <rect x="48" y="260" width="540" height="360" rx="12" fill="#151a21" stroke="#262f3c"/>
+  <text x="68" y="292" fill="#e7ebf2" font-size="16" font-weight="600" font-family="sans-serif">Occupancy trend</text>
+  <line x1="80" y1="580" x2="560" y2="580" stroke="#333" stroke-width="1"/>
+  <line x1="80" y1="320" x2="80" y2="580" stroke="#333" stroke-width="1"/>
+  <polyline points="100,520 160,480 220,460 280,450 340,440 400,430 460,420 520,410" fill="none" stroke="#3b82f6" stroke-width="3"/>
+  <circle cx="520" cy="410" r="5" fill="#3b82f6"/>
+  <text x="100" y="600" fill="#6b7280" font-size="11" font-family="monospace">Jan</text>
+  <text x="220" y="600" fill="#6b7280" font-size="11" font-family="monospace">Mar</text>
+  <text x="340" y="600" fill="#6b7280" font-size="11" font-family="monospace">May</text>
+  <text x="460" y="600" fill="#6b7280" font-size="11" font-family="monospace">Jun</text>
+  <rect x="620" y="260" width="532" height="360" rx="12" fill="#151a21" stroke="#262f3c"/>
+  <text x="640" y="292" fill="#e7ebf2" font-size="16" font-weight="600" font-family="sans-serif">Occupancy by property</text>
+  <text x="640" y="330" fill="#6b7280" font-size="11" font-family="monospace">Property · Rate</text>
+  <rect x="640" y="345" width="420" height="24" rx="4" fill="#1e293b"/><rect x="640" y="345" width="394" height="24" rx="4" fill="#22c55e" opacity="0.7"/>
+  <text x="640" y="362" fill="#e7ebf2" font-size="11" font-family="sans-serif">Riverside Commons</text><text x="1070" y="362" fill="#e7ebf2" font-size="11" text-anchor="end" font-family="monospace">96.4%</text>
+  <rect x="640" y="385" width="420" height="24" rx="4" fill="#1e293b"/><rect x="640" y="385" width="396" height="24" rx="4" fill="#22c55e" opacity="0.7"/>
+  <text x="640" y="402" fill="#e7ebf2" font-size="11" font-family="sans-serif">Oak Street Duplexes</text><text x="1070" y="402" fill="#e7ebf2" font-size="11" text-anchor="end" font-family="monospace">94.4%</text>
+  <rect x="640" y="425" width="420" height="24" rx="4" fill="#1e293b"/><rect x="640" y="425" width="390" height="24" rx="4" fill="#22c55e" opacity="0.7"/>
+  <text x="640" y="442" fill="#e7ebf2" font-size="11" font-family="sans-serif">Maple Court</text><text x="1070" y="442" fill="#e7ebf2" font-size="11" text-anchor="end" font-family="monospace">93.8%</text>
+  <rect x="640" y="465" width="420" height="24" rx="4" fill="#1e293b"/><rect x="640" y="465" width="382" height="24" rx="4" fill="#f59e0b" opacity="0.7"/>
+  <text x="640" y="482" fill="#e7ebf2" font-size="11" font-family="sans-serif">Harbor View</text><text x="1070" y="482" fill="#e7ebf2" font-size="11" text-anchor="end" font-family="monospace">91.7%</text>
+  <rect x="640" y="530" width="492" height="70" rx="8" fill="#1a2332" stroke="#333"/>
+  <text x="656" y="558" fill="#f59e0b" font-size="12" font-family="sans-serif">  Maint. overdue: 5 · Inbox pending: 4</text>
+  <text x="656" y="582" fill="#9aa7b8" font-size="11" font-family="sans-serif">Action items surfaced to Decision Inbox</text>
+</svg>

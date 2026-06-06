@@ -52,7 +52,7 @@
   <article class="case-study">
     <div class="cs-hero">
       <div class="cs-hero__image">
-        <img src="./images/hero.jpg" alt="Lead intelligence pipeline output" loading="eager" onerror="this.style.display='none'">
+        <img src="./images/hero.svg" alt="Lead intelligence pipeline output" loading="eager">
         <div class="cs-hero__image-fallback project-card__image-fallback project-card__image-fallback--green"></div>
       </div>
       <div class="container cs-hero__content">
@@ -74,7 +74,8 @@
 
     <div class="cs-stats">
       <div class="cs-stat"><span class="stat__number">500+</span><span class="stat__label">Business Records</span></div>
-      <div class="cs-stat"><span class="stat__number">100%</span><span class="stat__label">Automated Pipeline</span></div>
+      <div class="cs-stat"><span class="stat__number">4</span><span class="stat__label">Pipeline Stages</span></div>
+      <div class="cs-stat"><span class="stat__number">100%</span><span class="stat__label">Automated</span></div>
       <div class="cs-stat"><span class="stat__number">Done</span><span class="stat__label">Delivered to Client</span></div>
     </div>
 
@@ -87,14 +88,50 @@
            automated from raw extraction through final deliverable.</p>
       </section>
 
-      <section class="cs-gallery reveal" data-delay="100">
+      <section class="cs-section reveal" data-delay="80">
+        <h2>Pipeline Stages</h2>
+        <div class="cs-flow">
+          <div class="cs-flow__step">
+            <div class="cs-flow__step-num">01</div>
+            <h3>Scrape</h3>
+            <p>Python crawlers pull business listings from public directories — names, categories, contact info, locations.</p>
+          </div>
+          <div class="cs-flow__step">
+            <div class="cs-flow__step-num">02</div>
+            <h3>Clean</h3>
+            <p>Normalize phone formats, standardize addresses, map raw categories to a consistent taxonomy.</p>
+          </div>
+          <div class="cs-flow__step">
+            <div class="cs-flow__step-num">03</div>
+            <h3>Dedupe</h3>
+            <p>Match on business name + phone to remove duplicate entries across overlapping sources.</p>
+          </div>
+          <div class="cs-flow__step">
+            <div class="cs-flow__step-num">04</div>
+            <h3>Export</h3>
+            <p>Deliver analysis-ready CSV and SQL table for client outreach and market segmentation.</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="cs-demo reveal" data-delay="100">
+        <div class="cs-demo__text">
+          <h3>Try the sanitized demo</h3>
+          <p>Interactive preview of pipeline output — fictional Monroe, LA business records, category breakdown, and stage status. No live scraping, no real data.</p>
+        </div>
+        <div class="cs-demo__actions">
+          <a href="/projects/lead-intelligence/demo/" class="btn btn--primary btn--sm" target="_blank" rel="noopener">Open Pipeline Demo ↗</a>
+          <a href="https://github.com/prajjwalsilwal" class="btn btn--outline btn--sm" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
+      </div>
+
+      <section class="cs-gallery reveal" data-delay="120">
         <div class="cs-gallery__grid">
           <div class="cs-gallery__item">
-            <img src="./images/output-sample.jpg"
+            <img src="./images/output-sample.svg"
                  alt="Structured output dataset sample"
-                 loading="lazy"
-                 onerror="this.parentElement.classList.add('cs-gallery__item--placeholder')">
-            <p class="cs-gallery__caption">Structured output dataset</p>
+                 loading="lazy">
+            <p class="cs-gallery__caption">Structured output dataset — leads_clean.csv</p>
           </div>
         </div>
       </section>
@@ -106,7 +143,7 @@
            slow, inconsistent, and impossible to repeat at scale.</p>
       </section>
 
-      <section class="cs-section reveal" data-delay="200">
+      <section class="cs-section reveal" data-delay="180">
         <h2>The Solution</h2>
         <p>Python scraping scripts extracted records from public web directories, applied
            cleaning and deduplication rules, and loaded structured output into SQL-ready

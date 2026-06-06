@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Multi-client diagnostic dashboard mockup">
+  <defs>
+    <linearGradient id="n" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B1425"/>
+      <stop offset="100%" stop-color="#1E3A5F"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#n)"/>
+  <text x="48" y="48" fill="#e2e8f0" font-family="sans-serif" font-size="22" font-weight="700">IT Diagnostics  Multi-Client View</text>
+  <text x="48" y="74" fill="#94a3b8" font-family="sans-serif" font-size="13">30+ endpoints · Demo data</text>
+  <rect x="900" y="32" width="252" height="36" rx="8" fill="#1e293b" stroke="#334155"/>
+  <text x="920" y="55" fill="#94a3b8" font-size="12" font-family="sans-serif">Client: Acme Logistics ¾</text>
+  <g transform="translate(48,95)">
+    <rect width="260" height="110" rx="10" fill="#0f172a" stroke="#334155"/>
+    <text x="16" y="32" fill="#94a3b8" font-size="12" font-family="sans-serif">Endpoints online</text>
+    <text x="16" y="68" fill="#22c55e" font-size="32" font-weight="700" font-family="sans-serif">28/30</text>
+    <text x="16" y="92" fill="#ef4444" font-size="11" font-family="monospace">2 offline</text>
+    <rect x="280" width="260" height="110" rx="10" fill="#0f172a" stroke="#334155"/>
+    <text x="296" y="32" fill="#94a3b8" font-size="12" font-family="sans-serif">Avg CPU</text>
+    <text x="296" y="68" fill="#e2e8f0" font-size="32" font-weight="700" font-family="sans-serif">34%</text>
+    <rect x="560" width="260" height="110" rx="10" fill="#0f172a" stroke="#334155"/>
+    <text x="576" y="32" fill="#94a3b8" font-size="12" font-family="sans-serif">Avg memory</text>
+    <text x="576" y="68" fill="#f59e0b" font-size="32" font-weight="700" font-family="sans-serif">71%</text>
+    <rect x="840" width="312" height="110" rx="10" fill="#0f172a" stroke="#334155"/>
+    <text x="856" y="32" fill="#94a3b8" font-size="12" font-family="sans-serif">Open alerts</text>
+    <text x="856" y="68" fill="#ef4444" font-size="32" font-weight="700" font-family="sans-serif">5</text>
+    <text x="856" y="92" fill="#94a3b8" font-size="11" font-family="sans-serif">3 critical · 2 warning</text>
+  </g>
+  <rect x="48" y="220" width="700" height="360" rx="12" fill="#0f172a" stroke="#334155"/>
+  <text x="68" y="252" fill="#e2e8f0" font-size="15" font-weight="600" font-family="sans-serif">Endpoint health</text>
+  <text x="68" y="280" fill="#64748b" font-size="11" font-family="monospace">hostname · cpu · mem · disk · status</text>
+  <text x="68" y="312" fill="#e2e8f0" font-size="12" font-family="monospace">WS-ACME-01 · 22% · 58% · 41% · </text><text x="430" y="312" fill="#22c55e" font-size="12" font-family="monospace">online</text>
+  <text x="68" y="340" fill="#e2e8f0" font-size="12" font-family="monospace">WS-ACME-02 · 89% · 92% · 67% · </text><text x="430" y="340" fill="#ef4444" font-size="12" font-family="monospace">critical</text>
+  <text x="68" y="368" fill="#e2e8f0" font-size="12" font-family="monospace">SRV-ACME-DB · 45% · 78% · 55% · </text><text x="430" y="368" fill="#22c55e" font-size="12" font-family="monospace">online</text>
+  <text x="68" y="396" fill="#e2e8f0" font-size="12" font-family="monospace">WS-ACME-04 ·  ·  ·  · </text><text x="430" y="396" fill="#64748b" font-size="12" font-family="monospace">offline</text>
+  <text x="68" y="424" fill="#e2e8f0" font-size="12" font-family="monospace">WS-ACME-05 · 31% · 64% · 38% · </text><text x="430" y="424" fill="#22c55e" font-size="12" font-family="monospace">online</text>
+  <polyline points="68,480 120,470 172,485 224,460 276,475 328,450 380,465 432,440 484,455 536,430 588,445 640,420" fill="none" stroke="#3b82f6" stroke-width="2"/>
+  <text x="68" y="510" fill="#64748b" font-size="11" font-family="sans-serif">CPU trend  last 24h (WS-ACME-02 highlighted)</text>
+  <rect x="770" y="220" width="382" height="360" rx="12" fill="#0f172a" stroke="#334155"/>
+  <text x="790" y="252" fill="#e2e8f0" font-size="15" font-weight="600" font-family="sans-serif">Active alerts</text>
+  <rect x="790" y="270" width="342" height="56" rx="8" fill="#1c1010" stroke="#7f1d1d"/>
+  <text x="806" y="294" fill="#fca5a5" font-size="12" font-family="sans-serif">WS-ACME-02  CPU &gt; 85% for 15min</text>
+  <text x="806" y="314" fill="#94a3b8" font-size="11" font-family="monospace">critical · 12m ago</text>
+  <rect x="790" y="340" width="342" height="56" rx="8" fill="#1c1910" stroke="#78350f"/>
+  <text x="806" y="364" fill="#fcd34d" font-size="12" font-family="sans-serif">SRV-ACME-DB  Memory &gt; 75%</text>
+  <text x="806" y="384" fill="#94a3b8" font-size="11" font-family="monospace">warning · 34m ago</text>
+  <rect x="790" y="410" width="342" height="56" rx="8" fill="#1c1010" stroke="#7f1d1d"/>
+  <text x="806" y="434" fill="#fca5a5" font-size="12" font-family="sans-serif">WS-ACME-04  Agent not responding</text>
+  <text x="806" y="454" fill="#94a3b8" font-size="11" font-family="monospace">critical · 2h ago</text>
+  <text x="790" y="510" fill="#64748b" font-size="11" font-family="sans-serif">20% avg troubleshooting time</text>
+</svg>

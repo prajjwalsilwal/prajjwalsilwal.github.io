@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT Diagnostic Dashboard — Demo</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <div>
+        <h1>Multi-Client Diagnostic Dashboard</h1>
+        <p>IT operations monitoring — fictional endpoint data only.</p>
+      </div>
+      <div class="demo-banner" id="as-of">Demo snapshot</div>
+    </header>
+    <select class="client-select" id="client-select" aria-label="Select client"></select>
+    <div class="kpi-grid" id="stats"></div>
+    <div class="grid-2">
+      <section class="panel" id="endpoints"></section>
+      <section class="panel" id="alerts"></section>
+    </div>
+  </div>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

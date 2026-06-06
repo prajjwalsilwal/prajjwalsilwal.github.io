@@ -39,3 +39,21 @@
 .hero__ctas     { animation: fadeInUp 0.7s ease 0.75s both; }
 .hero__social   { animation: fadeInUp 0.7s ease 0.9s both; }
 .hero__terminal { animation: fadeInUp 0.9s ease 0.5s both; }
+
+@keyframes dashFlow {
+  to { stroke-dashoffset: -24; }
+}
+
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.svg-dash-flow {
+  stroke-dasharray: 8 6;
+  animation: dashFlow 0.8s linear infinite;
+}
+
+.svg-cursor-blink {
+  animation: cursorBlink 1.2s step-end infinite;
+}

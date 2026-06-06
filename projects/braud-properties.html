@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Braud Properties — public rental platform built with Next.js, React, Sanity CMS, and Buildium integration. Case study by Prajjwal Silwal.">
+  <meta property="og:title" content="Braud Properties | Prajjwal Silwal">
+  <meta property="og:description" content="Full-stack production website for Braud & Son Property Management — 200+ live rental units across Monroe, LA.">
+  <title>Braud Properties | Prajjwal Silwal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/animations.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>PS</text></svg>">
+</head>
+<body>
+
+  <header class="nav scrolled" id="nav">
+    <div class="container nav__inner">
+      <a href="/" class="nav__logo">
+        <span class="nav__logo-name">PS</span>
+        <span class="nav__logo-dot"></span>
+      </a>
+      <nav class="nav__links" aria-label="Primary navigation">
+        <a href="/#about" class="nav__link">About</a>
+        <a href="/#experience" class="nav__link">Experience</a>
+        <a href="/#skills" class="nav__link">Skills</a>
+        <a href="/#projects" class="nav__link active">Projects</a>
+        <a href="/#education" class="nav__link">Education</a>
+        <a href="/#contact" class="nav__link">Contact</a>
+      </nav>
+      <div class="nav__cta">
+        <a href="/Prajjwal_Silwal_Resume.pdf" class="btn btn--outline btn--sm" target="_blank" rel="noopener">Resume ↗</a>
+        <button class="nav__hamburger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="nav__drawer" aria-hidden="true">
+      <nav class="nav__drawer-links">
+        <a href="/#about">About</a>
+        <a href="/#experience">Experience</a>
+        <a href="/#skills">Skills</a>
+        <a href="/#projects">Projects</a>
+        <a href="/#education">Education</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <article class="case-study">
+    <div class="cs-hero">
+      <div class="cs-hero__image">
+        <svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Braud Properties website">
+          <rect width="1200" height="630" fill="#0a1a14"/>
+          <text x="600" y="280" fill="#10b981" font-size="48" font-weight="700" text-anchor="middle" font-family="Georgia, serif">Braud Properties</text>
+          <text x="600" y="330" fill="#9ca3af" font-size="18" text-anchor="middle" font-family="sans-serif">Monroe, LA · Live rental listings · 200+ units</text>
+          <rect x="450" y="370" width="300" height="48" rx="24" fill="#10b981" opacity="0.2" stroke="#10b981"/>
+          <text x="600" y="400" fill="#10b981" font-size="16" text-anchor="middle" font-family="sans-serif">braudproperties.com</text>
+        </svg>
+      </div>
+      <div class="container cs-hero__content">
+        <a href="/#projects" class="cs-back">← All Projects</a>
+        <div class="cs-hero__badges">
+          <span class="project-card__badge project-card__badge--live">
+            <span class="badge-dot"></span> Live — In Production
+          </span>
+        </div>
+        <h1 class="cs-hero__title">Braud Properties — Public Rental Platform</h1>
+        <p class="cs-hero__sub">Tenant-Facing Property Website</p>
+        <div class="cs-hero__tags">
+          <span class="tag">Next.js</span>
+          <span class="tag">React</span>
+          <span class="tag">Sanity CMS</span>
+          <span class="tag">Tailwind CSS</span>
+          <span class="tag">Buildium</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-stats">
+      <div class="cs-stat"><span class="stat__number">200+</span><span class="stat__label">Units Live</span></div>
+      <div class="cs-stat"><span class="stat__number">10</span><span class="stat__label">Properties</span></div>
+      <div class="cs-stat"><span class="stat__number">Live</span><span class="stat__label">In Production</span></div>
+    </div>
+
+    <div class="container cs-body">
+      <section class="cs-section reveal">
+        <h2>Overview</h2>
+        <p>Full-stack production website for Braud &amp; Son Property Management in Monroe, LA.
+           Displays live rental listings across 200+ units and 10 properties, with Sanity CMS
+           for content management, real-time listing filters, and direct Buildium integration
+           for online tenant applications.</p>
+      </section>
+
+      <section class="cs-section reveal" data-delay="100">
+        <h2>The Problem</h2>
+        <p>Prospective tenants had no centralized place to browse available units, filter by
+           property or price, or submit applications online — everything routed through
+           phone calls and manual follow-up.</p>
+      </section>
+
+      <section class="cs-section reveal" data-delay="150">
+        <h2>The Solution</h2>
+        <p>A Next.js and React front-end with Sanity CMS for editable content, Tailwind CSS
+           for responsive design, and Buildium integration so listings stay current and
+           applications flow directly into the property management system.</p>
+      </section>
+
+      <div class="cs-demo reveal" data-delay="200">
+        <div class="cs-demo__text">
+          <h3>Visit the live site</h3>
+          <p>The production website is live at braudproperties.com — browse listings, filters, and online applications.</p>
+        </div>
+        <div class="cs-demo__actions">
+          <a href="https://braudproperties.com" class="btn btn--primary btn--sm" target="_blank" rel="noopener">Visit Site ↗</a>
+          <a href="/#projects" class="btn btn--outline btn--sm">← All Projects</a>
+        </div>
+      </div>
+
+      <a href="/#projects" class="btn btn--outline" style="margin-top: 3rem">← Back to Projects</a>
+    </div>
+  </article>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span class="footer__name">Prajjwal Silwal — Automation Engineer &amp; Data Analyst</span>
+      <span class="footer__copy mono-label">Monroe, LA &nbsp;·&nbsp; © 2026</span>
+    </div>
+  </footer>
+
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

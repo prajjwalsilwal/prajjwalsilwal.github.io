@@ -23,10 +23,11 @@
         <span class="nav__logo-dot"></span>
       </a>
       <nav class="nav__links" aria-label="Primary navigation">
+        <a href="/#projects" class="nav__link active">Projects</a>
+        <a href="/#current" class="nav__link">Now</a>
         <a href="/#about" class="nav__link">About</a>
         <a href="/#experience" class="nav__link">Experience</a>
-        <a href="/#skills" class="nav__link">Skills</a>
-        <a href="/#projects" class="nav__link active">Projects</a>
+        <a href="/#skills" class="nav__link">Tools</a>
         <a href="/#education" class="nav__link">Education</a>
         <a href="/#contact" class="nav__link">Contact</a>
       </nav>
@@ -39,10 +40,11 @@
     </div>
     <div class="nav__drawer" aria-hidden="true">
       <nav class="nav__drawer-links">
+        <a href="/#projects">Projects</a>
+        <a href="/#current">Now</a>
         <a href="/#about">About</a>
         <a href="/#experience">Experience</a>
-        <a href="/#skills">Skills</a>
-        <a href="/#projects">Projects</a>
+        <a href="/#skills">Tools</a>
         <a href="/#education">Education</a>
         <a href="/#contact">Contact</a>
       </nav>
@@ -72,52 +74,75 @@
       </div>
     </div>
 
+    <!-- WHY: Replace filler stats (100% Automated) with countable pipeline outputs -->
     <div class="cs-stats">
-      <div class="cs-stat"><span class="stat__number">500+</span><span class="stat__label">Business Records</span></div>
-      <div class="cs-stat"><span class="stat__number">4</span><span class="stat__label">Pipeline Stages</span></div>
-      <div class="cs-stat"><span class="stat__number">100%</span><span class="stat__label">Automated</span></div>
-      <div class="cs-stat"><span class="stat__number">Done</span><span class="stat__label">Delivered to Client</span></div>
+      <div class="cs-stat"><span class="stat__number">524</span><span class="stat__label">Records scraped</span></div>
+      <div class="cs-stat"><span class="stat__number">498</span><span class="stat__label">After deduplication</span></div>
+      <div class="cs-stat"><span class="stat__number">38</span><span class="stat__label">Business categories</span></div>
+      <div class="cs-stat"><span class="stat__number">Done</span><span class="stat__label">Delivered to client</span></div>
     </div>
 
     <div class="container cs-body">
       <section class="cs-section reveal">
-        <h2>Overview</h2>
-        <p>Python automation pipeline that scraped, cleaned, and structured data on 500+
-           local businesses from public web directories. Processed records into a structured
-           dataset used for targeted client outreach and local market analysis — fully
-           automated from raw extraction through final deliverable.</p>
+        <h2>Problem</h2>
+        <p>A client needed a local business dataset for outreach in the Monroe, LA area — names,
+           categories, phone numbers, addresses — across hundreds of businesses. Manual research
+           in directories and maps was slow, inconsistent between researchers, and painful to
+           repeat when the list needed refreshing a month later.</p>
       </section>
 
       <section class="cs-section reveal" data-delay="80">
-        <h2>Pipeline Stages</h2>
+        <h2>Approach</h2>
+        <p>I built a Python pipeline that pulled from public web directories (Yellow Pages, Google
+           Maps listings, chamber directories), normalized each source into a common schema, and
+           exported a clean CSV plus SQL-ready table.</p>
         <div class="cs-flow">
           <div class="cs-flow__step">
             <div class="cs-flow__step-num">01</div>
             <h3>Scrape</h3>
-            <p>Python crawlers pull business listings from public directories — names, categories, contact info, locations.</p>
+            <p>Python crawlers extract names, categories, contact info, and locations per source.</p>
           </div>
           <div class="cs-flow__step">
             <div class="cs-flow__step-num">02</div>
             <h3>Clean</h3>
-            <p>Normalize phone formats, standardize addresses, map raw categories to a consistent taxonomy.</p>
+            <p>Normalize phone formats, standardize addresses, map categories to one taxonomy.</p>
           </div>
           <div class="cs-flow__step">
             <div class="cs-flow__step-num">03</div>
             <h3>Dedupe</h3>
-            <p>Match on business name + phone to remove duplicate entries across overlapping sources.</p>
+            <p>Match on business name + phone; drop overlapping entries across sources.</p>
           </div>
           <div class="cs-flow__step">
             <div class="cs-flow__step-num">04</div>
             <h3>Export</h3>
-            <p>Deliver analysis-ready CSV and SQL table for client outreach and market segmentation.</p>
+            <p>Deliver <code>leads_clean.csv</code> and SQL table for segmentation and outreach.</p>
           </div>
         </div>
       </section>
 
-      <div class="cs-demo reveal" data-delay="100">
+      <section class="cs-section reveal" data-delay="120">
+        <h2>Decision</h2>
+        <p><strong>Multi-source scrape with aggressive deduplication.</strong> No single directory
+           had complete coverage. Pulling from three sources and deduplicating on name + phone
+           got better recall than betting on one site — at the cost of 26 duplicate rows removed
+           from the initial 524-record pull.</p>
+        <p><strong>Deliver a flat file, not a live app.</strong> The client needed a list to work
+           from in Excel and a CRM import — not a dashboard. Shipping CSV + SQL kept scope tight
+           and let them start outreach the same week.</p>
+      </section>
+
+      <section class="cs-section reveal" data-delay="160">
+        <h2>Result</h2>
+        <p>Delivered <strong>498 deduplicated business records</strong> across <strong>38 categories</strong>,
+           ready for client outreach and market segmentation. The pipeline ran end-to-end without
+           manual steps between extraction and export.</p>
+        <p>Client received a segmented outreach dataset — 498 businesses across 38 categories, formatted for CRM import and local market outreach.</p>
+      </section>
+
+      <div class="cs-demo reveal" data-delay="200">
         <div class="cs-demo__text">
           <h3>Try the sanitized demo</h3>
-          <p>Interactive preview of pipeline output — fictional Monroe, LA business records, category breakdown, and stage status. No live scraping, no real data.</p>
+          <p>Interactive preview with fictional Monroe, LA records — no live scraping, no real business data.</p>
         </div>
         <div class="cs-demo__actions">
           <a href="/projects/lead-intelligence/demo/" class="btn btn--primary btn--sm" target="_blank" rel="noopener">Open Pipeline Demo ↗</a>
@@ -125,7 +150,7 @@
         </div>
       </div>
 
-      <section class="cs-gallery reveal" data-delay="120">
+      <section class="cs-gallery reveal" data-delay="220">
         <div class="cs-gallery__grid">
           <div class="cs-gallery__item">
             <img src="./images/output-sample.svg"
@@ -134,21 +159,6 @@
             <p class="cs-gallery__caption">Structured output dataset — leads_clean.csv</p>
           </div>
         </div>
-      </section>
-
-      <section class="cs-section reveal" data-delay="150">
-        <h2>The Problem</h2>
-        <p>A client needed local market intelligence — business names, categories, contact
-           info, and location data across hundreds of businesses — but manual research was
-           slow, inconsistent, and impossible to repeat at scale.</p>
-      </section>
-
-      <section class="cs-section reveal" data-delay="180">
-        <h2>The Solution</h2>
-        <p>Python scraping scripts extracted records from public web directories, applied
-           cleaning and deduplication rules, and loaded structured output into SQL-ready
-           datasets. The entire workflow ran on a schedule with no manual steps between
-           extraction and delivery.</p>
       </section>
 
       <a href="/#projects" class="btn btn--outline" style="margin-top: 3rem">← Back to Projects</a>

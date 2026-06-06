@@ -470,11 +470,6 @@ a { color: inherit; text-decoration: none; }
   color: var(--accent);
 }
 
-.hero__title {
-  font-size: var(--text-sm);
-  color: var(--text-muted);
-  margin-bottom: 1.75rem;
-}
 
 .hero__title-bracket {
   color: var(--accent);
@@ -485,8 +480,29 @@ a { color: inherit; text-decoration: none; }
   font-size: var(--text-lg);
   color: rgba(247, 245, 240, 0.72);
   line-height: 1.65;
-  max-width: 48ch;
+  max-width: 52ch;
   margin-bottom: 2.5rem;
+}
+
+.hero__bio-link {
+  color: rgba(247, 245, 240, 0.92);
+  text-decoration: underline;
+  text-decoration-color: rgba(247, 245, 240, 0.35);
+  text-underline-offset: 3px;
+  transition: color var(--transition-fast), text-decoration-color var(--transition-fast);
+}
+
+.hero__bio-link:hover {
+  color: var(--text-inverse);
+  text-decoration-color: var(--accent);
+}
+
+.hero__title {
+  font-size: var(--text-base);
+  font-weight: 500;
+  color: rgba(247, 245, 240, 0.82);
+  margin-bottom: 1.25rem;
+  letter-spacing: 0.01em;
 }
 
 .hero__ctas {
@@ -567,6 +583,8 @@ a { color: inherit; text-decoration: none; }
 .t-str   { color: #A5D6FF; }
 .t-bool  { color: #FF7B72; }
 .t-green { color: #7EE787; }
+.t-muted { color: #6E7681; }
+.t-num   { color: #FFA657; }
 
 .hero__clip {
   position: absolute;
@@ -603,7 +621,75 @@ a { color: inherit; text-decoration: none; }
   animation: scrollLine 2s ease infinite;
 }
 
-/* Stat strip */
+/* Hero achievement — single contextual proof line replacing unanchored % stats */
+.hero-achievement {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 2rem 0;
+  background: var(--bg-card);
+}
+
+.hero-achievement__inner {
+  max-width: 72ch;
+}
+
+.hero-achievement__text {
+  font-size: var(--text-lg);
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.hero-achievement__text strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.hero-achievement__before {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  color: var(--accent);
+  background: var(--accent-light);
+  padding: 0.1rem 0.35rem;
+  border-radius: var(--radius-sm);
+}
+
+/* Current work section */
+.current__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+.current__card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 1.75rem;
+}
+
+.current__label {
+  display: block;
+  margin-bottom: 0.65rem;
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.current__title {
+  font-size: var(--text-xl);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+  color: var(--text-primary);
+}
+
+.current__desc {
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+/* Stat strip — kept for case study pages */
 .stat-strip {
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
@@ -1190,8 +1276,15 @@ a { color: inherit; text-decoration: none; }
 .edu__certs-heading {
   font-size: var(--text-base);
   font-weight: 600;
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.75rem;
   color: var(--text-primary);
+}
+
+.edu__certs-note {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
 }
 
 .cert-card {
@@ -1449,6 +1542,12 @@ a { color: inherit; text-decoration: none; }
   border-right: 1px solid var(--border);
 }
 
+.cs-stat .stat__label {
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .cs-stat:last-child {
   border-right: none;
 }
@@ -1479,6 +1578,27 @@ a { color: inherit; text-decoration: none; }
 
 .cs-section p + p {
   margin-top: 1rem;
+}
+
+.cs-section ul {
+  margin-top: 1rem;
+  padding-left: 1.25rem;
+  color: var(--text-secondary);
+}
+
+.cs-section li {
+  font-size: var(--text-lg);
+  line-height: 1.7;
+  margin-bottom: 0.5rem;
+}
+
+.cs-placeholder {
+  font-family: var(--font-mono);
+  font-size: 0.95em;
+  color: var(--accent);
+  background: var(--accent-light);
+  padding: 0.1rem 0.35rem;
+  border-radius: var(--radius-sm);
 }
 
 .cs-flow {
@@ -1646,6 +1766,7 @@ a { color: inherit; text-decoration: none; }
 @media (max-width: 900px) {
   .hero__inner         { grid-template-columns: 1fr; }
   .hero__terminal      { display: none; }
+  .current__grid       { grid-template-columns: 1fr; }
   .about__grid         { grid-template-columns: 1fr; }
   .projects__grid      { grid-template-columns: 1fr; }
   .skill-row           { grid-template-columns: 120px 1fr; }

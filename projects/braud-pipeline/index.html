@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="The Braud Pipeline and Operations Dashboard — Playwright + Prefect automation into PostgreSQL, plus a live owner-facing analytics layer. Case study by Prajjwal Silwal.">
+  <meta name="description" content="The Braud Pipeline and Operations Dashboard — nightly Playwright + Prefect automation into PostgreSQL, plus the morning dashboard ownership uses daily. Case study by Prajjwal Silwal.">
   <meta property="og:title" content="Braud Pipeline &amp; Dashboard | Prajjwal Silwal">
   <meta property="og:description" content="Two production deliverables: nightly Buildium → PostgreSQL automation and a live operations dashboard with Morning Briefing, KPIs, and Decision Inbox.">
   <title>Braud Pipeline &amp; Dashboard | Prajjwal Silwal</title>
@@ -23,10 +23,11 @@
         <span class="nav__logo-dot"></span>
       </a>
       <nav class="nav__links" aria-label="Primary navigation">
+        <a href="/#projects" class="nav__link active">Projects</a>
+        <a href="/#current" class="nav__link">Now</a>
         <a href="/#about" class="nav__link">About</a>
         <a href="/#experience" class="nav__link">Experience</a>
-        <a href="/#skills" class="nav__link">Skills</a>
-        <a href="/#projects" class="nav__link active">Projects</a>
+        <a href="/#skills" class="nav__link">Tools</a>
         <a href="/#education" class="nav__link">Education</a>
         <a href="/#contact" class="nav__link">Contact</a>
       </nav>
@@ -39,10 +40,11 @@
     </div>
     <div class="nav__drawer" aria-hidden="true">
       <nav class="nav__drawer-links">
+        <a href="/#projects">Projects</a>
+        <a href="/#current">Now</a>
         <a href="/#about">About</a>
         <a href="/#experience">Experience</a>
-        <a href="/#skills">Skills</a>
-        <a href="/#projects">Projects</a>
+        <a href="/#skills">Tools</a>
         <a href="/#education">Education</a>
         <a href="/#contact">Contact</a>
       </nav>
@@ -78,96 +80,91 @@
       <div class="cs-stat"><span class="stat__number">17+</span><span class="stat__label">Reports Automated</span></div>
       <div class="cs-stat"><span class="stat__number">4</span><span class="stat__label">Dashboard Modules</span></div>
       <div class="cs-stat"><span class="stat__number">0</span><span class="stat__label">Manual Steps Required</span></div>
-      <div class="cs-stat"><span class="stat__number">Live</span><span class="stat__label">In Production</span></div>
+      <div class="cs-stat"><span class="stat__number">Nightly</span><span class="stat__label">02:00 CST scheduled run</span></div>
     </div>
 
     <div class="container cs-body">
+      <!-- WHY: Narrative order matters — problem first, not deliverable labels at the top -->
       <section class="cs-section reveal">
-        <h2>Overview</h2>
-        <p>This engagement produced <strong>two live production deliverables</strong> for a Monroe, LA
-           property management company — engineered entirely without native Buildium API access.</p>
-        <p><strong>The Braud Pipeline</strong> is the data layer: nightly Playwright + Prefect automation
-           that extracts 17–19 operational Buildium reports, transforms and validates them, and loads
-           structured records into PostgreSQL — zero manual steps after deployment.</p>
-        <p><strong>Braud Operations Dashboard</strong> is the analytics layer: an owner-facing UI that
-           reads from that database and surfaces Morning Briefing, Executive KPIs, Decision Inbox,
-           and Occupancy modules — turning pipeline output into daily operational decisions around
-           delinquency, vacancy, maintenance SLAs, and lease renewals.</p>
+        <h2>Problem</h2>
+        <p>Braud Property Management runs on Buildium's Growth plan — which means <strong>no API</strong>.
+           Every morning, someone logged in, opened 17–19 separate operational reports, downloaded
+           them, and stitched together answers ownership needed: who's delinquent, what's vacant,
+           which maintenance tickets are overdue. The reports existed. The manual assembly didn't
+           scale.</p>
       </section>
 
       <section class="cs-section reveal" data-delay="80">
-        <h2>Deliverable 1 — The Braud Pipeline</h2>
-        <p>Three-stage ETL automation — from raw Buildium exports to a stable PostgreSQL schema.</p>
+        <h2>Approach</h2>
+        <p>I built two connected systems instead of one monolith:</p>
+        <p><strong>The Braud Pipeline</strong> — nightly Playwright automation that logs into Buildium,
+           downloads each report, normalizes the exports in Python, and loads a stable PostgreSQL
+           schema. Prefect handles scheduling (02:00 CST), retries, and failure alerts.</p>
         <div class="cs-flow">
           <div class="cs-flow__step">
             <div class="cs-flow__step-num">01</div>
             <h3>Extract</h3>
-            <p>Playwright headless automation logs in, navigates each report, and downloads files — no API required.</p>
+            <p>Playwright headless browser — login, navigate, download. No API required.</p>
           </div>
           <div class="cs-flow__step">
             <div class="cs-flow__step-num">02</div>
             <h3>Transform</h3>
-            <p>Python normalizes report formats, deduplicates records, and validates data before load.</p>
+            <p>Python normalizes formats, deduplicates rows, validates before load.</p>
           </div>
           <div class="cs-flow__step">
             <div class="cs-flow__step-num">03</div>
             <h3>Load</h3>
-            <p>Structured data lands in PostgreSQL — stable schema supporting occupancy, delinquency, and maintenance analytics.</p>
+            <p>PostgreSQL schema for occupancy, delinquency, maintenance, and leases.</p>
           </div>
         </div>
-      </section>
-
-      <section class="cs-section reveal" data-delay="100">
-        <h2>Deliverable 2 — Braud Operations Dashboard</h2>
-        <p>The analytics front-end reads pipeline output and gives Braud ownership a single place to start each day. A sanitized standalone demo is available for portfolio review — fictional data only.</p>
+        <p><strong>Braud Operations Dashboard</strong> — a UI that reads that database and gives
+           ownership one place to start the day: Morning Briefing, Executive KPIs, Decision Inbox,
+           and Occupancy modules. The portfolio demo on this site uses fictional data; production
+           reads live pipeline output.</p>
         <div class="cs-features">
           <div class="cs-feature">
             <h3>Morning Briefing</h3>
-            <p>Daily operational snapshot — what needs attention first.</p>
-            <ul>
-              <li>Delinquent tenants with balance and age</li>
-              <li>Vacant units and listing status</li>
-              <li>Overdue maintenance by priority</li>
-              <li>Expiring leases approaching renewal</li>
-            </ul>
+            <p>What needs attention first — delinquency, vacancies, overdue maintenance, expiring leases.</p>
           </div>
           <div class="cs-feature">
-            <h3>Executive Summary</h3>
-            <p>Portfolio KPIs at a glance for ownership decisions.</p>
-            <ul>
-              <li>Occupancy rate and trend</li>
-              <li>Collection rate (MTD)</li>
-              <li>Delinquent balance total</li>
-              <li>Vacant units and maintenance overdue count</li>
-            </ul>
+            <h3>Executive KPIs</h3>
+            <p>Occupancy, collection rate, delinquent balance, vacant unit count.</p>
           </div>
           <div class="cs-feature">
             <h3>Decision Inbox</h3>
-            <p>Shared workflow queue with drafted actions — copy into the PMS, then mark acted.</p>
-            <ul>
-              <li>Payment risk forecasts</li>
-              <li>Maintenance SLA breaches</li>
-              <li>Lease renewal outreach</li>
-              <li>Pre-due rent reminders</li>
-            </ul>
+            <p>Drafted actions ownership can copy into Buildium, then mark complete.</p>
           </div>
           <div class="cs-feature">
             <h3>Occupancy Snapshot</h3>
-            <p>Portfolio-wide and per-property occupancy breakdown.</p>
-            <ul>
-              <li>Total units vs. occupied</li>
-              <li>Vacancy count and rate</li>
-              <li>Occupancy by property</li>
-              <li>Unit-level status drill-down</li>
-            </ul>
+            <p>Portfolio-wide and per-property unit status.</p>
           </div>
         </div>
       </section>
 
-      <div class="cs-demo reveal" data-delay="120">
+      <section class="cs-section reveal" data-delay="120">
+        <h2>Decision</h2>
+        <p><strong>Playwright over waiting for an API upgrade.</strong> Upgrading Buildium plans for
+           API access was a recurring cost with an uncertain timeline. Browser automation is brittle,
+           but it was shippable in weeks and entirely under our control. I built retry logic and
+           report-level error isolation so one failed export doesn't block the rest of the nightly run.</p>
+        <p><strong>PostgreSQL as the single source of truth.</strong> Power BI was in the stack, but
+           ownership needed a purpose-built morning workflow — not a generic report gallery. A custom
+           dashboard on top of Postgres let me design around the four questions they actually ask
+           first, instead of fitting their process into a template.</p>
+      </section>
+
+      <section class="cs-section reveal" data-delay="160">
+        <h2>Result</h2>
+        <p>Both systems are <strong>live in production</strong>. The pipeline runs nightly with
+           <strong>zero manual steps</strong> after deployment, covering 17–19 operational reports.
+           Ownership opens the dashboard each morning instead of assembling spreadsheets.</p>
+        <p>Ownership opens the dashboard each morning with delinquency, vacancy, and maintenance status already assembled — instead of downloading and stitching together 17+ Buildium reports by hand.</p>
+      </section>
+
+      <div class="cs-demo reveal" data-delay="200">
         <div class="cs-demo__text">
           <h3>Try the sanitized demo</h3>
-          <p>Standalone dashboard demo with fictional portfolio data — no database, no API, no real tenant or property information. Built for sales, training, and portfolio review.</p>
+          <p>Standalone dashboard with fictional portfolio data — no database, no API, no real tenant information. Built for portfolio review and training.</p>
         </div>
         <div class="cs-demo__actions">
           <a href="/braud_demo_master/demo/" class="btn btn--primary btn--sm" target="_blank" rel="noopener">Open Dashboard Demo ↗</a>
@@ -175,7 +172,7 @@
         </div>
       </div>
 
-      <section class="cs-gallery reveal" data-delay="140">
+      <section class="cs-gallery reveal" data-delay="220">
         <div class="cs-gallery__grid">
           <div class="cs-gallery__item">
             <img src="./images/architecture.svg"
@@ -190,24 +187,6 @@
             <p class="cs-gallery__caption">Owner-facing analytics dashboard</p>
           </div>
         </div>
-      </section>
-
-      <section class="cs-section reveal" data-delay="160">
-        <h2>The Problem</h2>
-        <p>Buildium's Growth plan provides no native API access. All reporting was done
-           manually — someone had to log in, navigate to each report, download it, and
-           process it by hand. 17–19 reports. Daily. Ownership had no single view of
-           delinquency, vacancy, or maintenance pressure without someone assembling it first.</p>
-      </section>
-
-      <section class="cs-section reveal" data-delay="180">
-        <h2>The Solution</h2>
-        <p><strong>Pipeline:</strong> Playwright headless automation handles login, navigation, and extraction.
-           Prefect orchestrates the nightly schedule and handles retries. PostgreSQL stores structured
-           clean data — 17+ reports with zero manual steps.</p>
-        <p><strong>Dashboard:</strong> A custom UI layer surfaces morning briefings, executive KPIs, a
-           Decision Inbox with drafted actions, and occupancy snapshots — giving ownership
-           a format they can act on without touching a spreadsheet.</p>
       </section>
 
       <a href="/#projects" class="btn btn--outline" style="margin-top: 3rem">← Back to Projects</a>

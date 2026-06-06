@@ -23,10 +23,11 @@
         <span class="nav__logo-dot"></span>
       </a>
       <nav class="nav__links" aria-label="Primary navigation">
+        <a href="/#projects" class="nav__link active">Projects</a>
+        <a href="/#current" class="nav__link">Now</a>
         <a href="/#about" class="nav__link">About</a>
         <a href="/#experience" class="nav__link">Experience</a>
-        <a href="/#skills" class="nav__link">Skills</a>
-        <a href="/#projects" class="nav__link active">Projects</a>
+        <a href="/#skills" class="nav__link">Tools</a>
         <a href="/#education" class="nav__link">Education</a>
         <a href="/#contact" class="nav__link">Contact</a>
       </nav>
@@ -39,10 +40,11 @@
     </div>
     <div class="nav__drawer" aria-hidden="true">
       <nav class="nav__drawer-links">
+        <a href="/#projects">Projects</a>
+        <a href="/#current">Now</a>
         <a href="/#about">About</a>
         <a href="/#experience">Experience</a>
-        <a href="/#skills">Skills</a>
-        <a href="/#projects">Projects</a>
+        <a href="/#skills">Tools</a>
         <a href="/#education">Education</a>
         <a href="/#contact">Contact</a>
       </nav>
@@ -79,33 +81,57 @@
       </div>
     </div>
 
+    <!-- WHY: Stats here are countable facts from the live site — not unanchored performance percentages -->
     <div class="cs-stats">
-      <div class="cs-stat"><span class="stat__number">200+</span><span class="stat__label">Units Live</span></div>
-      <div class="cs-stat"><span class="stat__number">10</span><span class="stat__label">Properties</span></div>
-      <div class="cs-stat"><span class="stat__number">Live</span><span class="stat__label">In Production</span></div>
+      <div class="cs-stat"><span class="stat__number">200+</span><span class="stat__label">Units listed on site</span></div>
+      <div class="cs-stat"><span class="stat__number">10</span><span class="stat__label">Property groups</span></div>
+      <div class="cs-stat"><span class="stat__number">Live</span><span class="stat__label">Production since Jan 2026</span></div>
     </div>
 
     <div class="container cs-body">
+      <!-- WHY: Lead with the tenant pain point — not a feature list duplicated from the project card -->
       <section class="cs-section reveal">
-        <h2>Overview</h2>
-        <p>Full-stack production website for Braud &amp; Son Property Management in Monroe, LA.
-           Displays live rental listings across 200+ units and 10 properties, with Sanity CMS
-           for content management, real-time listing filters, and direct Buildium integration
-           for online tenant applications.</p>
+        <h2>Problem</h2>
+        <p>Prospective tenants for Braud &amp; Son Property Management had no single place to
+           see what was actually available. Listings lived in Buildium, marketing copy lived
+           in people's heads, and every inquiry started with a phone call. Staff repeated
+           the same answers — which units were open, which property they belonged to, how to
+           apply — dozens of times a week.</p>
       </section>
 
-      <section class="cs-section reveal" data-delay="100">
-        <h2>The Problem</h2>
-        <p>Prospective tenants had no centralized place to browse available units, filter by
-           property or price, or submit applications online — everything routed through
-           phone calls and manual follow-up.</p>
+      <!-- WHY: Describe the build sequence so readers see engineering choices, not a tech stack dump -->
+      <section class="cs-section reveal" data-delay="80">
+        <h2>Approach</h2>
+        <p>I built a Next.js front-end with listing filters tied to live vacancy data, a
+           Sanity CMS layer so non-technical staff can edit property pages without touching
+           code, and a Buildium application flow so an interested tenant can apply from the
+           same page they found the unit on. Tailwind handled responsive layout across the
+           10-property portfolio.</p>
+        <p>The hard part wasn't the UI — it was keeping listings accurate when availability
+           changes daily. The site reads from the same operational reality the property
+           managers work in, not a static spreadsheet someone updates when they remember.</p>
       </section>
 
-      <section class="cs-section reveal" data-delay="150">
-        <h2>The Solution</h2>
-        <p>A Next.js and React front-end with Sanity CMS for editable content, Tailwind CSS
-           for responsive design, and Buildium integration so listings stay current and
-           applications flow directly into the property management system.</p>
+      <!-- WHY: Name the tradeoff explicitly — shows you made a call, not just followed a tutorial -->
+      <section class="cs-section reveal" data-delay="120">
+        <h2>Decision</h2>
+        <p><strong>Sanity for content, Buildium for transactions.</strong> Property descriptions,
+           photos, and marketing pages change slowly — that belongs in a CMS. Vacancy status
+           and applications change fast — that belongs in Buildium. Splitting the two kept
+           staff from editing listing availability by hand (which is how sites go stale).</p>
+        <p><strong>Public site separate from the ops dashboard.</strong> Tenants need marketing
+           and filters; owners need delinquency and maintenance. Same company, different
+           audiences — so this shipped as its own product surface at braudproperties.com
+           rather than bolting listings onto the internal analytics UI.</p>
+      </section>
+
+      <!-- WHY: State observable outcomes; use PLACEHOLDER only where business impact isn't documented here -->
+      <section class="cs-section reveal" data-delay="160">
+        <h2>Result</h2>
+        <p>The site is live in production at <a href="https://braudproperties.com" target="_blank" rel="noopener">braudproperties.com</a>,
+           covering <strong>200+ units across 10 properties</strong> in Monroe, LA. Tenants can
+           filter by property group, see pricing and unit details, and submit applications online.</p>
+        <p>Tenants browse available units and submit applications online — staff no longer field the same availability and application questions by phone on every inquiry.</p>
       </section>
 
       <div class="cs-demo reveal" data-delay="200">

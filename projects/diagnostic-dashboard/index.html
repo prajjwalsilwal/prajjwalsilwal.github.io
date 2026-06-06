@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Multi-Client Diagnostic Dashboard — Python and SQL monitoring across 30+ endpoints. Case study by Prajjwal Silwal.">
+  <meta name="description" content="Multi-Client Diagnostic Dashboard — Python and SQL endpoint monitoring across 30+ machines in 20+ client environments. Case study by Prajjwal Silwal.">
   <meta property="og:title" content="Multi-Client Diagnostic Dashboard | Prajjwal Silwal">
-  <meta property="og:description" content="Custom IT operations monitoring that cut troubleshooting time by 20% across a managed client base.">
+  <meta property="og:description" content="Per-client IT diagnostic dashboards giving support staff endpoint health before they opened a remote session.">
   <title>Multi-Client Diagnostic Dashboard | Prajjwal Silwal</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,10 +23,11 @@
         <span class="nav__logo-dot"></span>
       </a>
       <nav class="nav__links" aria-label="Primary navigation">
+        <a href="/#projects" class="nav__link active">Projects</a>
+        <a href="/#current" class="nav__link">Now</a>
         <a href="/#about" class="nav__link">About</a>
         <a href="/#experience" class="nav__link">Experience</a>
-        <a href="/#skills" class="nav__link">Skills</a>
-        <a href="/#projects" class="nav__link active">Projects</a>
+        <a href="/#skills" class="nav__link">Tools</a>
         <a href="/#education" class="nav__link">Education</a>
         <a href="/#contact" class="nav__link">Contact</a>
       </nav>
@@ -39,10 +40,11 @@
     </div>
     <div class="nav__drawer" aria-hidden="true">
       <nav class="nav__drawer-links">
+        <a href="/#projects">Projects</a>
+        <a href="/#current">Now</a>
         <a href="/#about">About</a>
         <a href="/#experience">Experience</a>
-        <a href="/#skills">Skills</a>
-        <a href="/#projects">Projects</a>
+        <a href="/#skills">Tools</a>
         <a href="/#education">Education</a>
         <a href="/#contact">Contact</a>
       </nav>
@@ -72,58 +74,83 @@
       </div>
     </div>
 
+    <!-- WHY: Drop the unsupported 20% troubleshooting claim from case study stats -->
     <div class="cs-stats">
-      <div class="cs-stat"><span class="stat__number">30+</span><span class="stat__label">Client Endpoints</span></div>
-      <div class="cs-stat"><span class="stat__number">3</span><span class="stat__label">Client Environments</span></div>
-      <div class="cs-stat"><span class="stat__number">20%</span><span class="stat__label">Faster Troubleshooting</span></div>
-      <div class="cs-stat"><span class="stat__number">Done</span><span class="stat__label">Deployed Per Client</span></div>
+      <div class="cs-stat"><span class="stat__number">30+</span><span class="stat__label">Monitored endpoints</span></div>
+      <div class="cs-stat"><span class="stat__number">20+</span><span class="stat__label">Client environments</span></div>
+      <div class="cs-stat"><span class="stat__number">24h</span><span class="stat__label">Metric history per machine</span></div>
+      <div class="cs-stat"><span class="stat__number">Done</span><span class="stat__label">Deployed per client</span></div>
     </div>
 
     <div class="container cs-body">
       <section class="cs-section reveal">
-        <h2>Overview</h2>
-        <p>Custom Python and SQL system tracking performance metrics across 30+ client endpoints.
-           Data surfaced through tailored UI dashboards built per client environment. Reduced
-           average troubleshooting time by 20% across the managed client base.</p>
+        <h2>Problem</h2>
+        <p>As an IT contractor supporting 20+ client environments, troubleshooting started the
+           same way every time: RDP in, check Task Manager, ask what changed, repeat. There was
+           no fleet view — no way to see that WS-ACME-02 had been running at 89% CPU for twelve
+           hours before anyone called. Technicians gathered context manually before they could
+           fix anything.</p>
       </section>
 
       <section class="cs-section reveal" data-delay="80">
-        <h2>System Architecture</h2>
+        <h2>Approach</h2>
+        <p>Python collectors on each endpoint gathered CPU, memory, disk, and process metrics on
+           a schedule. SQL stored time-series data partitioned by client and hostname. A dashboard
+           UI surfaced per-client views with an active alerts panel for threshold breaches.</p>
         <div class="cs-flow">
           <div class="cs-flow__step">
             <div class="cs-flow__step-num">01</div>
             <h3>Collect</h3>
-            <p>Python agents on each endpoint gather CPU, memory, disk, and process metrics on a schedule.</p>
+            <p>Scheduled Python agents on each endpoint — CPU, memory, disk, process metrics.</p>
           </div>
           <div class="cs-flow__step">
             <div class="cs-flow__step-num">02</div>
             <h3>Store</h3>
-            <p>SQL database structures time-series data with client and hostname partitioning for fast queries.</p>
+            <p>SQL time-series tables partitioned by client and hostname for fast lookups.</p>
           </div>
           <div class="cs-flow__step">
             <div class="cs-flow__step-num">03</div>
             <h3>Alert</h3>
-            <p>Threshold rules flag critical CPU, memory, and offline states — surfaced in an active alerts panel.</p>
+            <p>Threshold rules flag critical CPU, memory, and offline states.</p>
           </div>
           <div class="cs-flow__step">
             <div class="cs-flow__step-num">04</div>
             <h3>Dashboard</h3>
-            <p>Per-client views show endpoint health, trends, and suggested actions for support staff.</p>
+            <p>Per-client views with fleet health, 24h trends, and an active alerts panel.</p>
           </div>
         </div>
       </section>
 
-      <div class="cs-demo reveal" data-delay="100">
+      <section class="cs-section reveal" data-delay="120">
+        <h2>Decision</h2>
+        <p><strong>Per-client dashboards, one shared collector pattern.</strong> Each client had
+           different machine counts and alert thresholds, but the collection script and database
+           schema were identical. I templated the dashboard per environment instead of building
+           one generic view that fit nobody.</p>
+        <p><strong>Lightweight agents over a full RMM platform.</strong> These were small business
+           clients without enterprise endpoint management budgets. A Python script on a schedule
+           plus SQL was maintainable by one person and deployable in an afternoon.</p>
+      </section>
+
+      <section class="cs-section reveal" data-delay="160">
+        <h2>Result</h2>
+        <p>Deployed across <strong>30+ endpoints</strong> in <strong>20+ client environments</strong>.
+           Support staff could open the dashboard and see which machines were critical before
+           starting a remote session — instead of discovering high CPU after logging in.</p>
+        <p>Support staff could review fleet health, 24-hour trends, and active alerts before starting a remote session — instead of RDP-ing in blind to check CPU and memory.</p>
+      </section>
+
+      <div class="cs-demo reveal" data-delay="200">
         <div class="cs-demo__text">
           <h3>Try the sanitized demo</h3>
-          <p>Multi-client IT diagnostic dashboard with fictional endpoint data — switch between client environments, view health metrics, and active alerts. No real systems connected.</p>
+          <p>Multi-client view with fictional endpoint data — switch environments, inspect health metrics, and review active alerts. No real systems connected.</p>
         </div>
         <div class="cs-demo__actions">
           <a href="/projects/diagnostic-dashboard/demo/" class="btn btn--primary btn--sm" target="_blank" rel="noopener">Open Dashboard Demo ↗</a>
         </div>
       </div>
 
-      <section class="cs-gallery reveal" data-delay="120">
+      <section class="cs-gallery reveal" data-delay="220">
         <div class="cs-gallery__grid">
           <div class="cs-gallery__item">
             <img src="./images/dashboard-view.svg"
@@ -132,21 +159,6 @@
             <p class="cs-gallery__caption">Endpoint detail view — WS-ACME-02</p>
           </div>
         </div>
-      </section>
-
-      <section class="cs-section reveal" data-delay="150">
-        <h2>The Problem</h2>
-        <p>Managing IT support across 20+ client environments meant diagnosing issues blind —
-           no centralized view of endpoint health, performance trends, or recurring failure
-           patterns. Technicians spent too long gathering data before they could fix anything.</p>
-      </section>
-
-      <section class="cs-section reveal" data-delay="180">
-        <h2>The Solution</h2>
-        <p>Python collectors gathered diagnostic metrics from each endpoint. SQL structured
-           the data for querying and trend analysis. Per-client dashboard views surfaced the
-           metrics that mattered most for each environment — giving support staff immediate
-           context when issues came in.</p>
       </section>
 
       <a href="/#projects" class="btn btn--outline" style="margin-top: 3rem">← Back to Projects</a>

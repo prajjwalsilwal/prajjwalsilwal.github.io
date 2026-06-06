@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="The Braud Pipeline — automated property management data system built with Playwright, Prefect, and PostgreSQL. Case study by Prajjwal Silwal.">
-  <meta property="og:title" content="The Braud Pipeline | Prajjwal Silwal">
-  <meta property="og:description" content="End-to-end automation extracting 17–19 operational reports into PostgreSQL and a live analytics dashboard.">
-  <title>The Braud Pipeline | Prajjwal Silwal</title>
+  <meta name="description" content="The Braud Pipeline and Operations Dashboard — Playwright + Prefect automation into PostgreSQL, plus a live owner-facing analytics layer. Case study by Prajjwal Silwal.">
+  <meta property="og:title" content="Braud Pipeline &amp; Dashboard | Prajjwal Silwal">
+  <meta property="og:description" content="Two production deliverables: nightly Buildium → PostgreSQL automation and a live operations dashboard with Morning Briefing, KPIs, and Decision Inbox.">
+  <title>Braud Pipeline &amp; Dashboard | Prajjwal Silwal</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -52,7 +52,7 @@
   <article class="case-study">
     <div class="cs-hero">
       <div class="cs-hero__image">
-        <img src="./images/hero.svg" alt="Braud Pipeline dashboard" loading="eager">
+        <img src="./images/hero.svg" alt="Braud pipeline and operations dashboard" loading="eager">
         <div class="cs-hero__image-fallback project-card__image-fallback project-card__image-fallback--blue"></div>
       </div>
       <div class="container cs-hero__content">
@@ -62,14 +62,14 @@
             <span class="badge-dot"></span> Live — In Production
           </span>
         </div>
-        <h1 class="cs-hero__title">The Braud Pipeline</h1>
-        <p class="cs-hero__sub">Automated Property Management Data System</p>
+        <h1 class="cs-hero__title">Braud Pipeline &amp; Dashboard</h1>
+        <p class="cs-hero__sub">Buildium Automation + Owner-Facing Analytics</p>
         <div class="cs-hero__tags">
           <span class="tag">Python</span>
           <span class="tag">Playwright</span>
           <span class="tag">Prefect</span>
           <span class="tag">PostgreSQL</span>
-          <span class="tag">Dashboard UI/UX</span>
+          <span class="tag">Dashboard UI</span>
         </div>
       </div>
     </div>
@@ -84,18 +84,20 @@
     <div class="container cs-body">
       <section class="cs-section reveal">
         <h2>Overview</h2>
-        <p>End-to-end automation system built with Playwright and Prefect that extracts and
-           processes 17–19 operational reports from Buildium, loads clean data into a
-           PostgreSQL backend, and powers a live owner-facing analytics dashboard — engineered
-           entirely without native API access.</p>
-        <p>The dashboard layer translates pipeline output into daily operational decisions:
-           delinquency tracking, vacancy pressure, maintenance SLAs, lease renewals, and a
-           shared Decision Inbox for ownership workflows.</p>
+        <p>This engagement produced <strong>two live production deliverables</strong> for a Monroe, LA
+           property management company — engineered entirely without native Buildium API access.</p>
+        <p><strong>The Braud Pipeline</strong> is the data layer: nightly Playwright + Prefect automation
+           that extracts 17–19 operational Buildium reports, transforms and validates them, and loads
+           structured records into PostgreSQL — zero manual steps after deployment.</p>
+        <p><strong>Braud Operations Dashboard</strong> is the analytics layer: an owner-facing UI that
+           reads from that database and surfaces Morning Briefing, Executive KPIs, Decision Inbox,
+           and Occupancy modules — turning pipeline output into daily operational decisions around
+           delinquency, vacancy, maintenance SLAs, and lease renewals.</p>
       </section>
 
       <section class="cs-section reveal" data-delay="80">
-        <h2>Pipeline Architecture</h2>
-        <p>Four stages — from raw Buildium exports to actionable dashboard views.</p>
+        <h2>Deliverable 1 — The Braud Pipeline</h2>
+        <p>Three-stage ETL automation — from raw Buildium exports to a stable PostgreSQL schema.</p>
         <div class="cs-flow">
           <div class="cs-flow__step">
             <div class="cs-flow__step-num">01</div>
@@ -112,17 +114,12 @@
             <h3>Load</h3>
             <p>Structured data lands in PostgreSQL — stable schema supporting occupancy, delinquency, and maintenance analytics.</p>
           </div>
-          <div class="cs-flow__step">
-            <div class="cs-flow__step-num">04</div>
-            <h3>Surface</h3>
-            <p>Dashboard UI reads from the database and presents KPIs, briefing tables, and workflow queues to ownership.</p>
-          </div>
         </div>
       </section>
 
       <section class="cs-section reveal" data-delay="100">
-        <h2>Dashboard Layer</h2>
-        <p>The analytics front-end built on top of the pipeline gives Braud ownership a single place to start each day — fictional demo available for portfolio review (sanitized data only).</p>
+        <h2>Deliverable 2 — Braud Operations Dashboard</h2>
+        <p>The analytics front-end reads pipeline output and gives Braud ownership a single place to start each day. A sanitized standalone demo is available for portfolio review — fictional data only.</p>
         <div class="cs-features">
           <div class="cs-feature">
             <h3>Morning Briefing</h3>
@@ -184,7 +181,7 @@
             <img src="./images/architecture.svg"
                  alt="Pipeline architecture diagram"
                  loading="lazy">
-            <p class="cs-gallery__caption">Pipeline architecture — extract to dashboard</p>
+            <p class="cs-gallery__caption">Pipeline architecture — Buildium to PostgreSQL</p>
           </div>
           <div class="cs-gallery__item">
             <img src="./images/dashboard.svg"
@@ -205,11 +202,12 @@
 
       <section class="cs-section reveal" data-delay="180">
         <h2>The Solution</h2>
-        <p>Playwright headless automation handles login, navigation, and extraction.
-           Prefect orchestrates the schedule and handles retries. PostgreSQL stores structured
-           clean data. The dashboard layer surfaces morning briefings, executive KPIs, a
+        <p><strong>Pipeline:</strong> Playwright headless automation handles login, navigation, and extraction.
+           Prefect orchestrates the nightly schedule and handles retries. PostgreSQL stores structured
+           clean data — 17+ reports with zero manual steps.</p>
+        <p><strong>Dashboard:</strong> A custom UI layer surfaces morning briefings, executive KPIs, a
            Decision Inbox with drafted actions, and occupancy snapshots — giving ownership
-           a format they can actually act on without touching a spreadsheet.</p>
+           a format they can act on without touching a spreadsheet.</p>
       </section>
 
       <a href="/#projects" class="btn btn--outline" style="margin-top: 3rem">← Back to Projects</a>

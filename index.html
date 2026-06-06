@@ -1,497 +1,603 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Prajjwal Silwal — Automation Engineer and Data Analyst based in Monroe, LA. Python pipelines, PostgreSQL backends, business dashboards, and local AI deployments for real operational workflows.">
-    <meta name="keywords" content="Automation Engineer, Data Analyst, Python, Playwright, Prefect, PostgreSQL, Power BI, Dashboard, Pipeline Engineering, Monroe Louisiana, Technical Specialist">
-    <meta name="author" content="Prajjwal Silwal">
-    
-    <!-- Open Graph -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://prajjwalsilwal.github.io/">
-    <meta property="og:title" content="Prajjwal Silwal | Automation Engineer & Data Analyst">
-    <meta property="og:description" content="Building pipelines, delivering insights, and deploying AI-powered workflows for real businesses. Based in Monroe, LA.">
-    
-    <title>Prajjwal Silwal | Automation Engineer & Data Analyst</title>
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Styles -->
-    <link rel="stylesheet" href="style.css">
-    
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Prajjwal Silwal",
-        "jobTitle": "Automation Engineer & Data Analyst",
-        "url": "https://prajjwalsilwal.github.io/",
-        "sameAs": [
-            "https://linkedin.com/in/prajjwal-silwal",
-            "https://github.com/prajjwalsilwal"
-        ],
-        "email": "silwalprajjwal@gmail.com",
-        "description": "Automation Engineer and Data Analyst specializing in Python pipelines, PostgreSQL, and business dashboards"
-    }
-    </script>
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Prajjwal Silwal — Automation Engineer and Data Analyst based in Monroe, LA. Python pipelines, PostgreSQL backends, business dashboards, and local AI deployments for real operational workflows.">
+  <meta name="keywords" content="Automation Engineer, Data Analyst, Python, Playwright, Prefect, PostgreSQL, Power BI, Dashboard, Pipeline Engineering, Monroe Louisiana">
+  <meta name="author" content="Prajjwal Silwal">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://prajjwalsilwal.github.io/">
+  <meta property="og:title" content="Prajjwal Silwal | Automation Engineer & Data Analyst">
+  <meta property="og:description" content="Building pipelines, delivering insights, and deploying AI-powered workflows for real businesses. Based in Monroe, LA.">
+
+  <title>Prajjwal Silwal | Automation Engineer & Data Analyst</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/animations.css">
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>PS</text></svg>">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Prajjwal Silwal",
+    "jobTitle": "Automation Engineer & Data Analyst",
+    "url": "https://prajjwalsilwal.github.io/",
+    "sameAs": [
+      "https://linkedin.com/in/prajjwal-silwal",
+      "https://github.com/prajjwalsilwal"
+    ],
+    "email": "silwalprajjwal@gmail.com",
+    "description": "Automation Engineer and Data Analyst specializing in Python pipelines, PostgreSQL, and business dashboards"
+  }
+  </script>
 </head>
-<body class="dark-mode">
-    <!-- Header -->
-    <header class="header" id="header" role="banner">
-        <nav class="navbar container" role="navigation" aria-label="Main navigation">
-            <div class="nav-brand">
-                <span class="brand-text">Prajjwal Silwal</span>
-            </div>
-            <ul class="nav-menu" role="menubar">
-                <li role="none"><a href="#about" class="nav-link" role="menuitem">About</a></li>
-                <li role="none"><a href="#experience" class="nav-link" role="menuitem">Experience</a></li>
-                <li role="none"><a href="#education" class="nav-link" role="menuitem">Education</a></li>
-                <li role="none"><a href="#skills" class="nav-link" role="menuitem">Skills</a></li>
-                <li role="none"><a href="#projects" class="nav-link" role="menuitem">Projects</a></li>
-                <li role="none"><a href="#contact" class="nav-link" role="menuitem">Contact</a></li>
-                <li role="none">
-                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
-                        <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="5"></circle>
-                            <line x1="12" y1="1" x2="12" y2="3"></line>
-                            <line x1="12" y1="21" x2="12" y2="23"></line>
-                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                            <line x1="1" y1="12" x2="3" y2="12"></line>
-                            <line x1="21" y1="12" x2="23" y2="12"></line>
-                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                        </svg>
-                        <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                        </svg>
-                    </button>
-                </li>
-            </ul>
-            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </nav>
-    </header>
+<body>
 
-    <!-- Hero Section -->
-    <section class="hero" id="hero" aria-label="Hero section">
-        <div class="hero-background">
-            <div class="gradient-orb orb-1"></div>
-            <div class="gradient-orb orb-2"></div>
-            <div class="gradient-orb orb-3"></div>
+  <header class="nav" id="nav">
+    <div class="container nav__inner">
+      <a href="/" class="nav__logo">
+        <span class="nav__logo-name">PS</span>
+        <span class="nav__logo-dot"></span>
+      </a>
+
+      <nav class="nav__links" aria-label="Primary navigation">
+        <a href="#about" class="nav__link">About</a>
+        <a href="#experience" class="nav__link">Experience</a>
+        <a href="#skills" class="nav__link">Skills</a>
+        <a href="#projects" class="nav__link">Projects</a>
+        <a href="#education" class="nav__link">Education</a>
+        <a href="#contact" class="nav__link">Contact</a>
+      </nav>
+
+      <div class="nav__cta">
+        <a href="/Prajjwal_Silwal_Resume.pdf" class="btn btn--outline btn--sm" target="_blank" rel="noopener">
+          Resume ↗
+        </a>
+        <button class="nav__hamburger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="nav__drawer" aria-hidden="true">
+      <nav class="nav__drawer-links">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="hero__noise"></div>
+    <div class="container hero__inner">
+
+      <div class="hero__content">
+        <div class="hero__eyebrow">
+          <span class="hero__status-dot"></span>
+          <span class="mono-label">Available for opportunities</span>
         </div>
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-badge fade-up">
-                    <span>Building Pipelines. Delivering Insights.</span>
-                    <span class="badge-dot">•</span>
-                    <span>Open to New Opportunities</span>
-                </div>
-                <h1 class="hero-title fade-up" style="animation-delay: 0.1s">
-                    I Build the Systems That Make <span class="gradient-text">Businesses Run.</span>
-                </h1>
-                <p class="hero-subtitle fade-up" style="animation-delay: 0.2s">
-                    Automation Engineer &amp; Data Analyst — Monroe, LA
-                </p>
-                <p class="hero-body fade-up" style="animation-delay: 0.25s">
-                    I engineer Python-driven pipelines, structure data into actionable dashboards, and deploy AI-powered tools for businesses that can't afford to lose time on manual work. At Braud Property Management, I automated 17+ operational reports, built the PostgreSQL backend that powers their analytics, and delivered the data insights that drive daily ownership decisions.
-                </p>
-                <div class="hero-buttons fade-up" style="animation-delay: 0.3s">
-                    <a href="#projects" class="btn btn-primary">See My Work</a>
-                    <a href="/Prajjwal_Silwal_Resume.pdf" class="btn btn-secondary" download="Prajjwal_Silwal_Resume.pdf">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"></path>
-                        </svg>
-                        Download Resume
-                    </a>
-                </div>
-                <div class="hero-stats fade-up" style="animation-delay: 0.4s">
-                    <div class="stat-item">
-                        <div class="stat-value">17+</div>
-                        <div class="stat-label">Reports Automated</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-value">500+</div>
-                        <div class="stat-label">Business Records Processed</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-value">95%</div>
-                        <div class="stat-label">First-Time Fix Rate</div>
-                    </div>
-                </div>
-            </div>
+
+        <h1 class="hero__name">Prajjwal<br><em>Silwal.</em></h1>
+
+        <p class="hero__title mono-label">
+          <span class="hero__title-bracket">{</span>
+          Automation Engineer &amp; Data Analyst
+          <span class="hero__title-bracket">}</span>
+        </p>
+
+        <p class="hero__bio">
+          I build the pipelines that move the data, and the dashboards
+          that make it mean something. Currently engineering live property
+          management systems at Braud Property Management — Python,
+          PostgreSQL, and AI agents running in production.
+        </p>
+
+        <div class="hero__ctas">
+          <a href="#projects" class="btn btn--primary">See My Work</a>
+          <a href="#contact" class="btn btn--ghost">Get In Touch</a>
         </div>
-        <div class="scroll-indicator">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 5v14M5 12l7 7 7-7"></path>
+
+        <div class="hero__social">
+          <a href="mailto:silwalprajjwal@gmail.com" class="hero__social-link" aria-label="Email">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
             </svg>
+          </a>
+          <a href="https://linkedin.com/in/prajjwal-silwal" class="hero__social-link" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+          </a>
+          <a href="https://github.com/prajjwalsilwal" class="hero__social-link" target="_blank" rel="noopener" aria-label="GitHub">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+          </a>
         </div>
-    </section>
+      </div>
 
-    <!-- About Section -->
-    <section id="about" class="section about-section" aria-label="About section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">About Me</span>
-                <h2 class="section-title">Who I <span class="gradient-text">Am</span></h2>
-            </div>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>
-                        I'm <strong>Prajjwal Silwal</strong> — an Automation Engineer and Data Analyst based in Monroe, LA. My work lives at the intersection of backend engineering and business intelligence. I build the pipeline, structure the data, and deliver the dashboard — so ownership gets clear answers without touching a spreadsheet.
-                    </p>
-                    <p>
-                        At Braud Property Management, I designed and built the Braud Pipeline from scratch — a Playwright and Prefect-powered system that automates 17–19 operational reports, loads clean data into PostgreSQL, and drives a live analytics dashboard. When the platform had no native API, I engineered around it. When the owner needed answers, I built the analysis layer that provided them.
-                    </p>
-                    <p>
-                        Before that, four years as an independent Technical Analyst gave me ground-level fluency in IT systems, hardware, and operational diagnostics across 20+ client environments. I bring both the engineering depth to build reliable systems and the analytical eye to make the data mean something.
-                    </p>
-                </div>
-                <div class="about-highlights">
-                    <div class="highlight-card">
-                        <div class="highlight-icon">⚙️</div>
-                        <h3>Pipeline Engineering</h3>
-                        <p>End-to-end Python automation using Playwright and Prefect. If a workflow is manual and repeatable, it gets automated.</p>
-                    </div>
-                    <div class="highlight-card">
-                        <div class="highlight-icon">📊</div>
-                        <h3>Data Analysis &amp; Dashboards</h3>
-                        <p>PostgreSQL backends, structured ETL, and Power BI dashboards that give business owners clear, daily operational insight.</p>
-                    </div>
-                    <div class="highlight-card">
-                        <div class="highlight-icon">🖥️</div>
-                        <h3>IT Systems &amp; Infrastructure</h3>
-                        <p>OS deployment, virtualization, hardware lifecycle, and endpoint diagnostics across 20+ managed client environments.</p>
-                    </div>
-                    <div class="highlight-card">
-                        <div class="highlight-icon">🧠</div>
-                        <h3>AI Agent Deployment</h3>
-                        <p>Local LLM setup, Open WebUI, VAPI, and Retell AI — AI tools configured for real operational workflows, not demos.</p>
-                    </div>
-                </div>
-            </div>
+      <div class="hero__terminal" aria-hidden="true">
+        <div class="terminal__bar">
+          <span class="terminal__dot terminal__dot--red"></span>
+          <span class="terminal__dot terminal__dot--yellow"></span>
+          <span class="terminal__dot terminal__dot--green"></span>
+          <span class="terminal__filename">about.json</span>
         </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience" class="section experience-section" aria-label="Experience section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">Career</span>
-                <h2 class="section-title">Where I've <span class="gradient-text">Worked</span></h2>
-            </div>
-            <div class="experience-timeline">
-                <article class="experience-entry fade-up">
-                    <div class="experience-period">
-                        <span class="experience-current-badge">Current</span>
-                        <time datetime="2026-01">January 2026 – Present</time>
-                    </div>
-                    <div class="experience-content">
-                        <h3>Automation &amp; Data Engineer</h3>
-                        <p class="experience-company">Braud Property Management</p>
-                        <ul>
-                            <li>Architected the "Braud Pipeline" — a Playwright + Prefect system automating extraction and processing of 17–19 operational reports with zero manual intervention</li>
-                            <li>Built PostgreSQL backend integration for secure, stable data architecture supporting property management analytics</li>
-                            <li>Engineered dashboard layer delivering daily business insights directly to ownership — covering occupancy, delinquency, and maintenance trends</li>
-                            <li>Designed custom web automation scripts to work around Buildium's lack of native API access on the Growth plan</li>
-                            <li>Deployed local AI agents (Open WebUI, VAPI, Retell AI) to modernize property management workflows</li>
-                        </ul>
-                    </div>
-                </article>
-
-                <article class="experience-entry fade-up">
-                    <div class="experience-period">
-                        <time datetime="2022-01/2025-12">January 2022 – December 2025</time>
-                    </div>
-                    <div class="experience-content">
-                        <h3>Technical Analyst &amp; Support Lead</h3>
-                        <p class="experience-company">Independent Contractor</p>
-                        <ul>
-                            <li>Managed IT support and hardware lifecycle for 20+ remote and local clients — reduced system downtime by an average of 15%</li>
-                            <li>Automated Python web scraping pipelines to extract, clean, and compile data on 500+ local businesses for client market analysis</li>
-                            <li>Built Python + SQL diagnostic dashboards across 30+ endpoints, reducing average troubleshooting time by 20%</li>
-                            <li>Maintained 95% first-time fix rate on hardware repairs and component upgrades, extending device lifespans by 1–2 years</li>
-                            <li>Deployed operating systems and cross-platform virtual environments (UTM, Parallels) across client workstations</li>
-                        </ul>
-                    </div>
-                </article>
-
-                <article class="experience-entry fade-up">
-                    <div class="experience-period">
-                        <time datetime="2019/2023">2019 – 2023</time>
-                    </div>
-                    <div class="experience-content">
-                        <h3>Mathematics Tutor</h3>
-                        <p class="experience-company">University of Louisiana at Monroe</p>
-                        <ul>
-                            <li>Tutored 100+ students in statistics, algebra, and trigonometry</li>
-                            <li>Developed structured review materials and personalized study plans aligned to course objectives</li>
-                        </ul>
-                    </div>
-                </article>
-            </div>
+        <div class="terminal__body">
+          <pre class="terminal__code"><code>{
+  <span class="t-key">"name"</span>:     <span class="t-str">"Prajjwal Silwal"</span>,
+  <span class="t-key">"role"</span>:     <span class="t-str">"Automation Eng + Data Analyst"</span>,
+  <span class="t-key">"location"</span>: <span class="t-str">"Monroe, LA"</span>,
+  <span class="t-key">"remote"</span>:   <span class="t-bool">true</span>,
+  <span class="t-key">"stack"</span>: [
+    <span class="t-str">"Python"</span>, <span class="t-str">"Playwright"</span>,
+    <span class="t-str">"Prefect"</span>, <span class="t-str">"PostgreSQL"</span>,
+    <span class="t-str">"Power BI"</span>, <span class="t-str">"SQL"</span>
+  ],
+  <span class="t-key">"current"</span>: {
+    <span class="t-key">"company"</span>: <span class="t-str">"Braud Property Mgmt"</span>,
+    <span class="t-key">"pipeline"</span>: <span class="t-str">"17-19 reports automated"</span>,
+    <span class="t-key">"status"</span>:  <span class="t-green">"in production ✓"</span>
+  },
+  <span class="t-key">"open_to"</span>: <span class="t-str">"new opportunities"</span>
+}</code></pre>
         </div>
-    </section>
+      </div>
 
-    <!-- Skills Section -->
-    <section id="skills" class="section skills-section" aria-label="Skills section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">Technical Expertise</span>
-                <h2 class="section-title">Skills &amp; <span class="gradient-text">Technologies</span></h2>
-            </div>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3 class="skill-category-title">Languages &amp; Automation</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">Playwright</span>
-                        <span class="skill-tag">Prefect</span>
-                        <span class="skill-tag">Web Scraping</span>
-                        <span class="skill-tag">API Integration</span>
-                        <span class="skill-tag">Workflow Automation</span>
-                        <span class="skill-tag">Script Development</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3 class="skill-category-title">Data &amp; Databases</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">SQL</span>
-                        <span class="skill-tag">PostgreSQL</span>
-                        <span class="skill-tag">ETL</span>
-                        <span class="skill-tag">CTEs</span>
-                        <span class="skill-tag">Window Functions</span>
-                        <span class="skill-tag">Power BI</span>
-                        <span class="skill-tag">DAX</span>
-                        <span class="skill-tag">Pandas</span>
-                        <span class="skill-tag">NumPy</span>
-                        <span class="skill-tag">Data Modeling</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3 class="skill-category-title">IT Systems &amp; Infrastructure</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">OS Deployment (Windows/Linux)</span>
-                        <span class="skill-tag">Virtualization (UTM · Parallels)</span>
-                        <span class="skill-tag">Hardware Lifecycle Management</span>
-                        <span class="skill-tag">Network Security</span>
-                        <span class="skill-tag">Endpoint Diagnostics</span>
-                        <span class="skill-tag">Cross-Platform Environments</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3 class="skill-category-title">AI &amp; Local LLM</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Open WebUI</span>
-                        <span class="skill-tag">VAPI</span>
-                        <span class="skill-tag">Retell AI</span>
-                        <span class="skill-tag">Local LLM Deployment</span>
-                        <span class="skill-tag">AI Agent Configuration</span>
-                        <span class="skill-tag">Prompt Engineering</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    </div>
 
-    <!-- Projects Section -->
-    <section id="projects" class="section projects-section" aria-label="Projects section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">Featured Projects</span>
-                <h2 class="section-title">Portfolio <span class="gradient-text">Highlights</span></h2>
-            </div>
-            <div class="projects-grid">
-                <!-- Project 1: The Braud Pipeline -->
-                <article class="project-card fade-up">
-                    <div class="project-thumbnail project-thumbnail-placeholder">
-                        <span>The Braud Pipeline</span>
-                        <div class="project-overlay">
-                            <span class="project-badge">Featured</span>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">The Braud Pipeline</h3>
-                        <p class="project-subtitle">Automated Property Management Data System</p>
-                        <p class="project-description">
-                            End-to-end automation system built with Playwright and Prefect. Extracts and processes 17–19 operational property management reports from Buildium, loads clean data into a PostgreSQL backend, and powers a live analytics dashboard delivering daily occupancy, delinquency, and maintenance insights to ownership. Engineered entirely without native API access.
-                        </p>
-                        <div class="project-metric">
-                            <span class="metric-value">🟢</span>
-                            <span class="metric-label">Live — In Production</span>
-                        </div>
-                        <div class="project-tech">
-                            <span class="tech-badge">Python</span>
-                            <span class="tech-badge">Playwright</span>
-                            <span class="tech-badge">Prefect</span>
-                            <span class="tech-badge">PostgreSQL</span>
-                            <span class="tech-badge">Dashboard UI/UX</span>
-                        </div>
-                        <div class="project-actions">
-                            <span class="btn btn-outline">Details on Request</span>
-                        </div>
-                    </div>
-                </article>
+    <div class="hero__scroll" aria-hidden="true">
+      <span>scroll</span>
+      <div class="hero__scroll-line"></div>
+    </div>
 
-                <!-- Project 2: Local Business Intelligence Pipeline -->
-                <article class="project-card fade-up">
-                    <div class="project-thumbnail project-thumbnail-placeholder">
-                        <span>Local Business Intelligence Pipeline</span>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Local Business Intelligence Pipeline</h3>
-                        <p class="project-subtitle">Web Scraping + Market Data Automation</p>
-                        <p class="project-description">
-                            Python automation pipeline that scraped, cleaned, and structured data on 500+ local businesses from public web directories. Processed records into a structured dataset used for targeted client outreach and local market analysis. Fully automated from raw extraction through final deliverable.
-                        </p>
-                        <div class="project-metric">
-                            <span class="metric-value">✅</span>
-                            <span class="metric-label">Completed</span>
-                        </div>
-                        <div class="project-tech">
-                            <span class="tech-badge">Python</span>
-                            <span class="tech-badge">Web Scraping</span>
-                            <span class="tech-badge">SQL</span>
-                            <span class="tech-badge">Data Cleaning</span>
-                            <span class="tech-badge">Automation</span>
-                        </div>
-                        <div class="project-actions">
-                            <span class="btn btn-outline">Details on Request</span>
-                            <a href="https://github.com/prajjwalsilwal" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                                </svg>
-                                GitHub
-                            </a>
-                        </div>
-                    </div>
-                </article>
+    <div class="hero__clip"></div>
+  </section>
 
-                <!-- Project 3: Multi-Client Diagnostic Dashboard System -->
-                <article class="project-card fade-up">
-                    <div class="project-thumbnail project-thumbnail-placeholder">
-                        <span>Multi-Client Diagnostic Dashboard</span>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Multi-Client Diagnostic Dashboard System</h3>
-                        <p class="project-subtitle">IT Operations Monitoring &amp; Visualization</p>
-                        <p class="project-description">
-                            Custom Python and SQL system tracking performance metrics across 30+ client endpoints. Data surfaced through tailored UI dashboards built per client environment. Reduced average troubleshooting time by 20% across the managed client base.
-                        </p>
-                        <div class="project-metric">
-                            <span class="metric-value">✅</span>
-                            <span class="metric-label">Completed</span>
-                        </div>
-                        <div class="project-tech">
-                            <span class="tech-badge">Python</span>
-                            <span class="tech-badge">SQL</span>
-                            <span class="tech-badge">Dashboard UI/UX</span>
-                            <span class="tech-badge">IT Systems</span>
-                            <span class="tech-badge">Automation</span>
-                        </div>
-                        <div class="project-actions">
-                            <span class="btn btn-outline">Details on Request</span>
-                        </div>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </section>
+  <div class="stat-strip">
+    <div class="container stat-strip__inner">
+      <div class="stat">
+        <span class="stat__number">17<span class="stat__suffix">+</span></span>
+        <span class="stat__label">Reports Automated</span>
+      </div>
+      <div class="stat__divider"></div>
+      <div class="stat">
+        <span class="stat__number">500<span class="stat__suffix">+</span></span>
+        <span class="stat__label">Business Records Processed</span>
+      </div>
+      <div class="stat__divider"></div>
+      <div class="stat">
+        <span class="stat__number">95<span class="stat__suffix">%</span></span>
+        <span class="stat__label">First-Time Fix Rate</span>
+      </div>
+      <div class="stat__divider"></div>
+      <div class="stat">
+        <span class="stat__number">4<span class="stat__suffix">yrs</span></span>
+        <span class="stat__label">Contract Experience</span>
+      </div>
+    </div>
+  </div>
 
-    <!-- Education Section -->
-    <section id="education" class="section education-section" aria-label="Education section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">Credentials</span>
-                <h2 class="section-title">Education &amp; <span class="gradient-text">Credentials</span></h2>
-            </div>
-            <div class="education-content">
-                <div class="education-block fade-up">
-                    <h3>University of Louisiana at Monroe</h3>
-                    <p class="education-location">Monroe, LA</p>
-                    <p class="education-period">January 2019 – May 2023</p>
-                    <p class="education-detail">Completed 100+ credit hours toward B.S. in Mathematics and Computer Science</p>
-                    <div class="education-coursework">
-                        <span class="skill-tag">Statistics</span>
-                        <span class="skill-tag">Calculus</span>
-                        <span class="skill-tag">Linear Algebra</span>
-                        <span class="skill-tag">Data Modeling</span>
-                        <span class="skill-tag">Probability</span>
-                    </div>
-                </div>
-                <div class="cert-cards">
-                    <div class="cert-card fade-up">
-                        <span class="cert-issuer cert-issuer-google">Google</span>
-                        <h3>Google Data Analytics Certificate</h3>
-                    </div>
-                    <div class="cert-card fade-up">
-                        <span class="cert-issuer cert-issuer-google">Google</span>
-                        <h3>Google IT Support Certificate</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section__eyebrow">
+        <span class="mono-label">01 / about</span>
+      </div>
 
-    <!-- Contact Section -->
-    <section id="contact" class="section contact-section" aria-label="Contact section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">Get In Touch</span>
-                <h2 class="section-title">Let's Work <span class="gradient-text">Together</span></h2>
-            </div>
-            <p class="contact-text">
-                Available for freelance contracts, long-term engagements, and full-time opportunities. I specialize in automation engineering, data pipeline development, and business dashboard delivery for operations-heavy businesses. Based in Monroe, LA — fully available for remote work.
+      <div class="about__grid">
+        <div class="about__intro reveal">
+          <h2 class="about__headline">
+            I build the pipeline<br>
+            <em>and</em> read the data.
+          </h2>
+          <div class="about__body">
+            <p>
+              Based in Monroe, LA. My work sits at the intersection of backend
+              automation and business intelligence. At Braud Property Management,
+              I designed the Braud Pipeline from nothing — Playwright, Prefect,
+              PostgreSQL — and built the dashboard layer that translates 17+
+              automated reports into daily decisions for ownership.
             </p>
-            <div class="contact-info">
-                <a href="mailto:silwalprajjwal@gmail.com" class="contact-item" aria-label="Email">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                        <polyline points="22,6 12,13 2,6"></polyline>
-                    </svg>
-                    <span>Email</span>
-                </a>
-                <a href="tel:+13185578090" class="contact-item" aria-label="Phone">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                    </svg>
-                    <span>+1 (318) 557-8090</span>
-                </a>
-                <a href="https://linkedin.com/in/prajjwal-silwal" class="contact-item" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                    </svg>
-                    <span>LinkedIn</span>
-                </a>
-                <a href="https://github.com/prajjwalsilwal" class="contact-item" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                    </svg>
-                    <span>GitHub</span>
-                </a>
+            <p>
+              Before that, four years as an independent contractor gave me
+              ground-level fluency in IT systems, hardware, and operational
+              tooling across 20+ client environments. I bring both the
+              engineering depth to build the system and the analytical eye
+              to make the data mean something.
+            </p>
+          </div>
+          <a href="/Prajjwal_Silwal_Resume.pdf" class="btn btn--outline" target="_blank" rel="noopener">
+            Download Resume ↗
+          </a>
+        </div>
+
+        <div class="about__bento">
+          <div class="bento-tile bento-tile--accent reveal" data-delay="100">
+            <div class="bento-tile__icon">⚙️</div>
+            <h3>Pipeline Engineering</h3>
+            <p>End-to-end Python automation. If it's manual and repeatable, it gets automated.</p>
+          </div>
+
+          <div class="bento-tile reveal" data-delay="150">
+            <div class="bento-tile__icon">📊</div>
+            <h3>Data &amp; Dashboards</h3>
+            <p>PostgreSQL backends + Power BI dashboards that give owners clear, daily insight.</p>
+          </div>
+
+          <div class="bento-tile reveal" data-delay="200">
+            <div class="bento-tile__icon">🖥️</div>
+            <h3>IT Infrastructure</h3>
+            <p>OS deployment, virtualization, hardware lifecycle across 20+ client environments.</p>
+          </div>
+
+          <div class="bento-tile bento-tile--dark reveal" data-delay="250">
+            <div class="bento-tile__icon">🧠</div>
+            <h3>AI Agent Deployment</h3>
+            <p>Open WebUI, VAPI, Retell AI — local LLM tools configured for real workflows.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="experience">
+    <div class="container">
+      <div class="section__header reveal">
+        <span class="mono-label">02 / experience</span>
+        <h2 class="section__title">Where I've Worked</h2>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline__entry reveal">
+          <div class="timeline__meta">
+            <div class="timeline__dot"></div>
+            <span class="timeline__date mono-label">Jan 2026 – Present</span>
+            <span class="timeline__badge timeline__badge--current">Current</span>
+          </div>
+          <div class="timeline__card">
+            <div class="timeline__card-header">
+              <div>
+                <h3 class="timeline__role">Automation &amp; Data Engineer</h3>
+                <p class="timeline__company">Braud Property Management</p>
+              </div>
+              <div class="timeline__tags">
+                <span class="tag">Python</span>
+                <span class="tag">Playwright</span>
+                <span class="tag">PostgreSQL</span>
+              </div>
             </div>
+            <ul class="timeline__bullets">
+              <li>Architected the <strong>"Braud Pipeline"</strong> — Playwright + Prefect system automating 17–19 operational property reports with zero manual intervention</li>
+              <li>Built the analytics dashboard delivering daily occupancy, delinquency, and maintenance insights directly to ownership — Morning Briefing, Executive KPIs, Decision Inbox, and Occupancy modules</li>
+              <li>Engineered custom web automation scripts to bypass Buildium's lack of native API access on the Growth plan</li>
+              <li>Deployed local AI agents (Open WebUI, VAPI, Retell AI) to modernize property management workflows</li>
+            </ul>
+          </div>
         </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="footer" role="contentinfo">
-        <div class="container">
-            <p>&copy; 2025 Prajjwal Silwal — Automation Engineer &amp; Data Analyst | Monroe, LA</p>
+        <div class="timeline__entry reveal" data-delay="100">
+          <div class="timeline__meta">
+            <div class="timeline__dot"></div>
+            <span class="timeline__date mono-label">Jan 2022 – Dec 2025</span>
+          </div>
+          <div class="timeline__card">
+            <div class="timeline__card-header">
+              <div>
+                <h3 class="timeline__role">Technical Analyst &amp; Support Lead</h3>
+                <p class="timeline__company">Independent Contractor</p>
+              </div>
+              <div class="timeline__tags">
+                <span class="tag">Python</span>
+                <span class="tag">SQL</span>
+                <span class="tag">IT Systems</span>
+              </div>
+            </div>
+            <ul class="timeline__bullets">
+              <li>Managed IT support and hardware lifecycle for <strong>20+ remote and local clients</strong>; reduced average system downtime by 15%</li>
+              <li>Automated Python web scraping pipelines processing <strong>500+ business records</strong> for client market analysis</li>
+              <li>Built Python + SQL diagnostic dashboards across <strong>30+ endpoints</strong>, cutting troubleshooting time by 20%</li>
+              <li>Maintained <strong>95% first-time fix rate</strong> on hardware repairs; extended device lifespans by 1–2 years</li>
+            </ul>
+          </div>
         </div>
-    </footer>
 
-    <!-- JavaScript -->
-    <script src="script.js"></script>
+        <div class="timeline__entry reveal" data-delay="200">
+          <div class="timeline__meta">
+            <div class="timeline__dot"></div>
+            <span class="timeline__date mono-label">2019 – 2023</span>
+          </div>
+          <div class="timeline__card">
+            <div class="timeline__card-header">
+              <div>
+                <h3 class="timeline__role">Mathematics Tutor</h3>
+                <p class="timeline__company">University of Louisiana at Monroe</p>
+              </div>
+            </div>
+            <ul class="timeline__bullets">
+              <li>Tutored 100+ students in statistics, algebra, and trigonometry</li>
+              <li>Developed structured review materials and personalized study plans</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="skills">
+    <div class="container">
+      <div class="section__header reveal">
+        <span class="mono-label">03 / skills</span>
+        <h2 class="section__title">Technical Skills</h2>
+      </div>
+
+      <div class="skills__grid">
+        <div class="skill-row reveal">
+          <span class="skill-row__label">Automation<br>&amp; Pipelines</span>
+          <div class="skill-row__tags">
+            <span class="tag tag--lg">Python</span>
+            <span class="tag tag--lg">Playwright</span>
+            <span class="tag tag--lg">Prefect</span>
+            <span class="tag tag--lg">Web Scraping</span>
+            <span class="tag tag--lg">API Integration</span>
+            <span class="tag tag--lg">Workflow Automation</span>
+          </div>
+        </div>
+
+        <div class="skill-row reveal" data-delay="80">
+          <span class="skill-row__label">Data &amp;<br>Analytics</span>
+          <div class="skill-row__tags">
+            <span class="tag tag--lg">SQL</span>
+            <span class="tag tag--lg">PostgreSQL</span>
+            <span class="tag tag--lg">ETL</span>
+            <span class="tag tag--lg">Power BI</span>
+            <span class="tag tag--lg">DAX</span>
+            <span class="tag tag--lg">Pandas</span>
+            <span class="tag tag--lg">NumPy</span>
+            <span class="tag tag--lg">Data Modeling</span>
+          </div>
+        </div>
+
+        <div class="skill-row reveal" data-delay="160">
+          <span class="skill-row__label">IT Systems &amp;<br>Infrastructure</span>
+          <div class="skill-row__tags">
+            <span class="tag tag--lg">OS Deployment</span>
+            <span class="tag tag--lg">Windows / Linux</span>
+            <span class="tag tag--lg">UTM / Parallels</span>
+            <span class="tag tag--lg">Hardware Lifecycle</span>
+            <span class="tag tag--lg">Network Security</span>
+          </div>
+        </div>
+
+        <div class="skill-row reveal" data-delay="240">
+          <span class="skill-row__label">AI &amp;<br>Local LLM</span>
+          <div class="skill-row__tags">
+            <span class="tag tag--lg">Open WebUI</span>
+            <span class="tag tag--lg">VAPI</span>
+            <span class="tag tag--lg">Retell AI</span>
+            <span class="tag tag--lg">Local LLM Deployment</span>
+            <span class="tag tag--lg">AI Agent Config</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="projects">
+    <div class="container">
+      <div class="section__header reveal">
+        <span class="mono-label">04 / projects</span>
+        <h2 class="section__title">Selected Work</h2>
+        <p class="section__sub">
+          Real systems. Real production. No demo data.
+        </p>
+      </div>
+
+      <div class="projects__grid">
+        <article class="project-card reveal">
+          <a href="/projects/braud-pipeline/" class="project-card__image-wrap">
+            <img src="/projects/braud-pipeline/images/hero.jpg"
+                 alt="Braud Pipeline dashboard"
+                 loading="lazy"
+                 onerror="this.style.display='none'">
+            <div class="project-card__image-fallback project-card__image-fallback--blue"></div>
+            <span class="project-card__badge project-card__badge--live">
+              <span class="badge-dot"></span> Live — In Production
+            </span>
+            <span class="project-card__featured">Featured</span>
+          </a>
+          <div class="project-card__body">
+            <div class="project-card__tags">
+              <span class="tag">Python</span>
+              <span class="tag">Playwright</span>
+              <span class="tag">Prefect</span>
+              <span class="tag">PostgreSQL</span>
+            </div>
+            <h3 class="project-card__title">The Braud Pipeline</h3>
+            <p class="project-card__sub">Automated Property Management Data System</p>
+            <p class="project-card__desc">
+              End-to-end automation extracting 17–19 Buildium reports into PostgreSQL,
+              plus a live dashboard with morning briefings, executive KPIs, Decision Inbox,
+              and occupancy views — no native API required.
+            </p>
+            <div class="project-card__actions">
+              <a href="/projects/braud-pipeline/" class="btn btn--primary btn--sm">
+                View Case Study →
+              </a>
+              <a href="/braud_demo_master/demo/" class="btn btn--ghost btn--sm" target="_blank" rel="noopener">Dashboard Demo ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card reveal" data-delay="120">
+          <a href="/projects/lead-intelligence/" class="project-card__image-wrap">
+            <img src="/projects/lead-intelligence/images/hero.jpg"
+                 alt="Lead intelligence pipeline output"
+                 loading="lazy"
+                 onerror="this.style.display='none'">
+            <div class="project-card__image-fallback project-card__image-fallback--green"></div>
+            <span class="project-card__badge project-card__badge--done">✓ Completed</span>
+          </a>
+          <div class="project-card__body">
+            <div class="project-card__tags">
+              <span class="tag">Python</span>
+              <span class="tag">Web Scraping</span>
+              <span class="tag">SQL</span>
+            </div>
+            <h3 class="project-card__title">Lead Intelligence Pipeline</h3>
+            <p class="project-card__sub">Web Scraping + Market Data Automation</p>
+            <p class="project-card__desc">
+              Python automation pipeline that scraped and structured data on 500+
+              local businesses from public directories — from raw extraction through
+              final analysis-ready dataset.
+            </p>
+            <div class="project-card__actions">
+              <a href="/projects/lead-intelligence/" class="btn btn--primary btn--sm">
+                View Case Study →
+              </a>
+              <a href="https://github.com/prajjwalsilwal" class="btn btn--ghost btn--sm" target="_blank" rel="noopener">GitHub ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card reveal" data-delay="240">
+          <a href="/projects/diagnostic-dashboard/" class="project-card__image-wrap">
+            <img src="/projects/diagnostic-dashboard/images/hero.jpg"
+                 alt="Multi-client diagnostic dashboard"
+                 loading="lazy"
+                 onerror="this.style.display='none'">
+            <div class="project-card__image-fallback project-card__image-fallback--navy"></div>
+            <span class="project-card__badge project-card__badge--done">✓ Completed</span>
+          </a>
+          <div class="project-card__body">
+            <div class="project-card__tags">
+              <span class="tag">Python</span>
+              <span class="tag">SQL</span>
+              <span class="tag">Dashboard UI</span>
+            </div>
+            <h3 class="project-card__title">Multi-Client Diagnostic Dashboard</h3>
+            <p class="project-card__sub">IT Operations Monitoring &amp; Visualization</p>
+            <p class="project-card__desc">
+              Custom Python + SQL system tracking performance metrics across 30+
+              client endpoints with tailored dashboards. Cut troubleshooting
+              time by 20%.
+            </p>
+            <div class="project-card__actions">
+              <a href="/projects/diagnostic-dashboard/" class="btn btn--primary btn--sm">
+                View Case Study →
+              </a>
+              <span class="btn btn--ghost btn--sm btn--disabled">Details on Request</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="education">
+    <div class="container">
+      <div class="section__header reveal">
+        <span class="mono-label">05 / education</span>
+        <h2 class="section__title">Education &amp; Credentials</h2>
+      </div>
+
+      <div class="edu__grid">
+        <div class="edu__card reveal">
+          <div class="edu__card-header">
+            <div>
+              <h3 class="edu__institution">University of Louisiana at Monroe</h3>
+              <p class="edu__meta mono-label">Monroe, LA &nbsp;·&nbsp; Jan 2019 – May 2023</p>
+            </div>
+            <div class="edu__degree-badge">BS Candidate</div>
+          </div>
+          <p class="edu__program">Mathematics &amp; Computer Science</p>
+          <p class="edu__detail">100+ credit hours completed</p>
+          <div class="edu__courses">
+            <span class="tag">Statistics</span>
+            <span class="tag">Calculus</span>
+            <span class="tag">Linear Algebra</span>
+            <span class="tag">Data Modeling</span>
+            <span class="tag">Probability</span>
+          </div>
+          <p class="edu__note">
+            Also served as Math Tutor — taught statistics, algebra, and
+            trigonometry to 100+ students.
+          </p>
+        </div>
+
+        <div class="edu__certs reveal" data-delay="150">
+          <h3 class="edu__certs-heading">Certifications</h3>
+          <div class="cert-card">
+            <div class="cert-card__logo">G</div>
+            <div>
+              <p class="cert-card__name">Google Data Analytics Certificate</p>
+              <p class="cert-card__issuer mono-label">Google</p>
+            </div>
+          </div>
+          <div class="cert-card">
+            <div class="cert-card__logo">G</div>
+            <div>
+              <p class="cert-card__name">Google IT Support Certificate</p>
+              <p class="cert-card__issuer mono-label">Google</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="container contact__inner">
+      <span class="mono-label" style="color: var(--text-muted)">06 / contact</span>
+
+      <h2 class="contact__headline reveal">
+        Let's work<br><em>together.</em>
+      </h2>
+
+      <p class="contact__sub reveal" data-delay="100">
+        Available for freelance contracts, long-term engagements, and full-time roles.
+        Automation engineering, data pipelines, and business dashboards for
+        operations-heavy businesses. Based in Monroe, LA — open to remote.
+      </p>
+
+      <a href="mailto:silwalprajjwal@gmail.com" class="contact__email reveal" data-delay="150">
+        silwalprajjwal@gmail.com
+        <span class="contact__email-arrow">↗</span>
+      </a>
+
+      <div class="contact__links reveal" data-delay="200">
+        <a href="https://linkedin.com/in/prajjwal-silwal" target="_blank" rel="noopener" class="contact__link">LinkedIn ↗</a>
+        <span class="contact__link-sep">·</span>
+        <a href="https://github.com/prajjwalsilwal" target="_blank" rel="noopener" class="contact__link">GitHub ↗</a>
+        <span class="contact__link-sep">·</span>
+        <a href="tel:+13185578090" class="contact__link">+1 (318) 557-8090</a>
+        <span class="contact__link-sep">·</span>
+        <a href="/Prajjwal_Silwal_Resume.pdf" target="_blank" rel="noopener" class="contact__link">Resume PDF ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span class="footer__name">
+        Prajjwal Silwal — Automation Engineer &amp; Data Analyst
+      </span>
+      <span class="footer__copy mono-label">Monroe, LA &nbsp;·&nbsp; © 2025</span>
+    </div>
+  </footer>
+
+  <script src="/assets/js/main.js"></script>
 </body>
 </html>

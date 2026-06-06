@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The Braud Pipeline — automated property management data system built with Playwright, Prefect, and PostgreSQL. Case study by Prajjwal Silwal.">
+  <meta property="og:title" content="The Braud Pipeline | Prajjwal Silwal">
+  <meta property="og:description" content="End-to-end automation extracting 17–19 operational reports into PostgreSQL and a live analytics dashboard.">
+  <title>The Braud Pipeline | Prajjwal Silwal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/animations.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>PS</text></svg>">
+</head>
+<body>
+
+  <header class="nav scrolled" id="nav">
+    <div class="container nav__inner">
+      <a href="/" class="nav__logo">
+        <span class="nav__logo-name">PS</span>
+        <span class="nav__logo-dot"></span>
+      </a>
+      <nav class="nav__links" aria-label="Primary navigation">
+        <a href="/#about" class="nav__link">About</a>
+        <a href="/#experience" class="nav__link">Experience</a>
+        <a href="/#skills" class="nav__link">Skills</a>
+        <a href="/#projects" class="nav__link active">Projects</a>
+        <a href="/#education" class="nav__link">Education</a>
+        <a href="/#contact" class="nav__link">Contact</a>
+      </nav>
+      <div class="nav__cta">
+        <a href="/Prajjwal_Silwal_Resume.pdf" class="btn btn--outline btn--sm" target="_blank" rel="noopener">Resume ↗</a>
+        <button class="nav__hamburger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="nav__drawer" aria-hidden="true">
+      <nav class="nav__drawer-links">
+        <a href="/#about">About</a>
+        <a href="/#experience">Experience</a>
+        <a href="/#skills">Skills</a>
+        <a href="/#projects">Projects</a>
+        <a href="/#education">Education</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <article class="case-study">
+    <div class="cs-hero">
+      <div class="cs-hero__image">
+        <img src="./images/hero.jpg" alt="Braud Pipeline dashboard" loading="eager" onerror="this.style.display='none'">
+        <div class="cs-hero__image-fallback project-card__image-fallback project-card__image-fallback--blue"></div>
+      </div>
+      <div class="container cs-hero__content">
+        <a href="/#projects" class="cs-back">← All Projects</a>
+        <div class="cs-hero__badges">
+          <span class="project-card__badge project-card__badge--live">
+            <span class="badge-dot"></span> Live — In Production
+          </span>
+        </div>
+        <h1 class="cs-hero__title">The Braud Pipeline</h1>
+        <p class="cs-hero__sub">Automated Property Management Data System</p>
+        <div class="cs-hero__tags">
+          <span class="tag">Python</span>
+          <span class="tag">Playwright</span>
+          <span class="tag">Prefect</span>
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">Dashboard UI/UX</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-stats">
+      <div class="cs-stat"><span class="stat__number">17+</span><span class="stat__label">Reports Automated</span></div>
+      <div class="cs-stat"><span class="stat__number">4</span><span class="stat__label">Dashboard Modules</span></div>
+      <div class="cs-stat"><span class="stat__number">0</span><span class="stat__label">Manual Steps Required</span></div>
+      <div class="cs-stat"><span class="stat__number">Live</span><span class="stat__label">In Production</span></div>
+    </div>
+
+    <div class="container cs-body">
+      <section class="cs-section reveal">
+        <h2>Overview</h2>
+        <p>End-to-end automation system built with Playwright and Prefect that extracts and
+           processes 17–19 operational reports from Buildium, loads clean data into a
+           PostgreSQL backend, and powers a live owner-facing analytics dashboard — engineered
+           entirely without native API access.</p>
+        <p>The dashboard layer translates pipeline output into daily operational decisions:
+           delinquency tracking, vacancy pressure, maintenance SLAs, lease renewals, and a
+           shared Decision Inbox for ownership workflows.</p>
+      </section>
+
+      <section class="cs-section reveal" data-delay="80">
+        <h2>Pipeline Architecture</h2>
+        <p>Four stages — from raw Buildium exports to actionable dashboard views.</p>
+        <div class="cs-flow">
+          <div class="cs-flow__step">
+            <div class="cs-flow__step-num">01</div>
+            <h3>Extract</h3>
+            <p>Playwright headless automation logs in, navigates each report, and downloads files — no API required.</p>
+          </div>
+          <div class="cs-flow__step">
+            <div class="cs-flow__step-num">02</div>
+            <h3>Transform</h3>
+            <p>Python normalizes report formats, deduplicates records, and validates data before load.</p>
+          </div>
+          <div class="cs-flow__step">
+            <div class="cs-flow__step-num">03</div>
+            <h3>Load</h3>
+            <p>Structured data lands in PostgreSQL — stable schema supporting occupancy, delinquency, and maintenance analytics.</p>
+          </div>
+          <div class="cs-flow__step">
+            <div class="cs-flow__step-num">04</div>
+            <h3>Surface</h3>
+            <p>Dashboard UI reads from the database and presents KPIs, briefing tables, and workflow queues to ownership.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="cs-section reveal" data-delay="100">
+        <h2>Dashboard Layer</h2>
+        <p>The analytics front-end built on top of the pipeline gives Braud ownership a single place to start each day — fictional demo available for portfolio review (sanitized data only).</p>
+        <div class="cs-features">
+          <div class="cs-feature">
+            <h3>Morning Briefing</h3>
+            <p>Daily operational snapshot — what needs attention first.</p>
+            <ul>
+              <li>Delinquent tenants with balance and age</li>
+              <li>Vacant units and listing status</li>
+              <li>Overdue maintenance by priority</li>
+              <li>Expiring leases approaching renewal</li>
+            </ul>
+          </div>
+          <div class="cs-feature">
+            <h3>Executive Summary</h3>
+            <p>Portfolio KPIs at a glance for ownership decisions.</p>
+            <ul>
+              <li>Occupancy rate and trend</li>
+              <li>Collection rate (MTD)</li>
+              <li>Delinquent balance total</li>
+              <li>Vacant units and maintenance overdue count</li>
+            </ul>
+          </div>
+          <div class="cs-feature">
+            <h3>Decision Inbox</h3>
+            <p>Shared workflow queue with drafted actions — copy into the PMS, then mark acted.</p>
+            <ul>
+              <li>Payment risk forecasts</li>
+              <li>Maintenance SLA breaches</li>
+              <li>Lease renewal outreach</li>
+              <li>Pre-due rent reminders</li>
+            </ul>
+          </div>
+          <div class="cs-feature">
+            <h3>Occupancy Snapshot</h3>
+            <p>Portfolio-wide and per-property occupancy breakdown.</p>
+            <ul>
+              <li>Total units vs. occupied</li>
+              <li>Vacancy count and rate</li>
+              <li>Occupancy by property</li>
+              <li>Unit-level status drill-down</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <div class="cs-demo reveal" data-delay="120">
+        <div class="cs-demo__text">
+          <h3>Try the sanitized demo</h3>
+          <p>Standalone dashboard demo with fictional portfolio data — no database, no API, no real tenant or property information. Built for sales, training, and portfolio review.</p>
+        </div>
+        <div class="cs-demo__actions">
+          <a href="/braud_demo_master/demo/" class="btn btn--primary btn--sm" target="_blank" rel="noopener">Open Dashboard Demo ↗</a>
+          <a href="/#projects" class="btn btn--outline btn--sm">← All Projects</a>
+        </div>
+      </div>
+
+      <section class="cs-gallery reveal" data-delay="140">
+        <div class="cs-gallery__grid">
+          <div class="cs-gallery__item">
+            <img src="./images/architecture.jpg"
+                 alt="Pipeline architecture diagram"
+                 loading="lazy"
+                 onerror="this.parentElement.classList.add('cs-gallery__item--placeholder')">
+            <p class="cs-gallery__caption">Pipeline architecture — extract to dashboard</p>
+          </div>
+          <div class="cs-gallery__item">
+            <img src="./images/dashboard.jpg"
+                 alt="Analytics dashboard"
+                 loading="lazy"
+                 onerror="this.parentElement.classList.add('cs-gallery__item--placeholder')">
+            <p class="cs-gallery__caption">Owner-facing analytics dashboard</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="cs-section reveal" data-delay="160">
+        <h2>The Problem</h2>
+        <p>Buildium's Growth plan provides no native API access. All reporting was done
+           manually — someone had to log in, navigate to each report, download it, and
+           process it by hand. 17–19 reports. Daily. Ownership had no single view of
+           delinquency, vacancy, or maintenance pressure without someone assembling it first.</p>
+      </section>
+
+      <section class="cs-section reveal" data-delay="180">
+        <h2>The Solution</h2>
+        <p>Playwright headless automation handles login, navigation, and extraction.
+           Prefect orchestrates the schedule and handles retries. PostgreSQL stores structured
+           clean data. The dashboard layer surfaces morning briefings, executive KPIs, a
+           Decision Inbox with drafted actions, and occupancy snapshots — giving ownership
+           a format they can actually act on without touching a spreadsheet.</p>
+      </section>
+
+      <a href="/#projects" class="btn btn--outline" style="margin-top: 3rem">← Back to Projects</a>
+    </div>
+  </article>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span class="footer__name">Prajjwal Silwal — Automation Engineer &amp; Data Analyst</span>
+      <span class="footer__copy mono-label">Monroe, LA &nbsp;·&nbsp; © 2025</span>
+    </div>
+  </footer>
+
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

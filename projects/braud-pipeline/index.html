@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="The Braud Pipeline and Operations Dashboard — nightly Playwright + Prefect automation into PostgreSQL, plus the morning dashboard ownership uses daily. Case study by Prajjwal Silwal.">
-  <meta property="og:title" content="Braud Pipeline &amp; Dashboard | Prajjwal Silwal">
-  <meta property="og:description" content="Two production deliverables: nightly Buildium → PostgreSQL automation and a live operations dashboard with Morning Briefing, KPIs, and Decision Inbox.">
-  <title>Braud Pipeline &amp; Dashboard | Prajjwal Silwal</title>
+  <meta name="description" content="The Braud Pipeline — nightly Playwright + Prefect automation from Buildium to PostgreSQL with zero manual steps. Case study by Prajjwal Silwal.">
+  <meta property="og:title" content="The Braud Pipeline | Prajjwal Silwal">
+  <meta property="og:description" content="Nightly Buildium report automation into PostgreSQL — engineered without native API access on the Growth plan.">
+  <title>The Braud Pipeline | Prajjwal Silwal</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -54,7 +54,7 @@
   <article class="case-study">
     <div class="cs-hero">
       <div class="cs-hero__image">
-        <img src="./images/hero.svg" alt="Braud pipeline and operations dashboard" loading="eager">
+        <img src="./images/architecture.svg" alt="Braud Pipeline — Buildium to PostgreSQL architecture" loading="eager">
         <div class="cs-hero__image-fallback project-card__image-fallback project-card__image-fallback--blue"></div>
       </div>
       <div class="container cs-hero__content">
@@ -64,130 +64,100 @@
             <span class="badge-dot"></span> Live — In Production
           </span>
         </div>
-        <h1 class="cs-hero__title">Braud Pipeline &amp; Dashboard</h1>
-        <p class="cs-hero__sub">Buildium Automation + Owner-Facing Analytics</p>
+        <h1 class="cs-hero__title">The Braud Pipeline</h1>
+        <p class="cs-hero__sub">Buildium → PostgreSQL · Nightly ETL Automation</p>
         <div class="cs-hero__tags">
           <span class="tag">Python</span>
           <span class="tag">Playwright</span>
           <span class="tag">Prefect</span>
           <span class="tag">PostgreSQL</span>
-          <span class="tag">Dashboard UI</span>
         </div>
       </div>
     </div>
 
     <div class="cs-stats">
-      <div class="cs-stat"><span class="stat__number">17+</span><span class="stat__label">Reports Automated</span></div>
-      <div class="cs-stat"><span class="stat__number">4</span><span class="stat__label">Dashboard Modules</span></div>
-      <div class="cs-stat"><span class="stat__number">0</span><span class="stat__label">Manual Steps Required</span></div>
-      <div class="cs-stat"><span class="stat__number">Nightly</span><span class="stat__label">02:00 CST scheduled run</span></div>
+      <div class="cs-stat"><span class="stat__number">17+</span><span class="stat__label">Buildium reports / night</span></div>
+      <div class="cs-stat"><span class="stat__number">0</span><span class="stat__label">Manual steps after deploy</span></div>
+      <div class="cs-stat"><span class="stat__number">02:00</span><span class="stat__label">CST Prefect schedule</span></div>
+      <div class="cs-stat"><span class="stat__number">Live</span><span class="stat__label">Production since Jan 2026</span></div>
     </div>
 
     <div class="container cs-body">
-      <!-- WHY: Narrative order matters — problem first, not deliverable labels at the top -->
       <section class="cs-section reveal">
         <h2>Problem</h2>
-        <p>Braud Property Management runs on Buildium's Growth plan — which means <strong>no API</strong>.
-           Every morning, someone logged in, opened 17–19 separate operational reports, downloaded
-           them, and stitched together answers ownership needed: who's delinquent, what's vacant,
-           which maintenance tickets are overdue. The reports existed. The manual assembly didn't
-           scale.</p>
+        <p>Braud Property Management runs on Buildium's Growth plan — <strong>no API</strong>. Every
+           morning someone logged into Buildium, opened 17–19 separate operational reports, and
+           downloaded each one by hand. Occupancy, delinquency, maintenance, and lease data existed
+           inside Buildium exports, but nothing moved into a database automatically. Staff spent
+           the first part of each day on extraction, not analysis.</p>
       </section>
 
       <section class="cs-section reveal" data-delay="80">
         <h2>Approach</h2>
-        <p>I built two connected systems instead of one monolith:</p>
-        <p><strong>The Braud Pipeline</strong> — nightly Playwright automation that logs into Buildium,
-           downloads each report, normalizes the exports in Python, and loads a stable PostgreSQL
-           schema. Prefect handles scheduling (02:00 CST), retries, and failure alerts.</p>
+        <p>I built a three-stage nightly ETL job — headless browser extraction, Python normalization,
+           and PostgreSQL load — orchestrated by Prefect with per-report retry and failure isolation.</p>
         <div class="cs-flow">
           <div class="cs-flow__step">
             <div class="cs-flow__step-num">01</div>
             <h3>Extract</h3>
-            <p>Playwright headless browser — login, navigate, download. No API required.</p>
+            <p>Playwright logs into Buildium, navigates each report URL, and downloads the export files.</p>
           </div>
           <div class="cs-flow__step">
             <div class="cs-flow__step-num">02</div>
             <h3>Transform</h3>
-            <p>Python normalizes formats, deduplicates rows, validates before load.</p>
+            <p>Python normalizes column formats, deduplicates rows, and validates records before load.</p>
           </div>
           <div class="cs-flow__step">
             <div class="cs-flow__step-num">03</div>
             <h3>Load</h3>
-            <p>PostgreSQL schema for occupancy, delinquency, maintenance, and leases.</p>
+            <p>Structured tables in PostgreSQL — occupancy, delinquency, maintenance, leases, with <code>loaded_at</code> timestamps.</p>
           </div>
         </div>
-        <p><strong>Braud Operations Dashboard</strong> — a UI that reads that database and gives
-           ownership one place to start the day: Morning Briefing, Executive KPIs, Decision Inbox,
-           and Occupancy modules. The portfolio demo on this site uses fictional data; production
-           reads live pipeline output.</p>
-        <div class="cs-features">
-          <div class="cs-feature">
-            <h3>Morning Briefing</h3>
-            <p>What needs attention first — delinquency, vacancies, overdue maintenance, expiring leases.</p>
-          </div>
-          <div class="cs-feature">
-            <h3>Executive KPIs</h3>
-            <p>Occupancy, collection rate, delinquent balance, vacant unit count.</p>
-          </div>
-          <div class="cs-feature">
-            <h3>Decision Inbox</h3>
-            <p>Drafted actions ownership can copy into Buildium, then mark complete.</p>
-          </div>
-          <div class="cs-feature">
-            <h3>Occupancy Snapshot</h3>
-            <p>Portfolio-wide and per-property unit status.</p>
-          </div>
-        </div>
+        <p>The pipeline runs on a fixed schedule. If one report fails, the rest of the nightly batch
+           still completes and the failure is logged for retry — ownership doesn't wake up to a half-empty
+           database.</p>
       </section>
 
       <section class="cs-section reveal" data-delay="120">
         <h2>Decision</h2>
-        <p><strong>Playwright over waiting for an API upgrade.</strong> Upgrading Buildium plans for
-           API access was a recurring cost with an uncertain timeline. Browser automation is brittle,
-           but it was shippable in weeks and entirely under our control. I built retry logic and
-           report-level error isolation so one failed export doesn't block the rest of the nightly run.</p>
-        <p><strong>PostgreSQL as the single source of truth.</strong> Power BI was in the stack, but
-           ownership needed a purpose-built morning workflow — not a generic report gallery. A custom
-           dashboard on top of Postgres let me design around the four questions they actually ask
-           first, instead of fitting their process into a template.</p>
+        <p><strong>Playwright instead of waiting for API access.</strong> Upgrading Buildium plans for API
+           access was a recurring cost with no guaranteed timeline. Browser automation is brittle when
+           Buildium changes its UI, but it was deployable in weeks and entirely under our control.</p>
+        <p><strong>PostgreSQL as the integration layer.</strong> Rather than piping CSVs into separate tools,
+           every report lands in one schema. Downstream systems — the operations dashboard, ad-hoc SQL,
+           Power BI — all read from the same source instead of chasing fresh exports.</p>
       </section>
 
       <section class="cs-section reveal" data-delay="160">
         <h2>Result</h2>
-        <p>Both systems are <strong>live in production</strong>. The pipeline runs nightly with
-           <strong>zero manual steps</strong> after deployment, covering 17–19 operational reports.
-           Ownership opens the dashboard each morning instead of assembling spreadsheets.</p>
-        <p>Ownership opens the dashboard each morning with delinquency, vacancy, and maintenance status already assembled — instead of downloading and stitching together 17+ Buildium reports by hand.</p>
+        <p>The pipeline has run in production since <strong>Jan 2026</strong> with <strong>zero manual steps</strong>
+           after deployment. Nightly automation covers 17–19 operational Buildium reports into PostgreSQL.
+           Manual login-and-download work at the start of each day is gone.</p>
+        <p>That database is what feeds the <a href="/projects/braud-dashboard/">Braud Operations Dashboard</a> —
+           a separate project focused on the owner-facing morning workflow.</p>
       </section>
 
-      <div class="cs-demo reveal" data-delay="200">
-        <div class="cs-demo__text">
-          <h3>Try the sanitized demo</h3>
-          <p>Standalone dashboard with fictional portfolio data — no database, no API, no real tenant information. Built for portfolio review and training.</p>
-        </div>
-        <div class="cs-demo__actions">
-          <a href="/braud_demo_master/demo/" class="btn btn--primary btn--sm" target="_blank" rel="noopener">Open Dashboard Demo ↗</a>
-          <a href="/#projects" class="btn btn--outline btn--sm">← All Projects</a>
-        </div>
-      </div>
-
-      <section class="cs-gallery reveal" data-delay="220">
+      <section class="cs-gallery reveal" data-delay="200">
         <div class="cs-gallery__grid">
           <div class="cs-gallery__item">
             <img src="./images/architecture.svg"
-                 alt="Pipeline architecture diagram"
+                 alt="Pipeline architecture diagram — Buildium to PostgreSQL"
                  loading="lazy">
-            <p class="cs-gallery__caption">Pipeline architecture — Buildium to PostgreSQL</p>
-          </div>
-          <div class="cs-gallery__item">
-            <img src="./images/dashboard.svg"
-                 alt="Analytics dashboard"
-                 loading="lazy">
-            <p class="cs-gallery__caption">Owner-facing analytics dashboard</p>
+            <p class="cs-gallery__caption">End-to-end flow — Buildium exports to PostgreSQL tables</p>
           </div>
         </div>
       </section>
+
+      <div class="cs-demo reveal" data-delay="220">
+        <div class="cs-demo__text">
+          <h3>See what this pipeline feeds</h3>
+          <p>The Braud Operations Dashboard reads live PostgreSQL output from this pipeline. Portfolio demo uses fictional data.</p>
+        </div>
+        <div class="cs-demo__actions">
+          <a href="/projects/braud-dashboard/" class="btn btn--primary btn--sm">Dashboard Case Study →</a>
+          <a href="/braud_demo_master/demo/" class="btn btn--outline btn--sm" target="_blank" rel="noopener">Open Sanitized Demo ↗</a>
+        </div>
+      </div>
 
       <a href="/#projects" class="btn btn--outline" style="margin-top: 3rem">← Back to Projects</a>
     </div>

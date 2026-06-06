@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Braud Operations Dashboard — owner-facing morning workflow for delinquency, vacancy, and maintenance. Case study by Prajjwal Silwal.">
+  <meta property="og:title" content="Braud Operations Dashboard | Prajjwal Silwal">
+  <meta property="og:description" content="Four-module operations dashboard reading live PostgreSQL data from the Braud Pipeline — Morning Briefing, KPIs, Decision Inbox, Occupancy.">
+  <title>Braud Operations Dashboard | Prajjwal Silwal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/animations.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>PS</text></svg>">
+</head>
+<body>
+
+  <header class="nav scrolled" id="nav">
+    <div class="container nav__inner">
+      <a href="/" class="nav__logo">
+        <span class="nav__logo-name">PS</span>
+        <span class="nav__logo-dot"></span>
+      </a>
+      <nav class="nav__links" aria-label="Primary navigation">
+        <a href="/#projects" class="nav__link active">Projects</a>
+        <a href="/#current" class="nav__link">Now</a>
+        <a href="/#about" class="nav__link">About</a>
+        <a href="/#experience" class="nav__link">Experience</a>
+        <a href="/#skills" class="nav__link">Tools</a>
+        <a href="/#education" class="nav__link">Education</a>
+        <a href="/#contact" class="nav__link">Contact</a>
+      </nav>
+      <div class="nav__cta">
+        <a href="/Prajjwal_Silwal_Resume.pdf" class="btn btn--outline btn--sm" target="_blank" rel="noopener">Resume ↗</a>
+        <button class="nav__hamburger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="nav__drawer" aria-hidden="true">
+      <nav class="nav__drawer-links">
+        <a href="/#projects">Projects</a>
+        <a href="/#current">Now</a>
+        <a href="/#about">About</a>
+        <a href="/#experience">Experience</a>
+        <a href="/#skills">Tools</a>
+        <a href="/#education">Education</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <article class="case-study">
+    <div class="cs-hero">
+      <div class="cs-hero__image">
+        <img src="../braud-pipeline/images/dashboard.svg" alt="Braud Operations Dashboard — Morning Briefing view" loading="eager">
+        <div class="cs-hero__image-fallback project-card__image-fallback project-card__image-fallback--navy"></div>
+      </div>
+      <div class="container cs-hero__content">
+        <a href="/#projects" class="cs-back">← All Projects</a>
+        <div class="cs-hero__badges">
+          <span class="project-card__badge project-card__badge--live">
+            <span class="badge-dot"></span> Live — In Production
+          </span>
+        </div>
+        <h1 class="cs-hero__title">Braud Operations Dashboard</h1>
+        <p class="cs-hero__sub">Owner-Facing Morning Workflow · Property Analytics</p>
+        <div class="cs-hero__tags">
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">Dashboard UI</span>
+          <span class="tag">Power BI</span>
+          <span class="tag">Python</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-stats">
+      <div class="cs-stat"><span class="stat__number">4</span><span class="stat__label">Dashboard modules</span></div>
+      <div class="cs-stat"><span class="stat__number">Daily</span><span class="stat__label">Ownership morning workflow</span></div>
+      <div class="cs-stat"><span class="stat__number">Live</span><span class="stat__label">Reads pipeline PostgreSQL</span></div>
+      <div class="cs-stat"><span class="stat__number">Demo</span><span class="stat__label">Sanitized portfolio preview</span></div>
+    </div>
+
+    <div class="container cs-body">
+      <section class="cs-section reveal">
+        <h2>Problem</h2>
+        <p>Once the <a href="/projects/braud-pipeline/">Braud Pipeline</a> started loading Buildium data into
+           PostgreSQL each night, the extraction problem was solved — but ownership still had no single
+           screen to start the day. Delinquency lived in one export mindset, vacancies in another,
+           maintenance in a third. Someone was still mentally stitching spreadsheets together every
+           morning to answer: who owes rent, what's empty, what's overdue, what needs a decision today.</p>
+      </section>
+
+      <section class="cs-section reveal" data-delay="80">
+        <h2>Approach</h2>
+        <p>I built a purpose-built operations UI on top of the pipeline's PostgreSQL schema — organized
+           around how ownership actually starts their morning, not around how Buildium names its reports.</p>
+        <div class="cs-features">
+          <div class="cs-feature">
+            <h3>Morning Briefing</h3>
+            <p>First screen of the day — delinquent tenants with balance and age, vacant units, overdue maintenance, expiring leases.</p>
+          </div>
+          <div class="cs-feature">
+            <h3>Executive KPIs</h3>
+            <p>Portfolio snapshot — occupancy rate, MTD collection rate, total delinquent balance, vacant unit count.</p>
+          </div>
+          <div class="cs-feature">
+            <h3>Decision Inbox</h3>
+            <p>Queue of drafted actions — payment risk follow-ups, SLA breaches, lease renewals. Copy into Buildium, mark acted.</p>
+          </div>
+          <div class="cs-feature">
+            <h3>Occupancy Snapshot</h3>
+            <p>Portfolio-wide and per-property unit status — total units, occupied count, vacancy rate, drill-down by property.</p>
+          </div>
+        </div>
+        <p>Production reads live pipeline data refreshed nightly. The portfolio demo on this site uses
+           fictional tenant and property names — same UI, no real data connected.</p>
+      </section>
+
+      <section class="cs-section reveal" data-delay="120">
+        <h2>Decision</h2>
+        <p><strong>Custom morning workflow over a generic BI gallery.</strong> Power BI is in the stack,
+           but ownership didn't need thirty charts — they needed four specific views in a fixed order.
+           Building a dedicated UI let me design around the questions they ask before coffee, not around
+           whatever template a BI tool ships with.</p>
+        <p><strong>Decision Inbox as a workflow surface, not just charts.</strong> Charts show state;
+           they don't help ownership act. The inbox drafts the next step — who to call, what to renew,
+           which maintenance ticket breached SLA — so the dashboard ends in action, not just observation.</p>
+      </section>
+
+      <section class="cs-section reveal" data-delay="160">
+        <h2>Result</h2>
+        <p>Ownership opens this dashboard each morning with delinquency, vacancy, and maintenance status
+           already assembled — instead of downloading and stitching together 17+ Buildium reports by hand.</p>
+        <p>Four modules are in <strong>daily production use</strong>, fed by the nightly pipeline run.
+           A sanitized standalone demo is available for portfolio review without exposing real tenant data.</p>
+      </section>
+
+      <div class="cs-demo reveal" data-delay="200">
+        <div class="cs-demo__text">
+          <h3>Try the sanitized demo</h3>
+          <p>Fictional portfolio data — Morning Briefing, KPIs, Decision Inbox, and Occupancy modules. No database, no API, no real tenant information.</p>
+        </div>
+        <div class="cs-demo__actions">
+          <a href="/braud_demo_master/demo/" class="btn btn--primary btn--sm" target="_blank" rel="noopener">Open Dashboard Demo ↗</a>
+          <a href="/projects/braud-pipeline/" class="btn btn--outline btn--sm">Pipeline Case Study →</a>
+        </div>
+      </div>
+
+      <section class="cs-gallery reveal" data-delay="220">
+        <div class="cs-gallery__grid">
+          <div class="cs-gallery__item">
+            <img src="../braud-pipeline/images/dashboard.svg"
+                 alt="Braud Operations Dashboard — owner-facing analytics"
+                 loading="lazy">
+            <p class="cs-gallery__caption">Morning Briefing — delinquency, vacancy, maintenance at a glance</p>
+          </div>
+        </div>
+      </section>
+
+      <a href="/#projects" class="btn btn--outline" style="margin-top: 3rem">← Back to Projects</a>
+    </div>
+  </article>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span class="footer__name">Prajjwal Silwal — Automation Engineer &amp; Data Analyst</span>
+      <span class="footer__copy mono-label">Monroe, LA &nbsp;·&nbsp; © 2026</span>
+    </div>
+  </footer>
+
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

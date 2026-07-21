@@ -1,0 +1,127 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-sans: 'DM Sans', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+    --font-display: 'Fraunces', Georgia, serif;
+  }
+
+  html {
+    background: #040507;
+    color-scheme: dark;
+  }
+
+  /* Lenis drives scrolling in `full`; without this the native smooth-scroll
+     fights it. Scoped so the `off` layout keeps normal browser scrolling. */
+  [data-fx='full'] html,
+  html.lenis {
+    scroll-behavior: auto;
+  }
+
+  body {
+    @apply bg-void text-ink font-sans antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: rgba(94, 234, 212, 0.25);
+    color: #ffffff;
+  }
+
+  :focus-visible {
+    outline: 2px solid theme('colors.accent.DEFAULT');
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  .mono-label {
+    @apply font-mono text-[11px] uppercase tracking-wider2 text-ink-faint;
+  }
+
+  .tag {
+    @apply inline-flex items-center rounded-full border border-edge bg-white/[0.03]
+           px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider2 text-ink-dim;
+  }
+
+  .glass {
+    @apply rounded-2xl border border-edge bg-white/[0.025] backdrop-blur-md;
+  }
+
+  .btn {
+    @apply inline-flex items-center gap-2 rounded-full border px-5 py-2.5
+           font-mono text-xs uppercase tracking-wider2 transition-colors duration-300;
+  }
+
+  .btn-primary {
+    @apply border-accent/40 bg-accent/10 text-accent hover:bg-accent/20;
+  }
+
+  .btn-ghost {
+    @apply border-edge text-ink-dim hover:border-ink-faint hover:text-ink;
+  }
+
+  /* Skip link — visible only when focused. */
+  .skip-link {
+    @apply absolute left-4 top-4 z-[200] -translate-y-24 rounded-full border border-accent/40
+           bg-void px-5 py-2.5 font-mono text-xs uppercase tracking-wider2 text-accent
+           transition-transform focus:translate-y-0;
+  }
+}
+
+/*
+ * Layout modes.
+ *
+ * The same DOM serves both. In `off` the content is a normal, readable
+ * document. In `full`/`lite` the sections become overlay UI floating above the
+ * fixed canvas.
+ */
+[data-fx='off'] .world-canvas {
+  display: none;
+}
+
+/*
+ * With no world to fly through, the generous scroll distances that give the
+ * camera room to travel become dead space. Collapse them so the `off` layout
+ * reads as an ordinary — and much shorter — document. Content is untouched;
+ * only the spacing that existed to serve the camera is removed.
+ */
+[data-fx='off'] .beat {
+  min-height: 0;
+  padding-top: 3.5rem;
+  padding-bottom: 3.5rem;
+}
+
+[data-fx='off'] .stage-flow > * + * {
+  margin-top: 2rem;
+}
+
+[data-fx='off'] .stage-flow article {
+  max-width: none;
+  margin-left: 0;
+}
+
+/* The lite tier keeps the world but not the long flight. */
+[data-fx='lite'] .beat {
+  min-height: 0;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+[data-fx='lite'] .stage-flow > * + * {
+  margin-top: 4rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

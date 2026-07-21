@@ -3,17 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- WHY: Replace generic meta copy with a concrete production hook recruiters can verify -->
-  <meta name="description" content="Prajjwal Silwal — Automation Engineer & Data Analyst. Built nightly Buildium automation, a live tenant website, and owner dashboards for a 200+ unit property manager in Monroe, LA.">
-  <meta name="keywords" content="Automation Engineer, Data Analyst, Python, Playwright, Prefect, PostgreSQL, Power BI, Dashboard, Pipeline Engineering, Monroe Louisiana">
+  <meta name="description" content="Prajjwal Silwal — Automation & full-stack data engineer. I designed and shipped the Braud Data Platform: an end-to-end data pipeline, snapshot warehouse, FastAPI service, and React operations dashboard that a live 200+ unit property-management company runs on every day.">
+  <meta name="keywords" content="Data Engineer, Automation Engineer, Full-Stack, Python, Playwright, FastAPI, PostgreSQL, Neon, React, Data Pipeline, Warehouse, Dashboard, Monroe Louisiana">
   <meta name="author" content="Prajjwal Silwal">
 
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://prajjwalsilwal.github.io/">
-  <meta property="og:title" content="Prajjwal Silwal | Automation Engineer & Data Analyst">
-  <meta property="og:description" content="Prajjwal Silwal — Automation Engineer & Data Analyst. Built nightly Buildium automation, a live tenant website, and owner dashboards for a 200+ unit property manager in Monroe, LA.">
+  <meta property="og:title" content="Prajjwal Silwal | Automation & Data Platform Engineer">
+  <meta property="og:description" content="I build the full stack behind a live business — data pipelines, an analytics warehouse, a FastAPI service, and the dashboard a 200+ unit property company runs its day on.">
 
-  <title>Prajjwal Silwal | Automation Engineer & Data Analyst</title>
+  <title>Prajjwal Silwal | Automation & Data Platform Engineer</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,6 +20,25 @@
 
   <link rel="stylesheet" href="/assets/css/main.css">
   <link rel="stylesheet" href="/assets/css/animations.css">
+  <link rel="stylesheet" href="/assets/css/experience.css">
+
+  <!-- Gate the 3D experience: only boot the preloader + WebGL scene when
+       the device can render it and the user hasn't asked for reduced motion.
+       Runs before paint to avoid a flash of the pre-animation hero state. -->
+  <script>
+    (function () {
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var webgl = (function () {
+        try {
+          var c = document.createElement('canvas');
+          return !!(window.WebGLRenderingContext &&
+            (c.getContext('webgl') || c.getContext('experimental-webgl')));
+        } catch (e) { return false; }
+      })();
+      if (!webgl) document.documentElement.classList.add('no-webgl');
+      if (webgl && !reduce) document.documentElement.classList.add('exp-loading');
+    })();
+  </script>
 
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>PS</text></svg>">
 
@@ -29,18 +47,39 @@
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Prajjwal Silwal",
-    "jobTitle": "Automation Engineer & Data Analyst",
+    "jobTitle": "Automation & Data Platform Engineer",
     "url": "https://prajjwalsilwal.github.io/",
     "sameAs": [
       "https://linkedin.com/in/prajjwal-silwal",
       "https://github.com/prajjwalsilwal"
     ],
     "email": "silwalprajjwal@gmail.com",
-    "description": "Automation Engineer & Data Analyst — production Buildium automation, property ops dashboards, and braudproperties.com"
+    "description": "Automation & full-stack data engineer. Designed and shipped the Braud Data Platform — pipeline, snapshot warehouse, FastAPI service, and React operations dashboard — running a live 200+ unit property portfolio daily."
   }
   </script>
 </head>
 <body>
+
+  <!-- Branded preloader — real progress bar tied to the Three.js download. -->
+  <div class="preloader" id="preloader" role="progressbar" aria-label="Loading experience" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+    <div class="preloader__mark">PS<span class="preloader__mark-dot"></span></div>
+    <div class="preloader__bar">
+      <div class="preloader__bar-fill" id="preloader-fill"></div>
+    </div>
+    <div class="preloader__meta">
+      <span>Building data platform</span>
+      <span class="preloader__pct" id="preloader-pct">0%</span>
+    </div>
+  </div>
+
+  <!-- Fixed WebGL data-network background (behind everything) -->
+  <canvas id="bg-canvas" aria-hidden="true"></canvas>
+
+  <!-- Custom cursor (JS enables only on fine-pointer, non-reduced-motion) -->
+  <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
+
+  <div class="site">
 
   <header class="nav" id="nav">
     <div class="container nav__inner">
@@ -49,10 +88,9 @@
         <span class="nav__logo-dot"></span>
       </a>
 
-      <!-- WHY: Surface live work and projects earlier in navigation — strongest proof shouldn't require scrolling -->
       <nav class="nav__links" aria-label="Primary navigation">
-        <a href="#projects" class="nav__link">Projects</a>
-        <a href="#current" class="nav__link">Now</a>
+        <a href="#platform" class="nav__link">Platform</a>
+        <a href="#work" class="nav__link">Work</a>
         <a href="#about" class="nav__link">About</a>
         <a href="#experience" class="nav__link">Experience</a>
         <a href="#skills" class="nav__link">Tools</a>
@@ -72,8 +110,8 @@
 
     <div class="nav__drawer" aria-hidden="true">
       <nav class="nav__drawer-links">
-        <a href="#projects">Projects</a>
-        <a href="#current">Now</a>
+        <a href="#platform">Platform</a>
+        <a href="#work">Work</a>
         <a href="#about">About</a>
         <a href="#experience">Experience</a>
         <a href="#skills">Tools</a>
@@ -83,6 +121,17 @@
     </div>
   </header>
 
+  <!-- Pipeline progress rail (desktop) — synced to the flagship stages -->
+  <aside class="pipeline-rail" id="pipeline-rail" aria-hidden="true">
+    <a href="#stage-ingest" class="pipeline-rail__item" data-stage="ingest"><span class="pipeline-rail__label">Ingest</span><span class="pipeline-rail__dot"></span></a>
+    <a href="#stage-transform" class="pipeline-rail__item" data-stage="transform"><span class="pipeline-rail__label">Transform</span><span class="pipeline-rail__dot"></span></a>
+    <a href="#stage-warehouse" class="pipeline-rail__item" data-stage="warehouse"><span class="pipeline-rail__label">Warehouse</span><span class="pipeline-rail__dot"></span></a>
+    <a href="#stage-serve" class="pipeline-rail__item" data-stage="serve"><span class="pipeline-rail__label">Serve</span><span class="pipeline-rail__dot"></span></a>
+    <a href="#stage-product" class="pipeline-rail__item" data-stage="product"><span class="pipeline-rail__label">Product</span><span class="pipeline-rail__dot"></span></a>
+    <a href="#stage-orchestrate" class="pipeline-rail__item" data-stage="orchestrate"><span class="pipeline-rail__label">Orchestrate</span><span class="pipeline-rail__dot"></span></a>
+  </aside>
+
+  <!-- ============================ HERO ============================ -->
   <section class="hero" id="home">
     <div class="hero__noise"></div>
     <div class="container hero__inner">
@@ -90,31 +139,48 @@
       <div class="hero__content">
         <div class="hero__eyebrow">
           <span class="hero__status-dot"></span>
-          <!-- WHY: Status line should sound human, not like a LinkedIn open-to-work badge -->
-          <span class="mono-label">Open to work · Monroe, LA · remote OK</span>
+          <span class="mono-label">Live in production · Monroe, LA · remote OK</span>
         </div>
 
-        <!-- WHY: Lead with a specific problem niche instead of a generic role bracket -->
-        <h1 class="hero__name">I automate property ops<br>when there's <em>no API.</em></h1>
+        <h1 class="hero__name">I build the full stack<br>behind a <em>live business.</em></h1>
 
         <p class="hero__title">
-          Prajjwal Silwal · Automation Engineer &amp; Data Analyst
+          Prajjwal Silwal · Automation &amp; Data Platform Engineer
         </p>
 
-        <!-- WHY: Name the three live production systems above the fold — verifiable, not abstract -->
         <p class="hero__bio">
-          At Braud Property Management (Monroe, LA) I shipped three systems now running
-          in production: a nightly Buildium-to-PostgreSQL pipeline, the public site at
+          I designed and shipped an end-to-end data platform — ingestion, transformation,
+          an analytics warehouse, a read API, and the operations dashboard people run their
+          day on. A real 200+ unit property company,
           <a href="https://braudproperties.com" class="hero__bio-link" target="_blank" rel="noopener">braudproperties.com</a>,
-          and the dashboard ownership checks each morning.
+          depends on it every day. Built solo, top to bottom.
         </p>
 
         <div class="hero__ctas">
-          <a href="https://braudproperties.com" class="btn btn--primary" target="_blank" rel="noopener">See Live Site ↗</a>
-          <a href="#projects" class="btn btn--ghost">All Projects</a>
+          <a href="#platform" class="btn btn--primary">Explore the platform ↓</a>
+          <a href="https://braudproperties.com" class="btn btn--ghost" target="_blank" rel="noopener">See it live ↗</a>
         </div>
 
-        <div class="hero__social">
+        <div class="hero__stat-strip">
+          <div class="hero__stat">
+            <span class="hero__stat-num">15.6<span>K</span></span>
+            <span class="hero__stat-label">Python LOC · 77 files</span>
+          </div>
+          <div class="hero__stat">
+            <span class="hero__stat-num">7.3<span>K</span></span>
+            <span class="hero__stat-label">React LOC · 42 files</span>
+          </div>
+          <div class="hero__stat">
+            <span class="hero__stat-num">200<span>+</span></span>
+            <span class="hero__stat-label">Units live · daily + hourly</span>
+          </div>
+          <div class="hero__stat">
+            <span class="hero__stat-num">1</span>
+            <span class="hero__stat-label">Engineer · end to end</span>
+          </div>
+        </div>
+
+        <div class="hero__social" style="margin-top:2rem">
           <a href="mailto:silwalprajjwal@gmail.com" class="hero__social-link" aria-label="Email">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
               <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
@@ -134,31 +200,32 @@
         </div>
       </div>
 
-      <!-- WHY: Terminal should show real production config, not a generic resume JSON blob -->
+      <!-- Terminal shows the platform architecture manifest -->
       <div class="hero__terminal" aria-hidden="true">
         <div class="terminal__bar">
           <span class="terminal__dot terminal__dot--red"></span>
           <span class="terminal__dot terminal__dot--yellow"></span>
           <span class="terminal__dot terminal__dot--green"></span>
-          <span class="terminal__filename">braud_pipeline.yaml</span>
+          <span class="terminal__filename">braud_platform/architecture.yaml</span>
         </div>
         <div class="terminal__body">
-          <pre class="terminal__code"><code><span class="t-key">name</span>: braud_pipeline
-<span class="t-key">schedule</span>: <span class="t-str">"0 2 * * *"</span>  <span class="t-muted"># CST</span>
-<span class="t-key">constraint</span>: <span class="t-str">no Buildium API on Growth plan</span>
+          <pre class="terminal__code"><code><span class="t-key">platform</span>: braud_data_platform
+<span class="t-key">portfolio</span>: <span class="t-str">200+ units</span>  <span class="t-muted"># live</span>
+<span class="t-key">built_by</span>: <span class="t-str">1 engineer, end to end</span>
 
-<span class="t-key">extract</span>:
-  - <span class="t-str">playwright</span> → buildium.com login
-  - <span class="t-str">reports</span>: <span class="t-num">17</span> operational exports / night
+<span class="t-key">ingest</span>:     <span class="t-num">12</span> playwright extractors
+<span class="t-key">transform</span>:  <span class="t-num">18</span> python cleaners
+<span class="t-key">warehouse</span>:  <span class="t-str">postgres/neon · snapshot model</span>
+<span class="t-key">serve</span>:      <span class="t-str">fastapi · 15 routers · pooled</span>
+<span class="t-key">product</span>:    <span class="t-str">react · vite · tailwind</span>
 
-<span class="t-key">load</span>:
-  - <span class="t-str">postgresql</span> → occupancy, delinquency, leases
+<span class="t-key">orchestrate</span>:
+  - <span class="t-str">daily 06:00</span>   <span class="t-green">full extract ✓</span>
+  - <span class="t-str">eod  17:00</span>   <span class="t-green">fast refresh ✓</span>
+  - <span class="t-str">hourly</span>       <span class="t-green">near-realtime ✓</span>
+  - <span class="t-str">minute</span>       <span class="t-green">sms worker ✓</span>
 
-<span class="t-key">downstream</span>:
-  - <span class="t-str">ops_dashboard</span>   <span class="t-green">live ✓</span>
-  - <span class="t-str">braudproperties.com</span> <span class="t-green">live ✓</span>
-
-<span class="t-key">manual_steps</span>: <span class="t-num">0</span></code></pre>
+<span class="t-key">scale</span>: <span class="t-num">~22,900</span> LOC · <span class="t-num">119</span> files</code></pre>
         </div>
       </div>
 
@@ -168,142 +235,227 @@
       <span>scroll</span>
       <div class="hero__scroll-line"></div>
     </div>
-
-    <div class="hero__clip"></div>
   </section>
 
-  <!-- WHY: One contextual achievement beats three unanchored % counters from unrelated demo projects -->
-  <div class="hero-achievement">
-    <div class="container hero-achievement__inner">
-      <p class="hero-achievement__text">
-        <strong>17 operational Buildium reports</strong> used to be downloaded by hand every day.
-        I replaced that with a scheduled Playwright + Prefect pipeline — from
-        manual Buildium login and separate report downloads each morning
-        to <strong>zero manual steps</strong>, running nightly in production since
-        <strong>Jan 2026</strong>.
-      </p>
-    </div>
-  </div>
-
-  <!-- WHY: Give visitors a live snapshot of ongoing work before the full project grid -->
-  <section class="section" id="current">
+  <!-- ===================== FLAGSHIP: BRAUD DATA PLATFORM ===================== -->
+  <section class="section flagship" id="platform">
     <div class="container">
+
       <div class="section__header reveal">
-        <span class="mono-label">01 / now</span>
-        <h2 class="section__title">What I'm Working On</h2>
+        <span class="flagship__badge"><span class="badge-dot"></span> Flagship · in production</span>
+        <h2 class="flagship__title">The Braud <em>Data Platform</em></h2>
+        <p class="flagship__lede">
+          An end-to-end system that ingests a property portfolio's operational data,
+          models it into a time-travelable warehouse, serves it over an API, and turns it
+          into the dashboard ownership runs their day on — ingestion to product, built solo.
+        </p>
+        <p class="flagship__oneliner">
+          Not a demo or a course project — a live system a real company operates on daily,
+          designed and built end to end by one engineer.
+        </p>
       </div>
-      <div class="current__grid">
-        <div class="current__card reveal">
-          <span class="current__label mono-label">Current role</span>
-          <h3 class="current__title">Braud Property Management</h3>
-          <p class="current__desc">Maintaining and extending the nightly Braud Pipeline and owner-facing operations dashboard — 17+ automated Buildium reports into PostgreSQL, four dashboard modules in daily use by ownership.</p>
+
+      <!-- Scale -->
+      <div class="scale-grid">
+        <div class="scale-card glass reveal">
+          <div class="scale-card__num">15,600<span> </span></div>
+          <div class="scale-card__label">Lines of Python · 77 files</div>
+          <div class="scale-card__bar"><i style="width:100%"></i></div>
         </div>
-        <div class="current__card reveal" data-delay="80">
-          <span class="current__label mono-label">Recent client work</span>
-          <h3 class="current__title">Lead Intelligence Pipeline</h3>
-          <p class="current__desc">Independent contractor delivery — scraped public directories, deduplicated 524 raw records to 498 clean rows across 38 categories, exported as CSV and SQL for Monroe-area client outreach. Completed 2022–2025.</p>
+        <div class="scale-card glass reveal" data-delay="60">
+          <div class="scale-card__num">7,300<span> </span></div>
+          <div class="scale-card__label">Lines of React · 42 files</div>
+          <div class="scale-card__bar"><i style="width:47%"></i></div>
+        </div>
+        <div class="scale-card glass reveal" data-delay="120">
+          <div class="scale-card__num">200<span>+</span></div>
+          <div class="scale-card__label">Units in the live portfolio</div>
+          <div class="scale-card__bar"><i style="width:88%"></i></div>
+        </div>
+        <div class="scale-card glass reveal" data-delay="180">
+          <div class="scale-card__num">24<span>/7</span></div>
+          <div class="scale-card__label">Unattended · daily + hourly jobs</div>
+          <div class="scale-card__bar"><i style="width:100%"></i></div>
         </div>
       </div>
+
+      <!-- Pipeline architecture -->
+      <div class="pipeline">
+        <div class="pipeline__intro reveal">
+          <h3>The architecture is the navigation</h3>
+          <p>Data flows through six stages. Scroll to fly the network from raw extraction to the product surface.</p>
+        </div>
+
+        <article class="stage glass reveal" id="stage-ingest" data-stage="ingest">
+          <div class="stage__num">01</div>
+          <div class="stage__body">
+            <span class="stage__kicker">Ingest</span>
+            <h4 class="stage__title">12 headless extractors, on a schedule</h4>
+            <p class="stage__desc">
+              Playwright drives real browser sessions to pull operational reports the vendor
+              exposes no API for — event-driven waits, never blind sleeps, so extraction stays
+              fast and resilient when pages change.
+            </p>
+            <div class="stage__tags">
+              <span class="tag">Python</span><span class="tag">Playwright</span><span class="tag">Headless browser</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="stage glass reveal" id="stage-transform" data-stage="transform" data-delay="40">
+          <div class="stage__num">02</div>
+          <div class="stage__body">
+            <span class="stage__kicker">Transform</span>
+            <h4 class="stage__title">18 cleaners turn messy exports into typed facts</h4>
+            <p class="stage__desc">
+              Each raw export is normalized, typed, and deduplicated into clean fact tables —
+              the boring, essential layer that makes everything downstream trustworthy.
+            </p>
+            <div class="stage__tags">
+              <span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">Data modeling</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="stage glass reveal" id="stage-warehouse" data-stage="warehouse" data-delay="80">
+          <div class="stage__num">03</div>
+          <div class="stage__body">
+            <span class="stage__kicker">Warehouse</span>
+            <h4 class="stage__title">An append-only snapshot model that time-travels</h4>
+            <p class="stage__desc">
+              Every fact is keyed by <code style="font-family:var(--font-mono);color:var(--accent)">snapshot_date</code>
+              in PostgreSQL (Neon). Nothing is overwritten — so the business can replay any past
+              day and see exactly what was true then. Trends and history come for free.
+            </p>
+            <div class="stage__tags">
+              <span class="tag">PostgreSQL</span><span class="tag">Neon</span><span class="tag">Snapshot warehouse</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="stage glass reveal" id="stage-serve" data-stage="serve" data-delay="120">
+          <div class="stage__num">04</div>
+          <div class="stage__body">
+            <span class="stage__kicker">Serve</span>
+            <h4 class="stage__title">A FastAPI read layer, pooled and cached</h4>
+            <p class="stage__desc">
+              15 routers behind a process-wide connection pool and TTL caching, so the dashboard
+              reads are fast and the warehouse isn't hammered. Clean separation between data and product.
+            </p>
+            <div class="stage__tags">
+              <span class="tag">FastAPI</span><span class="tag">Connection pool</span><span class="tag">TTL cache</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="stage glass reveal" id="stage-product" data-stage="product" data-delay="160">
+          <div class="stage__num">05</div>
+          <div class="stage__body">
+            <span class="stage__kicker">Product</span>
+            <h4 class="stage__title">The operations dashboard people actually run</h4>
+            <p class="stage__desc">
+              A React / Vite / Tailwind app that turns the warehouse into a working surface:
+              the screen ownership opens first each morning to decide what to do next.
+            </p>
+            <div class="stage__tags">
+              <span class="tag">React</span><span class="tag">Vite</span><span class="tag">Tailwind CSS</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="stage glass reveal" id="stage-orchestrate" data-stage="orchestrate" data-delay="200">
+          <div class="stage__num">06</div>
+          <div class="stage__body">
+            <span class="stage__kicker">Orchestrate</span>
+            <h4 class="stage__title">Four scheduled jobs keep it unattended</h4>
+            <p class="stage__desc">
+              A daily full extract at 06:00, an end-of-day fast refresh at 17:00, an hourly
+              near-realtime sync, and a minute-level SMS worker — running on their own, no one
+              babysitting the pipeline.
+            </p>
+            <div class="stage__tags">
+              <span class="tag">Task Scheduler</span><span class="tag">Event-driven</span><span class="tag">Zero manual steps</span>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Product surface -->
+      <div class="pipeline__intro reveal" style="margin-top:3.5rem">
+        <h3>What the product actually does</h3>
+        <p>Every surface below is live in the dashboard — real domain logic, not mockups.</p>
+      </div>
+
+      <div class="surface-grid">
+        <div class="surface-card glass reveal">
+          <div class="surface-card__icon">// actions</div>
+          <h4>Prioritized actions feed</h4>
+          <p>Ranks every operational signal into a single "do this now" workstream, so a manager starts with the highest-leverage task instead of a wall of reports.</p>
+        </div>
+        <div class="surface-card glass reveal" data-delay="40">
+          <div class="surface-card__icon">// risk</div>
+          <h4>Tenant risk scoring</h4>
+          <p>Deterministic risk tiers computed from delinquency, late-payment history, lease expirations, and violations — explainable, not a black box.</p>
+        </div>
+        <div class="surface-card glass reveal" data-delay="80">
+          <div class="surface-card__icon">// rules</div>
+          <h4>Delinquency &amp; eviction rules engine</h4>
+          <p>Domain logic modeled precisely: grace through day 5, delinquent from day 6, eviction-eligible from day 11 at a balance ≥ rent. Encoded, not guessed.</p>
+        </div>
+        <div class="surface-card glass reveal" data-delay="120">
+          <div class="surface-card__icon">// leasing</div>
+          <h4>Leasing pipeline</h4>
+          <p>Vacancy, applicant funnel, and lease-expiration risk in one view — so nothing sits empty or lapses unnoticed.</p>
+        </div>
+        <div class="surface-card glass reveal" data-delay="160">
+          <div class="surface-card__icon">// maintenance</div>
+          <h4>Maintenance tracker</h4>
+          <p>Open work orders by age and criticality, surfaced before they become emergencies or tenant complaints.</p>
+        </div>
+        <div class="surface-card glass reveal" data-delay="200">
+          <div class="surface-card__icon">// finance</div>
+          <h4>Financials</h4>
+          <p>Cash-basis P&amp;L, collection rates, and delinquency trends read straight from the snapshot warehouse.</p>
+        </div>
+        <div class="surface-card glass reveal" data-delay="240">
+          <div class="surface-card__icon">// ai</div>
+          <h4>Privacy-aware AI layer</h4>
+          <p>OpenRouter summarizes applicant screening and suggests tenant actions — operating only on anonymized metrics, private by design.</p>
+        </div>
+        <div class="surface-card glass reveal" data-delay="280">
+          <div class="surface-card__icon">// sms</div>
+          <h4>Outbound SMS worker</h4>
+          <p>A message queue drained by a dedicated Playwright worker for real two-way tenant communication, wired into the same data.</p>
+        </div>
+      </div>
+
+      <div class="flagship__actions reveal">
+        <a href="https://braudproperties.com" class="btn btn--primary" target="_blank" rel="noopener">Visit the live business ↗</a>
+        <a href="/projects/braud-pipeline/" class="btn btn--ghost">Pipeline case study →</a>
+        <a href="/projects/braud-dashboard/" class="btn btn--ghost">Dashboard case study →</a>
+        <a href="/braud_demo_master/demo/" class="btn btn--ghost" target="_blank" rel="noopener">Open dashboard demo ↗</a>
+      </div>
+
     </div>
   </section>
 
-  <section class="section section--alt" id="projects">
+  <!-- ============================ OTHER WORK ============================ -->
+  <section class="section section--alt" id="work">
     <div class="container">
       <div class="section__header reveal">
-        <span class="mono-label">02 / projects</span>
-        <h2 class="section__title">Selected Work</h2>
+        <span class="mono-label">02 / other work</span>
+        <h2 class="section__title">Other Nodes in the Network</h2>
         <p class="section__sub">
-          Production systems first — older contract work below. Demos use fictional data and say so.
+          Production systems and delivered client work around the flagship. Demos use fictional data and say so.
         </p>
       </div>
 
       <div class="projects__grid">
 
-        <!-- Braud Properties Website -->
+        <!-- Braud Properties tenant site -->
         <article class="project-card reveal">
-          <a href="./projects/braud-properties.html" class="project-card__image-wrap" aria-label="Braud Properties case study">
-            <svg class="project-card__illustration" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Braud Properties website — braudproperties.com">
-              <defs>
-                <linearGradient id="braud-hero" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#eef6f1"/>
-                  <stop offset="100%" stop-color="#f8faf9"/>
-                </linearGradient>
-              </defs>
-              <rect width="640" height="360" fill="#e8ecea"/>
-              <rect x="20" y="12" width="600" height="336" rx="10" fill="#fff" stroke="#d1d5db" stroke-width="1"/>
-              <rect x="20" y="12" width="600" height="28" rx="10" fill="#f3f4f6"/>
-              <rect x="20" y="28" width="600" height="12" fill="#f3f4f6"/>
-              <circle cx="38" cy="26" r="4" fill="#ef4444"/><circle cx="52" cy="26" r="4" fill="#f59e0b"/><circle cx="66" cy="26" r="4" fill="#22c55e"/>
-              <rect x="220" y="18" width="200" height="16" rx="8" fill="#fff" stroke="#e5e7eb"/>
-              <text x="320" y="29" fill="#6b7280" font-size="8" text-anchor="middle" font-family="sans-serif">braudproperties.com</text>
-              <rect x="20" y="40" width="600" height="34" fill="#fff"/>
-              <line x1="20" y1="74" x2="620" y2="74" stroke="#e5e7eb" stroke-width="1"/>
-              <text x="36" y="60" fill="#14532d" font-size="11" font-weight="700" font-family="Georgia, serif">Braud &amp; Son</text>
-              <text x="108" y="60" fill="#9ca3af" font-size="7" font-family="sans-serif">Property Management</text>
-              <text x="280" y="60" fill="#4b5563" font-size="7" font-family="sans-serif">Listings</text>
-              <text x="330" y="60" fill="#4b5563" font-size="7" font-family="sans-serif">Properties</text>
-              <text x="390" y="60" fill="#4b5563" font-size="7" font-family="sans-serif">Contact</text>
-              <rect x="548" y="48" width="56" height="18" rx="9" fill="#166534"/>
-              <text x="576" y="60" fill="#fff" font-size="7" text-anchor="middle" font-family="sans-serif">Apply Now</text>
-              <rect x="20" y="74" width="600" height="88" fill="url(#braud-hero)"/>
-              <text x="320" y="96" fill="#166534" font-size="8" text-anchor="middle" font-family="sans-serif" letter-spacing="1">MONROE, LOUISIANA</text>
-              <text x="320" y="118" fill="#111827" font-size="16" font-weight="700" text-anchor="middle" font-family="Georgia, serif">Find Your Next <tspan fill="#166534" font-style="italic">Home</tspan></text>
-              <text x="320" y="134" fill="#6b7280" font-size="7" text-anchor="middle" font-family="sans-serif">Browse apartments &amp; apply online when a unit is listed</text>
-              <rect x="120" y="142" width="400" height="14" rx="4" fill="#fff" stroke="#e5e7eb"/>
-              <text x="148" y="152" fill="#166534" font-size="8" font-weight="700" text-anchor="middle" font-family="sans-serif">200+</text>
-              <text x="228" y="152" fill="#166534" font-size="8" font-weight="700" text-anchor="middle" font-family="sans-serif">10</text>
-              <text x="320" y="152" fill="#166534" font-size="8" font-weight="700" text-anchor="middle" font-family="sans-serif">Monroe</text>
-              <text x="412" y="152" fill="#166534" font-size="8" font-weight="700" text-anchor="middle" font-family="sans-serif">Est. 1995</text>
-              <rect x="20" y="168" width="600" height="180" fill="#f8faf9"/>
-              <text x="36" y="188" fill="#111827" font-size="10" font-weight="700" font-family="Georgia, serif">Active <tspan fill="#166534" font-style="italic">Listings</tspan></text>
-              <text x="560" y="188" fill="#166534" font-size="7" text-anchor="end" font-family="sans-serif">4 available</text>
-              <rect x="36" y="196" width="72" height="14" rx="7" fill="#166534"/>
-              <text x="72" y="206" fill="#fff" font-size="6" text-anchor="middle" font-family="sans-serif">All Groups</text>
-              <rect x="114" y="196" width="68" height="14" rx="7" fill="#fff" stroke="#d1d5db"/>
-              <text x="148" y="206" fill="#4b5563" font-size="6" text-anchor="middle" font-family="sans-serif">Harvester 1</text>
-              <rect x="188" y="196" width="58" height="14" rx="7" fill="#fff" stroke="#d1d5db"/>
-              <text x="217" y="206" fill="#4b5563" font-size="6" text-anchor="middle" font-family="sans-serif">Grammont</text>
-              <rect x="252" y="196" width="52" height="14" rx="7" fill="#fff" stroke="#d1d5db"/>
-              <text x="278" y="206" fill="#4b5563" font-size="6" text-anchor="middle" font-family="sans-serif">Desiard St</text>
-              <rect x="36" y="218" width="168" height="118" rx="6" fill="#fff" stroke="#e5e7eb"/>
-              <rect x="36" y="218" width="168" height="52" rx="6" fill="#dce8e0"/>
-              <rect x="36" y="258" width="168" height="12" fill="#fff"/>
-              <rect x="44" y="224" width="36" height="12" rx="6" fill="#dcfce7"/>
-              <text x="62" y="233" fill="#166534" font-size="6" text-anchor="middle" font-family="sans-serif">Listed</text>
-              <text x="196" y="233" fill="#166534" font-size="9" font-weight="700" text-anchor="end" font-family="sans-serif">$825</text>
-              <text x="196" y="242" fill="#9ca3af" font-size="5" text-anchor="end" font-family="sans-serif">/ month</text>
-              <text x="44" y="278" fill="#111827" font-size="7" font-weight="600" font-family="sans-serif">Unit 6B</text>
-              <text x="44" y="290" fill="#6b7280" font-size="6" font-family="sans-serif">3401 Harvester Drive</text>
-              <text x="44" y="302" fill="#9ca3af" font-size="5" font-family="sans-serif">● 2 Beds  ● 1 Bath  ● 720 sqft</text>
-              <rect x="44" y="312" width="36" height="12" rx="3" fill="#f0fdf4" stroke="#bbf7d0"/>
-              <text x="62" y="321" fill="#166534" font-size="5" text-anchor="middle" font-family="sans-serif">Harvester 1</text>
-              <rect x="148" y="312" width="48" height="14" rx="4" fill="#166534"/>
-              <text x="172" y="322" fill="#fff" font-size="6" text-anchor="middle" font-family="sans-serif">Apply</text>
-              <rect x="216" y="218" width="168" height="118" rx="6" fill="#fff" stroke="#e5e7eb"/>
-              <rect x="216" y="218" width="168" height="52" rx="6" fill="#dce8e0"/>
-              <rect x="216" y="258" width="168" height="12" fill="#fff"/>
-              <rect x="224" y="224" width="36" height="12" rx="6" fill="#dcfce7"/>
-              <text x="242" y="233" fill="#166534" font-size="6" text-anchor="middle" font-family="sans-serif">Listed</text>
-              <text x="376" y="233" fill="#166534" font-size="9" font-weight="700" text-anchor="end" font-family="sans-serif">$650</text>
-              <text x="376" y="242" fill="#9ca3af" font-size="5" text-anchor="end" font-family="sans-serif">/ month</text>
-              <text x="224" y="278" fill="#111827" font-size="7" font-weight="600" font-family="sans-serif">Unit 1602B</text>
-              <text x="224" y="290" fill="#6b7280" font-size="6" font-family="sans-serif">1400 - 1600 Grammont</text>
-              <text x="224" y="302" fill="#9ca3af" font-size="5" font-family="sans-serif">● 2 Beds  ● 1 Bath  ● 720 sqft</text>
-              <rect x="224" y="312" width="52" height="12" rx="3" fill="#f0fdf4" stroke="#bbf7d0"/>
-              <text x="250" y="321" fill="#166534" font-size="5" text-anchor="middle" font-family="sans-serif">Grammont</text>
-              <rect x="328" y="312" width="48" height="14" rx="4" fill="#166534"/>
-              <text x="352" y="322" fill="#fff" font-size="6" text-anchor="middle" font-family="sans-serif">Apply</text>
-              <rect x="396" y="218" width="168" height="118" rx="6" fill="#fff" stroke="#e5e7eb"/>
-              <rect x="396" y="218" width="168" height="52" rx="6" fill="#dce8e0"/>
-              <rect x="404" y="224" width="36" height="12" rx="6" fill="#dcfce7"/>
-              <text x="422" y="233" fill="#166534" font-size="6" text-anchor="middle" font-family="sans-serif">Listed</text>
-              <text x="556" y="233" fill="#166534" font-size="9" font-weight="700" text-anchor="end" font-family="sans-serif">$500</text>
-              <text x="404" y="278" fill="#111827" font-size="7" font-weight="600" font-family="sans-serif">Unit 100C</text>
-              <text x="404" y="290" fill="#6b7280" font-size="6" font-family="sans-serif">100 South 23rd St</text>
-              <text x="404" y="302" fill="#9ca3af" font-size="5" font-family="sans-serif">● 2 Beds  ● 1 Bath</text>
-              <rect x="404" y="312" width="44" height="12" rx="3" fill="#f0fdf4" stroke="#bbf7d0"/>
-              <text x="426" y="321" fill="#166534" font-size="5" text-anchor="middle" font-family="sans-serif">Desiard St</text>
-            </svg>
+          <a href="/projects/braud-properties.html" class="project-card__image-wrap" aria-label="Braud Properties tenant site case study">
+            <div class="project-card__image-fallback project-card__image-fallback--green"></div>
             <span class="project-card__badge project-card__badge--live">
               <span class="badge-dot"></span> Live — In Production
             </span>
@@ -311,270 +463,131 @@
           </a>
           <div class="project-card__body">
             <div class="project-card__tags">
-              <span class="tag">Next.js</span>
-              <span class="tag">React</span>
-              <span class="tag">Sanity CMS</span>
-              <span class="tag">Tailwind CSS</span>
-              <span class="tag">Buildium</span>
+              <span class="tag">Next.js</span><span class="tag">React</span><span class="tag">Sanity CMS</span><span class="tag">Tailwind CSS</span>
             </div>
-            <h3 class="project-card__title">Braud Properties — Public Rental Platform</h3>
-            <p class="project-card__sub">Tenant-Facing Property Website</p>
+            <h3 class="project-card__title">Braud Properties — Tenant Site</h3>
+            <p class="project-card__sub">Public rental platform · braudproperties.com</p>
             <p class="project-card__desc">
-              Full-stack production website for a Monroe, LA property management company.
-              Displays live rental listings across 200+ units and 10 properties, with Sanity CMS
-              for content management, real-time listing filters, and direct Buildium integration
-              for online tenant applications.
+              The public face of the same portfolio the platform powers: live listings across
+              200+ units and 10 properties, Sanity CMS, real-time filters, and direct online
+              applications.
             </p>
             <span class="project-card__metric">200+ Units Live</span>
             <div class="project-card__actions">
               <a href="https://braudproperties.com" class="btn btn--primary btn--sm" target="_blank" rel="noopener">Visit Site →</a>
-              <a href="./projects/braud-properties.html" class="btn btn--ghost btn--sm">View Case Study →</a>
+              <a href="/projects/braud-properties.html" class="btn btn--ghost btn--sm">Case Study →</a>
             </div>
           </div>
         </article>
 
-        <!-- The Braud Pipeline (automation only) -->
+        <!-- Lead Intelligence -->
         <article class="project-card reveal" data-delay="60">
-          <a href="/projects/braud-pipeline/" class="project-card__image-wrap" aria-label="The Braud Pipeline case study">
-            <svg class="project-card__illustration" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Buildium to PostgreSQL automation pipeline">
-              <rect width="640" height="360" fill="#0a0f14"/>
-              <text x="320" y="28" fill="#64748b" font-size="10" text-anchor="middle" font-family="monospace">prefect flow · braud_pipeline · nightly 02:00 CST</text>
-              <rect x="24" y="48" width="130" height="100" rx="8" fill="#111820" stroke="#3b82f6" stroke-width="1.5"/>
-              <text x="89" y="72" fill="#93c5fd" font-size="10" text-anchor="middle" font-family="monospace">buildium.com</text>
-              <rect x="36" y="82" width="106" height="12" rx="2" fill="#1e293b"/>
-              <rect x="36" y="100" width="106" height="12" rx="2" fill="#1e293b"/>
-              <rect x="36" y="118" width="106" height="12" rx="2" fill="#1e293b"/>
-              <text x="89" y="142" fill="#6b7280" font-size="9" text-anchor="middle" font-family="sans-serif">17–19 reports / night</text>
-              <path class="svg-dash-flow" d="M158 98 H198" stroke="#22c55e" stroke-width="2" fill="none"/>
-              <rect x="200" y="58" width="100" height="80" rx="8" fill="#0f1a12" stroke="#22c55e" stroke-width="1.5"/>
-              <text x="250" y="82" fill="#4ade80" font-size="9" text-anchor="middle" font-family="monospace">Playwright</text>
-              <text x="250" y="98" fill="#9ca3af" font-size="8" text-anchor="middle" font-family="sans-serif">headless login · download</text>
-              <path class="svg-dash-flow" d="M302 98 H342" stroke="#22c55e" stroke-width="2" fill="none"/>
-              <rect x="344" y="48" width="110" height="100" rx="8" fill="#111820" stroke="#6366f1" stroke-width="1.5"/>
-              <text x="399" y="72" fill="#a5b4fc" font-size="9" text-anchor="middle" font-family="monospace">Prefect</text>
-              <text x="399" y="92" fill="#9ca3af" font-size="8" text-anchor="middle" font-family="sans-serif">schedule · retry · transform</text>
-              <rect x="356" y="114" width="86" height="22" rx="4" fill="#1e1b4b"/>
-              <text x="399" y="129" fill="#818cf8" font-size="8" text-anchor="middle" font-family="monospace">ETL complete ✓</text>
-              <path class="svg-dash-flow" d="M456 98 H496" stroke="#22c55e" stroke-width="2" fill="none"/>
-              <ellipse cx="540" cy="88" rx="36" ry="14" fill="#1a1a2e" stroke="#3b82f6" stroke-width="1.5"/>
-              <rect x="504" y="88" width="72" height="52" fill="#1a1a2e" stroke="#3b82f6" stroke-width="1.5"/>
-              <ellipse cx="540" cy="140" rx="36" ry="14" fill="#1a1a2e" stroke="#3b82f6" stroke-width="1.5"/>
-              <text x="540" y="108" fill="#3b82f6" font-size="9" text-anchor="middle" font-family="monospace">PostgreSQL</text>
-              <rect x="24" y="175" width="592" height="165" rx="8" fill="#111820" stroke="#334155" stroke-width="1"/>
-              <text x="44" y="198" fill="#64748b" font-size="9" font-family="monospace">occupancy · delinquency · maintenance · leases</text>
-              <rect x="44" y="210" width="552" height="22" rx="3" fill="#0f172a"/>
-              <text x="56" y="225" fill="#94a3b8" font-size="9" font-family="monospace">property_id · unit · tenant · balance · loaded_at</text>
-              <rect x="44" y="240" width="552" height="18" rx="2" fill="#1e293b"/>
-              <rect x="44" y="264" width="552" height="18" rx="2" fill="#172033"/>
-              <rect x="44" y="288" width="552" height="18" rx="2" fill="#1e293b"/>
-              <text x="44" y="330" fill="#22c55e" font-size="10" font-family="sans-serif">0 manual steps · no Buildium API</text>
-            </svg>
-            <span class="project-card__badge project-card__badge--live">
-              <span class="badge-dot"></span> Live — In Production
-            </span>
-          </a>
-          <div class="project-card__body">
-            <div class="project-card__tags">
-              <span class="tag">Python</span>
-              <span class="tag">Playwright</span>
-              <span class="tag">Prefect</span>
-              <span class="tag">PostgreSQL</span>
-            </div>
-            <h3 class="project-card__title">The Braud Pipeline</h3>
-            <p class="project-card__sub">Buildium → PostgreSQL Automation</p>
-            <p class="project-card__desc">
-              Nightly Playwright + Prefect job: logs into Buildium, pulls 17–19 operational
-              reports, normalizes them, loads PostgreSQL — built because the Growth plan
-              has no API.
-            </p>
-            <span class="project-card__metric">17+ Reports · 0 Manual Steps</span>
-            <div class="project-card__actions">
-              <a href="/projects/braud-pipeline/" class="btn btn--primary btn--sm">View Case Study →</a>
-              <a href="/projects/braud-dashboard/" class="btn btn--ghost btn--sm">Dashboard →</a>
-            </div>
-          </div>
-        </article>
-
-        <!-- Braud Operations Dashboard -->
-        <article class="project-card reveal" data-delay="90">
-          <a href="/projects/braud-dashboard/" class="project-card__image-wrap" aria-label="Braud Operations Dashboard case study">
-            <svg class="project-card__illustration" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Braud property operations dashboard">
-              <rect width="640" height="360" fill="#0d0f12"/>
-              <rect x="0" y="0" width="52" height="360" fill="#0f141b" stroke="#262f3c"/>
-              <text x="26" y="40" fill="#93c5fd" font-size="14" text-anchor="middle">⌂</text>
-              <text x="26" y="100" fill="#6b7280" font-size="14" text-anchor="middle">✉</text>
-              <circle cx="38" cy="88" r="7" fill="#f59e0b"/><text x="38" y="91" fill="#111" font-size="7" text-anchor="middle" font-weight="700">4</text>
-              <text x="26" y="140" fill="#6b7280" font-size="14" text-anchor="middle">◔</text>
-              <text x="26" y="180" fill="#6b7280" font-size="14" text-anchor="middle">▣</text>
-              <text x="68" y="28" fill="#e7ebf2" font-size="13" font-weight="600" font-family="sans-serif">Morning Briefing</text>
-              <text x="68" y="44" fill="#6b7280" font-size="9" font-family="sans-serif">Braud Portfolio · occupancy · delinquency · maint.</text>
-              <rect x="68" y="54" width="118" height="58" rx="6" fill="#151a21" stroke="#262f3c"/>
-              <text x="78" y="72" fill="#9aa7b8" font-size="8" font-family="sans-serif">Occupancy</text>
-              <text x="78" y="94" fill="#22c55e" font-size="18" font-weight="700" font-family="sans-serif">94.2%</text>
-              <rect x="196" y="54" width="118" height="58" rx="6" fill="#151a21" stroke="#262f3c"/>
-              <text x="206" y="72" fill="#9aa7b8" font-size="8" font-family="sans-serif">Collection rate</text>
-              <text x="206" y="94" fill="#e7ebf2" font-size="18" font-weight="700" font-family="sans-serif">97.1%</text>
-              <rect x="324" y="54" width="118" height="58" rx="6" fill="#151a21" stroke="#262f3c"/>
-              <text x="334" y="72" fill="#9aa7b8" font-size="8" font-family="sans-serif">Delinquent</text>
-              <text x="334" y="94" fill="#f59e0b" font-size="16" font-weight="700" font-family="sans-serif">$12,480</text>
-              <rect x="452" y="54" width="118" height="58" rx="6" fill="#151a21" stroke="#262f3c"/>
-              <text x="462" y="72" fill="#9aa7b8" font-size="8" font-family="sans-serif">Vacant units</text>
-              <text x="462" y="94" fill="#3b82f6" font-size="18" font-weight="700" font-family="sans-serif">7</text>
-              <rect x="68" y="124" width="502" height="110" rx="6" fill="#151a21" stroke="#262f3c"/>
-              <text x="82" y="142" fill="#e7ebf2" font-size="10" font-weight="600" font-family="sans-serif">Delinquent tenants</text>
-              <text x="82" y="176" fill="#c9d1d9" font-size="9" font-family="sans-serif">Alex Morgan · Maple Court 12B · $825 · 12d</text>
-              <text x="82" y="192" fill="#c9d1d9" font-size="9" font-family="sans-serif">Jordan Lee · Riverside 4A · $700 · 8d</text>
-              <text x="82" y="208" fill="#c9d1d9" font-size="9" font-family="sans-serif">Sam Rivera · Harbor View 201 · $640 · 31d</text>
-              <rect x="68" y="246" width="240" height="88" rx="6" fill="#151a21" stroke="#262f3c"/>
-              <text x="82" y="264" fill="#e7ebf2" font-size="10" font-weight="600" font-family="sans-serif">Overdue maintenance</text>
-              <text x="82" y="282" fill="#ef4444" font-size="8" font-family="sans-serif">Harbor View 105 · sink leak · 72h critical</text>
-              <rect x="320" y="246" width="250" height="88" rx="6" fill="#151a21" stroke="#262f3c"/>
-              <text x="334" y="264" fill="#e7ebf2" font-size="10" font-weight="600" font-family="sans-serif">Decision Inbox · 4 pending</text>
-              <text x="334" y="282" fill="#9aa7b8" font-size="8" font-family="sans-serif">Payment risk · Jordan Lee · 4A</text>
-              <text x="334" y="298" fill="#9aa7b8" font-size="8" font-family="sans-serif">Lease renewal · Taylor Brooks · 3A</text>
-            </svg>
-            <span class="project-card__badge project-card__badge--live">
-              <span class="badge-dot"></span> Live — In Production
-            </span>
-            <span class="project-card__featured">Featured</span>
-          </a>
-          <div class="project-card__body">
-            <div class="project-card__tags">
-              <span class="tag">PostgreSQL</span>
-              <span class="tag">Dashboard UI</span>
-              <span class="tag">Power BI</span>
-              <span class="tag">Python</span>
-            </div>
-            <h3 class="project-card__title">Braud Operations Dashboard</h3>
-            <p class="project-card__sub">Owner-Facing Property Analytics</p>
-            <!-- WHY: Describe what ownership sees each morning — not "analytics layer fed by" corporate speak -->
-            <p class="project-card__desc">
-              The screen ownership opens first each day: who's late on rent, which units
-              are vacant, what maintenance is overdue. Four modules — Morning Briefing,
-              KPIs, Decision Inbox, Occupancy — reading live data from the Braud Pipeline.
-            </p>
-            <span class="project-card__metric">4 Modules · Production UI</span>
-            <div class="project-card__actions">
-              <a href="/projects/braud-dashboard/" class="btn btn--primary btn--sm">View Case Study →</a>
-              <a href="/braud_demo_master/demo/" class="btn btn--ghost btn--sm" target="_blank" rel="noopener">Open Demo ↗</a>
-            </div>
-          </div>
-        </article>
-
-        <!-- Lead Intelligence Pipeline -->
-        <article class="project-card reveal" data-delay="120">
           <a href="/projects/lead-intelligence/" class="project-card__image-wrap" aria-label="Lead Intelligence Pipeline case study">
-            <svg class="project-card__illustration" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Lead intelligence pipeline output">
-              <rect width="640" height="360" fill="#0a120e"/>
-              <text x="320" y="24" fill="#4ade80" font-size="10" text-anchor="middle" font-family="monospace">lead_pipeline.py · 524 scraped → 498 clean · Monroe, LA</text>
-              <rect x="24" y="40" width="160" height="130" rx="8" fill="#111916" stroke="#f59e0b" stroke-width="1.5"/>
-              <text x="104" y="62" fill="#f59e0b" font-size="9" text-anchor="middle" font-family="monospace">yellowpages.com</text>
-              <text x="104" y="78" fill="#6b7280" font-size="8" text-anchor="middle" font-family="sans-serif">google_maps · chamber_dir</text>
-              <rect x="36" y="88" width="136" height="10" rx="2" fill="#1a1508"/>
-              <rect x="36" y="104" width="136" height="10" rx="2" fill="#1a1508"/>
-              <rect x="36" y="120" width="136" height="10" rx="2" fill="#1a1508"/>
-              <rect x="36" y="148" width="8" height="12" fill="#f59e0b" class="svg-cursor-blink"/>
-              <text x="52" y="158" fill="#9ca3af" font-size="8" font-family="monospace">scraping...</text>
-              <path class="svg-dash-flow" d="M188 105 H228" stroke="#f59e0b" stroke-width="2" fill="none"/>
-              <rect x="230" y="55" width="100" height="100" rx="8" fill="#1a1508" stroke="#f59e0b" stroke-width="1.5"/>
-              <text x="280" y="78" fill="#f59e0b" font-size="9" text-anchor="middle" font-family="sans-serif">dedupe</text>
-              <text x="280" y="94" fill="#9ca3af" font-size="8" text-anchor="middle" font-family="sans-serif">normalize</text>
-              <text x="280" y="110" fill="#9ca3af" font-size="8" text-anchor="middle" font-family="sans-serif">26 removed</text>
-              <text x="280" y="138" fill="#4ade80" font-size="8" text-anchor="middle" font-family="monospace">498 rows</text>
-              <path class="svg-dash-flow" d="M332 105 H372" stroke="#f59e0b" stroke-width="2" fill="none"/>
-              <rect x="374" y="36" width="242" height="200" rx="8" fill="#111916" stroke="#f59e0b" stroke-width="1.5"/>
-              <rect x="386" y="52" width="218" height="18" rx="2" fill="#1a1508"/>
-              <text x="394" y="64" fill="#f59e0b" font-size="8" font-family="monospace">business_name · category · phone · city · source</text>
-              <text x="394" y="88" fill="#d1fae5" font-size="9" font-family="monospace">Bayou Auto Repair · Automotive · (318)555-0142</text>
-              <text x="394" y="106" fill="#d1fae5" font-size="9" font-family="monospace">Cypress Dental · Healthcare · (318)555-0198</text>
-              <text x="394" y="124" fill="#d1fae5" font-size="9" font-family="monospace">Delta HVAC · Home Services · (318)555-0211</text>
-              <text x="394" y="142" fill="#d1fae5" font-size="9" font-family="monospace">Magnolia Law · Legal · (318)555-0267</text>
-              <text x="394" y="160" fill="#6b7280" font-size="8" font-family="monospace">… 494 more · leads_clean.csv</text>
-              <rect x="24" y="250" width="592" height="90" rx="8" fill="#111916" stroke="#166534"/>
-              <text x="44" y="274" fill="#4ade80" font-size="10" font-family="sans-serif">38 categories · SQL export ready · client outreach dataset</text>
-              <polyline points="44,310 80,300 120,305 160,290 200,295 240,285 280,290" fill="none" stroke="#4ade80" stroke-width="2"/>
-              <text x="300" y="314" fill="#6b7280" font-size="9" font-family="sans-serif">records processed over time</text>
-            </svg>
+            <img src="/projects/lead-intelligence/images/hero.svg" alt="Lead intelligence pipeline output" loading="lazy" class="project-card__illustration">
             <span class="project-card__badge project-card__badge--done">✓ Completed</span>
           </a>
           <div class="project-card__body">
             <div class="project-card__tags">
-              <span class="tag">Python</span>
-              <span class="tag">Web Scraping</span>
-              <span class="tag">SQL</span>
+              <span class="tag">Python</span><span class="tag">Web Scraping</span><span class="tag">SQL</span>
             </div>
             <h3 class="project-card__title">Lead Intelligence Pipeline</h3>
-            <p class="project-card__sub">Web Scraping + Market Data Automation</p>
-            <!-- WHY: Frame as a delivered client outcome, not a generic scraping feature list -->
+            <p class="project-card__sub">Web scraping + market data automation</p>
             <p class="project-card__desc">
-              Client needed a Monroe-area outreach list. Scraped public directories,
-              deduplicated 524 records down to 498 clean rows across 38 categories —
-              delivered as CSV and SQL-ready export.
+              Client needed a Monroe-area outreach list. Scraped public directories, deduplicated
+              524 records to 498 clean rows across 38 categories — delivered as CSV and SQL export.
             </p>
             <div class="project-card__actions">
-              <a href="/projects/lead-intelligence/" class="btn btn--primary btn--sm">View Case Study →</a>
-              <a href="/projects/lead-intelligence/demo/" class="btn btn--ghost btn--sm" target="_blank" rel="noopener">Pipeline Demo ↗</a>
-              <a href="https://github.com/prajjwalsilwal" class="btn btn--ghost btn--sm" target="_blank" rel="noopener">GitHub ↗</a>
+              <a href="/projects/lead-intelligence/" class="btn btn--primary btn--sm">Case Study →</a>
+              <a href="/projects/lead-intelligence/demo/" class="btn btn--ghost btn--sm" target="_blank" rel="noopener">Demo ↗</a>
             </div>
           </div>
         </article>
 
-        <!-- Multi-Client Diagnostic Dashboard -->
-        <article class="project-card reveal" data-delay="180">
+        <!-- Diagnostic Dashboard -->
+        <article class="project-card reveal" data-delay="120">
           <a href="/projects/diagnostic-dashboard/" class="project-card__image-wrap" aria-label="Multi-Client Diagnostic Dashboard case study">
-            <svg class="project-card__illustration" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Multi-client IT diagnostic dashboard">
-              <rect width="640" height="360" fill="#0f172a"/>
-              <text x="40" y="28" fill="#e2e8f0" font-size="13" font-weight="600" font-family="sans-serif">IT Diagnostics — Multi-Client View</text>
-              <rect x="400" y="12" width="200" height="28" rx="6" fill="#1e293b" stroke="#334155"/>
-              <text x="416" y="30" fill="#94a3b8" font-size="10" font-family="sans-serif">Client: Acme Logistics ▾</text>
-              <rect x="40" y="44" width="130" height="56" rx="6" fill="#1e293b" stroke="#334155"/>
-              <text x="52" y="62" fill="#94a3b8" font-size="8" font-family="sans-serif">Endpoints online</text>
-              <text x="52" y="84" fill="#22c55e" font-size="18" font-weight="700" font-family="sans-serif">28/30</text>
-              <rect x="180" y="44" width="130" height="56" rx="6" fill="#1e293b" stroke="#334155"/>
-              <text x="192" y="62" fill="#94a3b8" font-size="8" font-family="sans-serif">Avg CPU · fleet</text>
-              <text x="192" y="84" fill="#e2e8f0" font-size="18" font-weight="700" font-family="sans-serif">34%</text>
-              <rect x="320" y="44" width="130" height="56" rx="6" fill="#1e293b" stroke="#334155"/>
-              <text x="332" y="62" fill="#94a3b8" font-size="8" font-family="sans-serif">Avg memory</text>
-              <text x="332" y="84" fill="#f59e0b" font-size="18" font-weight="700" font-family="sans-serif">71%</text>
-              <rect x="460" y="44" width="140" height="56" rx="6" fill="#1e293b" stroke="#334155"/>
-              <text x="472" y="62" fill="#94a3b8" font-size="8" font-family="sans-serif">Open alerts</text>
-              <text x="472" y="84" fill="#ef4444" font-size="18" font-weight="700" font-family="sans-serif">5</text>
-              <rect x="40" y="112" width="360" height="130" rx="6" fill="#1e293b" stroke="#334155"/>
-              <text x="52" y="130" fill="#64748b" font-size="8" font-family="monospace">hostname · cpu · mem · disk · status</text>
-              <text x="52" y="152" fill="#e2e8f0" font-size="9" font-family="monospace">WS-ACME-01 · 22% · 58% · 41% · </text><text x="280" y="152" fill="#22c55e" font-size="9" font-family="monospace">online</text>
-              <text x="52" y="172" fill="#e2e8f0" font-size="9" font-family="monospace">WS-ACME-02 · 89% · 92% · 67% · </text><text x="280" y="172" fill="#ef4444" font-size="9" font-family="monospace">critical</text>
-              <text x="52" y="192" fill="#9ca3af" font-size="9" font-family="monospace">WS-ACME-04 · — · — · — · </text><text x="280" y="192" fill="#64748b" font-size="9" font-family="monospace">offline</text>
-              <text x="52" y="212" fill="#e2e8f0" font-size="9" font-family="monospace">SRV-ACME-DB · 45% · 78% · 55% · </text><text x="280" y="212" fill="#22c55e" font-size="9" font-family="monospace">online</text>
-              <rect x="412" y="112" width="188" height="130" rx="6" fill="#1e293b" stroke="#334155"/>
-              <text x="424" y="130" fill="#e2e8f0" font-size="10" font-weight="600" font-family="sans-serif">Active alerts</text>
-              <rect x="424" y="140" width="164" height="36" rx="4" fill="#1c1010" stroke="#7f1d1d"/>
-              <text x="432" y="156" fill="#fca5a5" font-size="8" font-family="sans-serif">WS-ACME-02 · CPU &gt; 85%</text>
-              <text x="432" y="168" fill="#64748b" font-size="7" font-family="monospace">critical · 12m ago</text>
-              <rect x="424" y="182" width="164" height="36" rx="4" fill="#1c1910" stroke="#78350f"/>
-              <text x="432" y="198" fill="#fcd34d" font-size="8" font-family="sans-serif">SRV-ACME-DB · Memory &gt; 75%</text>
-              <rect x="40" y="254" width="560" height="90" rx="6" fill="#1e293b" stroke="#334155"/>
-              <polyline points="60,320 120,305 180,310 240,285 300,295 360,275 420,280 480,265 540,270 580,255" fill="none" stroke="#6366f1" stroke-width="2"/>
-              <text x="52" y="278" fill="#64748b" font-size="9" font-family="sans-serif">WS-ACME-02 CPU trend — 24h (highlighted)</text>
-              <text x="52" y="334" fill="#6366f1" font-size="9" font-family="sans-serif">endpoint health before the ticket — 30+ machines</text>
-            </svg>
+            <img src="/projects/diagnostic-dashboard/images/dashboard-view.svg" alt="Multi-client IT diagnostic dashboard" loading="lazy" class="project-card__illustration">
             <span class="project-card__badge project-card__badge--done">✓ Completed</span>
           </a>
           <div class="project-card__body">
             <div class="project-card__tags">
-              <span class="tag">Python</span>
-              <span class="tag">SQL</span>
-              <span class="tag">Dashboard UI</span>
+              <span class="tag">Python</span><span class="tag">SQL</span><span class="tag">Dashboard UI</span>
             </div>
             <h3 class="project-card__title">Multi-Client Diagnostic Dashboard</h3>
-            <p class="project-card__sub">IT Operations Monitoring &amp; Visualization</p>
-            <!-- WHY: Remove unsupported 20% claim; describe observable outcome instead -->
+            <p class="project-card__sub">IT operations monitoring &amp; visualization</p>
             <p class="project-card__desc">
-              Python collectors and SQL storage gave support staff endpoint health
-              before they opened a ticket — across 30+ machines in 20+ client environments.
+              Python collectors and SQL storage gave support staff endpoint health before they
+              opened a ticket — across 30+ machines in 20+ client environments.
             </p>
             <div class="project-card__actions">
-              <a href="/projects/diagnostic-dashboard/" class="btn btn--primary btn--sm">View Case Study →</a>
-              <a href="/projects/diagnostic-dashboard/demo/" class="btn btn--ghost btn--sm" target="_blank" rel="noopener">Dashboard Demo ↗</a>
+              <a href="/projects/diagnostic-dashboard/" class="btn btn--primary btn--sm">Case Study →</a>
+              <a href="/projects/diagnostic-dashboard/demo/" class="btn btn--ghost btn--sm" target="_blank" rel="noopener">Demo ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Enterprise Finance Ops Command Center -->
+        <article class="project-card reveal" data-delay="180">
+          <a href="https://github.com/prajjwalsilwal/prajjwalsilwal.github.io/tree/main/projects/enterprise-finance-ops-command-center" class="project-card__image-wrap" target="_blank" rel="noopener" aria-label="Enterprise Finance Ops Command Center on GitHub">
+            <img src="/projects/enterprise-finance-ops-command-center/images/revenue_expense_profit_trends.png" alt="Revenue, expense and profit trend analysis" loading="lazy" class="project-card__illustration">
+            <span class="project-card__badge project-card__badge--done">Analytics</span>
+          </a>
+          <div class="project-card__body">
+            <div class="project-card__tags">
+              <span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">Analytics</span>
+            </div>
+            <h3 class="project-card__title">Finance Ops Command Center</h3>
+            <p class="project-card__sub">Financial &amp; operations analytics</p>
+            <p class="project-card__desc">
+              A dimensional finance dataset with EDA and reporting — revenue/expense/profit trends,
+              variance analysis, and department + region performance, built as an analytical warehouse.
+            </p>
+            <div class="project-card__actions">
+              <a href="https://github.com/prajjwalsilwal/prajjwalsilwal.github.io/tree/main/projects/enterprise-finance-ops-command-center" class="btn btn--primary btn--sm" target="_blank" rel="noopener">View on GitHub ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Financial Forecasting Model -->
+        <article class="project-card reveal" data-delay="240">
+          <a href="https://github.com/prajjwalsilwal/prajjwalsilwal.github.io/tree/main/projects/financial-forecasting-model" class="project-card__image-wrap" target="_blank" rel="noopener" aria-label="Financial Forecasting Model on GitHub">
+            <div class="project-card__image-fallback project-card__image-fallback--navy"></div>
+            <span class="project-card__badge project-card__badge--done">Modeling</span>
+          </a>
+          <div class="project-card__body">
+            <div class="project-card__tags">
+              <span class="tag">Python</span><span class="tag">Forecasting</span><span class="tag">Time series</span>
+            </div>
+            <h3 class="project-card__title">Financial Forecasting Model</h3>
+            <p class="project-card__sub">Predictive financial modeling</p>
+            <p class="project-card__desc">
+              Preprocessing and forecasting pipeline over financial time series — the same statistical
+              foundation that informs the platform's trend and collection-rate modeling.
+            </p>
+            <div class="project-card__actions">
+              <a href="https://github.com/prajjwalsilwal/prajjwalsilwal.github.io/tree/main/projects/financial-forecasting-model" class="btn btn--primary btn--sm" target="_blank" rel="noopener">View on GitHub ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Sales Performance Dashboard -->
+        <article class="project-card reveal" data-delay="300">
+          <a href="https://github.com/prajjwalsilwal/prajjwalsilwal.github.io/tree/main/projects/sales-performance-optimization-dashboard" class="project-card__image-wrap" target="_blank" rel="noopener" aria-label="Sales Performance Optimization Dashboard on GitHub">
+            <div class="project-card__image-fallback project-card__image-fallback--blue"></div>
+            <span class="project-card__badge project-card__badge--done">Analytics</span>
+          </a>
+          <div class="project-card__body">
+            <div class="project-card__tags">
+              <span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">Dashboard</span>
+            </div>
+            <h3 class="project-card__title">Sales Performance Dashboard</h3>
+            <p class="project-card__sub">Sales analytics &amp; optimization</p>
+            <p class="project-card__desc">
+              Analysis pipeline surfacing sales performance drivers and optimization opportunities
+              from raw transaction data — cleaning, metrics, and visualization.
+            </p>
+            <div class="project-card__actions">
+              <a href="https://github.com/prajjwalsilwal/prajjwalsilwal.github.io/tree/main/projects/sales-performance-optimization-dashboard" class="btn btn--primary btn--sm" target="_blank" rel="noopener">View on GitHub ↗</a>
             </div>
           </div>
         </article>
@@ -583,7 +596,7 @@
     </div>
   </section>
 
-  <!-- WHY: First-person story about problems you chase — not a capability matrix with emoji tiles -->
+  <!-- ============================ ABOUT ============================ -->
   <section class="section" id="about">
     <div class="container">
       <div class="section__eyebrow">
@@ -594,28 +607,26 @@
         <div class="about__intro reveal">
           <img src="/assets/images/profile/photo.svg" alt="Prajjwal Silwal" class="about__photo" width="88" height="88" loading="lazy">
           <h2 class="about__headline">
-            I like fixing the<br>
-            <em>unglamorous</em> stuff.
+            I own the whole<br>
+            <em>stack</em>, on purpose.
           </h2>
           <div class="about__body">
             <p>
-              I'm based in Monroe, LA. The problems I keep saying yes to look like this:
-              a team still downloading the same reports by hand, a SaaS tool that won't
-              expose an API on the plan you can afford, or an owner who needs one screen
-              to start the day — not another spreadsheet.
+              I'm based in Monroe, LA, and I build systems end to end — the extractor that pulls the
+              data, the schema that stores it, the API that serves it, and the interface someone
+              actually uses. Owning every layer is what lets me make a real business run on my code.
             </p>
             <p>
-              That's what pulled me into property management tech at Braud. Buildium's
-              Growth plan has no API, so I wrote Playwright automation. Ownership needed
-              a morning view, so I built the dashboard on top of the same PostgreSQL
-              database the pipeline feeds. Tenants needed a place to browse units, so I
-              shipped braudproperties.com.
+              That's the Braud Data Platform: a pipeline, a snapshot warehouse, a FastAPI service, and
+              a React dashboard, plus an AI layer and an SMS worker — roughly 22,900 lines across 119
+              files, running unattended for a 200+ unit portfolio. I designed the domain logic (risk
+              scoring, a delinquency and eviction rules engine) as carefully as the infrastructure.
             </p>
             <p>
-              Before Braud, I spent four years as an IT contractor across 20+ client
-              environments — hardware, imaging, diagnostics, the work that breaks when
-              nobody's watching. I'm still the person who wants to see the data pipeline
-              <em>and</em> sit with the person who has to use it.
+              Before this, I spent four years as an IT contractor across 20+ client environments —
+              hardware, imaging, diagnostics, and the Python + SQL tooling that keeps operations
+              visible. I still want to see the data pipeline <em>and</em> sit with the person who
+              depends on its output.
             </p>
           </div>
           <a href="/Prajjwal_Silwal_Resume.pdf" class="btn btn--outline" target="_blank" rel="noopener">
@@ -625,29 +636,27 @@
 
         <div class="about__bento">
           <div class="bento-tile bento-tile--accent reveal" data-delay="100">
-            <h3>When there's no API</h3>
-            <p>Browser automation, scheduled jobs, and a database schema that won't break when the export format shifts.</p>
+            <h3>Ingestion → product</h3>
+            <p>I'm comfortable at every layer: browser automation, data modeling, warehousing, API design, and the React frontend on top.</p>
           </div>
-
           <div class="bento-tile reveal" data-delay="150">
-            <h3>When someone needs a morning answer</h3>
-            <p>Dashboards built around the first three questions an owner actually asks — not thirty charts nobody opens.</p>
+            <h3>Domain logic done right</h3>
+            <p>Rules engines and risk scoring modeled precisely to how the business actually works — explainable and deterministic, not guessed.</p>
           </div>
-
           <div class="bento-tile reveal" data-delay="200">
-            <h3>When support is flying blind</h3>
-            <p>Endpoint health, alert thresholds, and per-client views so you're not RDP-ing in just to see if a machine is alive.</p>
+            <h3>Built to run unattended</h3>
+            <p>Scheduled jobs, connection pooling, caching, and event-driven waits so the system holds up without someone watching it.</p>
           </div>
-
           <div class="bento-tile bento-tile--dark reveal" data-delay="250">
             <h3>What I'm not chasing</h3>
-            <p>Resume-padding dashboards, synthetic KPI projects, or tooling demos with no one on the other end waiting for the output.</p>
+            <p>Resume-padding dashboards or tooling demos with no one on the other end waiting for the output.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ============================ EXPERIENCE ============================ -->
   <section class="section section--alt" id="experience">
     <div class="container">
       <div class="section__header reveal">
@@ -665,20 +674,19 @@
           <div class="timeline__card">
             <div class="timeline__card-header">
               <div>
-                <h3 class="timeline__role">Automation &amp; Data Engineer</h3>
+                <h3 class="timeline__role">Automation &amp; Data Platform Engineer</h3>
                 <p class="timeline__company">Braud Property Management</p>
               </div>
               <div class="timeline__tags">
-                <span class="tag">Python</span>
-                <span class="tag">Playwright</span>
-                <span class="tag">PostgreSQL</span>
+                <span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">React</span><span class="tag">PostgreSQL</span>
               </div>
             </div>
             <ul class="timeline__bullets">
-              <li>Architected the <strong>"Braud Pipeline"</strong> — Playwright + Prefect system automating 17–19 operational property reports with zero manual intervention</li>
-              <li>Built the owner-facing dashboard — Morning Briefing, Executive KPIs, Decision Inbox, and Occupancy — so ownership starts the day with delinquency, vacancy, and maintenance status instead of assembling reports</li>
-              <li>Engineered custom web automation scripts to bypass Buildium's lack of native API access on the Growth plan</li>
-              <li>Configured local AI agents (Open WebUI, VAPI, Retell AI) for property management workflow experiments at Braud — internal ops tooling, not tenant-facing production flows yet</li>
+              <li>Designed and shipped the <strong>Braud Data Platform</strong> end to end — ingestion, transformation, a snapshot warehouse, a FastAPI service, and a React operations dashboard — running unattended for a <strong>200+ unit portfolio</strong></li>
+              <li>Built the warehouse as an <strong>append-only snapshot model</strong> (PostgreSQL / Neon) keyed by snapshot_date, so the business can time-travel over its own operational history</li>
+              <li>Modeled the domain precisely: a <strong>delinquency &amp; eviction-eligibility rules engine</strong>, deterministic tenant risk scoring, and a prioritized actions feed</li>
+              <li>Added a privacy-aware <strong>AI layer</strong> (OpenRouter) over anonymized metrics and an outbound <strong>SMS worker</strong> for two-way tenant comms</li>
+              <li>~15,600 lines of Python (77 files) + ~7,300 lines of React (42 files), orchestrated by four scheduled jobs with event-driven Playwright waits — zero manual steps</li>
             </ul>
           </div>
         </div>
@@ -695,17 +703,14 @@
                 <p class="timeline__company">Independent Contractor</p>
               </div>
               <div class="timeline__tags">
-                <span class="tag">Python</span>
-                <span class="tag">SQL</span>
-                <span class="tag">IT Systems</span>
+                <span class="tag">Python</span><span class="tag">SQL</span><span class="tag">IT Systems</span>
               </div>
             </div>
-            <!-- WHY: Cut percentage claims that lack a documented baseline on this site -->
             <ul class="timeline__bullets">
               <li>Managed IT support and hardware lifecycle for <strong>20+ remote and local clients</strong> — imaging, repairs, and fleet tracking across mixed Windows/Linux environments</li>
-              <li>Automated Python web scraping pipelines processing <strong>500+ business records</strong> for client market analysis and outreach lists</li>
+              <li>Automated Python web-scraping pipelines processing <strong>500+ business records</strong> for client market analysis and outreach lists</li>
               <li>Built Python + SQL diagnostic dashboards across <strong>30+ endpoints</strong> so support staff could see machine health before opening a remote session</li>
-              <li>Did component-level repairs (RAM, storage, displays) before recommending full replacements — kept client hardware running longer on tight budgets</li>
+              <li>Did component-level repairs before recommending full replacements — kept client hardware running longer on tight budgets</li>
             </ul>
           </div>
         </div>
@@ -723,7 +728,7 @@
               </div>
             </div>
             <ul class="timeline__bullets">
-              <li>Tutored 100+ students in statistics, algebra, and trigonometry — same stats foundation I later applied to KPI modeling and pipeline validation</li>
+              <li>Tutored 100+ students in statistics, algebra, and trigonometry — the same stats foundation I later applied to KPI modeling and pipeline validation</li>
             </ul>
           </div>
         </div>
@@ -731,54 +736,67 @@
     </div>
   </section>
 
-  <!-- WHY: Curate tools tied to real projects — a 30-tag resume dump signals keyword stuffing -->
+  <!-- ============================ SKILLS ============================ -->
   <section class="section" id="skills">
     <div class="container">
       <div class="section__header reveal">
         <span class="mono-label">05 / tools</span>
-        <h2 class="section__title">Tools Behind the Work</h2>
+        <h2 class="section__title">The Stack Behind the Platform</h2>
         <p class="section__sub">
-          Not an exhaustive list — these are what the projects on this site were actually built with.
+          Not an exhaustive list — this is what the systems on this site were actually built with.
         </p>
       </div>
 
       <div class="skills__grid">
         <div class="skill-row reveal">
-          <span class="skill-row__label">Braud · pipelines<br>&amp; database</span>
+          <span class="skill-row__label">Platform ·<br>backend &amp; data</span>
           <div class="skill-row__tags">
             <span class="tag tag--lg">Python</span>
             <span class="tag tag--lg">Playwright</span>
-            <span class="tag tag--lg">Prefect</span>
+            <span class="tag tag--lg">FastAPI</span>
             <span class="tag tag--lg">PostgreSQL</span>
+            <span class="tag tag--lg">Neon</span>
             <span class="tag tag--lg">SQL</span>
+            <span class="tag tag--lg">Pandas</span>
           </div>
         </div>
 
         <div class="skill-row reveal" data-delay="80">
-          <span class="skill-row__label">Dashboards<br>&amp; web</span>
+          <span class="skill-row__label">Product ·<br>frontend</span>
           <div class="skill-row__tags">
-            <span class="tag tag--lg">Power BI</span>
-            <span class="tag tag--lg">Next.js</span>
             <span class="tag tag--lg">React</span>
-            <span class="tag tag--lg">Sanity CMS</span>
+            <span class="tag tag--lg">Vite</span>
             <span class="tag tag--lg">Tailwind CSS</span>
+            <span class="tag tag--lg">Next.js</span>
+            <span class="tag tag--lg">Sanity CMS</span>
           </div>
         </div>
 
         <div class="skill-row reveal" data-delay="160">
-          <span class="skill-row__label">Contract years ·<br>IT &amp; scraping</span>
+          <span class="skill-row__label">AI · automation<br>&amp; orchestration</span>
           <div class="skill-row__tags">
+            <span class="tag tag--lg">OpenRouter</span>
+            <span class="tag tag--lg">Headless Automation</span>
+            <span class="tag tag--lg">Task Scheduler</span>
+            <span class="tag tag--lg">SMS Integration</span>
+          </div>
+        </div>
+
+        <div class="skill-row reveal" data-delay="240">
+          <span class="skill-row__label">Analytics &amp; IT ·<br>contract years</span>
+          <div class="skill-row__tags">
+            <span class="tag tag--lg">Power BI</span>
+            <span class="tag tag--lg">Forecasting</span>
             <span class="tag tag--lg">Windows / Linux</span>
             <span class="tag tag--lg">Hardware Diagnostics</span>
-            <span class="tag tag--lg">Web Scraping</span>
-            <span class="tag tag--lg">Pandas</span>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section" id="education">
+  <!-- ============================ EDUCATION ============================ -->
+  <section class="section section--alt" id="education">
     <div class="container">
       <div class="section__header reveal">
         <span class="mono-label">06 / education</span>
@@ -795,8 +813,7 @@
             <div class="edu__degree-badge">In Progress</div>
           </div>
           <p class="edu__program">Mathematics &amp; Computer Science</p>
-          <!-- WHY: Frame incomplete degree honestly — paused for work, not an unexplained gap -->
-          <p class="edu__detail">100+ credit hours completed · degree paused to work full-time in IT and automation</p>
+          <p class="edu__detail">100+ credit hours completed · degree paused to work full-time in data engineering and automation</p>
           <div class="edu__courses">
             <span class="tag">Statistics</span>
             <span class="tag">Calculus</span>
@@ -805,15 +822,14 @@
             <span class="tag">Probability</span>
           </div>
           <p class="edu__note">
-            Coursework in statistics and linear algebra directly informs the KPI
-            modeling and data validation I do in production pipelines.
+            Coursework in statistics and linear algebra directly informs the risk scoring,
+            trend modeling, and data validation I do in the platform.
           </p>
         </div>
 
         <div class="edu__certs reveal" data-delay="150">
           <h3 class="edu__certs-heading">Certifications</h3>
-          <!-- WHY: Tie certs to real career arc — not logo boxes for credibility padding -->
-          <p class="edu__certs-note">Earned during contractor years — IT Support for the hardware/diagnostics work; Data Analytics for the pipeline and dashboard side.</p>
+          <p class="edu__certs-note">Earned during the contractor years — IT Support for the hardware/diagnostics work; Data Analytics for the pipeline and warehouse side.</p>
           <div class="cert-card">
             <div class="cert-card__logo">G</div>
             <div>
@@ -833,20 +849,19 @@
     </div>
   </section>
 
+  <!-- ============================ CONTACT ============================ -->
   <section class="contact" id="contact">
     <div class="container contact__inner">
       <span class="mono-label" style="color: var(--text-muted)">07 / contact</span>
 
-      <!-- WHY: Drop generic "let's work together" — say what you want to talk about -->
       <h2 class="contact__headline reveal">
-        Got a manual process<br>that needs to <em>die?</em>
+        Need someone who can<br>build the <em>whole thing?</em>
       </h2>
 
-      <!-- WHY: Replace service-page boilerplate with a direct statement of what you're looking for -->
       <p class="contact__sub reveal" data-delay="100">
-        Open to freelance, contract, and full-time roles. I do my best work when a team
-        has a manual process that should have been automated two years ago — or a vendor
-        lock-in that needs a workaround. Based in Monroe, LA; remote-friendly.
+        Open to freelance, contract, and full-time roles. I do my best work when a team needs
+        one person who can take a problem from raw data all the way to a product people rely on —
+        pipeline, warehouse, API, and interface. Based in Monroe, LA; remote-friendly.
       </p>
 
       <a href="mailto:silwalprajjwal@gmail.com" class="contact__email reveal" data-delay="150">
@@ -869,12 +884,15 @@
   <footer class="footer">
     <div class="container footer__inner">
       <span class="footer__name">
-        Prajjwal Silwal — Automation Engineer &amp; Data Analyst
+        Prajjwal Silwal — Automation &amp; Data Platform Engineer
       </span>
       <span class="footer__copy mono-label">Monroe, LA &nbsp;·&nbsp; © 2026</span>
     </div>
   </footer>
 
+  </div><!-- /.site -->
+
   <script src="/assets/js/main.js"></script>
+  <script type="module" src="/assets/js/hero3d.js"></script>
 </body>
 </html>

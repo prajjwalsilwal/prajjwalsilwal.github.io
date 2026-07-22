@@ -4,11 +4,13 @@ Portfolio of **Prajjwal Silwal** — Automation & Data Platform Engineer, Monroe
 
 🌐 **Live**: [prajjwalsilwal.github.io](https://prajjwalsilwal.github.io)
 
-The site is one continuous dark WebGL world the visitor travels through on scroll. Each
-section is a location the camera flies to: the hero constellation, a flight along the six
-stages of the Braud Data Platform, a gallery of floating project monoliths, and a closing
-contact portal. Case studies are chaptered scenes inside that same world rather than
-separate articles.
+The site is one continuous dark WebGL world. The first visit plays a **~15s platform
+trailer** (camera flight through the six Braud Data Platform stages) with Play / Pause /
+Skip — then unlocks a **short scroll** through Work, About, Experience, Skills, Education,
+and Contact. Case studies are chaptered scenes inside that same world rather than separate
+articles.
+
+Reduced-motion / FX `off` skips the trailer and shows a compact HTML document.
 
 ---
 
@@ -61,8 +63,9 @@ src/
     nav.ts            nav items, loader copy
   world/            The engine
     fx.ts             tier resolution + per-tier budgets
+    playStore.ts      platform trailer state (time-driven, outside React)
     World.tsx         the single persistent <Canvas>
-    CameraRig.tsx     flies the camera along a beat curve against scroll
+    CameraRig.tsx     flies the camera — trailer time, then scroll beats
     locations.ts      the camera journey (home + per-case-study)
     layout.ts         where nodes, monoliths and portals physically sit
     ParticleField.tsx one GPU-morphing particle system for the whole site
@@ -70,7 +73,7 @@ src/
     scrollStore.ts    scroll state, deliberately outside React
   scenes/           3D contents (stage nodes, streams, monoliths, portals, markers)
   sections/         The HTML overlay — hero, platform, work, about, …
-  components/       Nav, Loader, Section, Reveal, Counter, Footer
+  components/       Nav, Loader, PlaybackBar, Section, Reveal, Counter, Footer
 ```
 
 Two rules hold the thing together:
@@ -78,9 +81,9 @@ Two rules hold the thing together:
 1. **Content lives in `src/content/`, never in a component.** The 3D scene and the HTML
    both read from it, so a stat rendered in the world can't disagree with the stat in the
    text.
-2. **Scroll state lives outside React.** [`scrollStore.ts`](src/world/scrollStore.ts) is a
-   plain mutable object read per-frame by the camera and particles. Putting it in component
-   state would re-render the tree on every scroll event.
+2. **Scroll and trailer state live outside React.** [`scrollStore.ts`](src/world/scrollStore.ts)
+   and [`playStore.ts`](src/world/playStore.ts) are plain mutable objects read per-frame by
+   the camera. Putting them in component state would re-render the tree every frame.
 
 ### Performance notes
 

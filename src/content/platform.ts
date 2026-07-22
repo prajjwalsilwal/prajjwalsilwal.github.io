@@ -26,8 +26,8 @@ export const platformIntro = {
     'and built end to end by one engineer.',
   pipelineHeading: 'The architecture is the navigation',
   pipelineSub:
-    'Data flows through six stages. Scroll to fly the network from raw extraction to the ' +
-    'product surface.',
+    'Data flows through six stages. A short trailer flies the network from raw extraction ' +
+    'to the product surface — then you can keep reading below.',
   surfaceHeading: 'What the product actually does',
   surfaceSub: 'Every surface below is live in the dashboard — real domain logic, not mockups.',
 } as const;

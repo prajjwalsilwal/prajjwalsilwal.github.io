@@ -8,11 +8,14 @@ import { Skills } from '@/sections/Skills';
 import { Education } from '@/sections/Education';
 import { Contact } from '@/sections/Contact';
 import { Footer } from '@/components/Footer';
+import { PlaybackBar } from '@/components/PlaybackBar';
 
 export default function Home() {
   return (
     <>
       <HomeWorldMount />
+      {/* WHY: Home-only trailer controls — case studies keep their own scroll */}
+      <PlaybackBar />
 
       {/* The readable document. Sits above the canvas; is the entire site when
           the world is switched off. */}

@@ -125,3 +125,22 @@
     transition-duration: 0.001ms !important;
   }
 }
+
+/* Trailer: dim non-active stage cards so the caption matches the flight. */
+html[data-playback='playing'] .stage-flow > li:not([data-active]) article,
+html[data-playback='paused'] .stage-flow > li:not([data-active]) article {
+  opacity: 0.35;
+}
+
+html[data-playback='playing'] .stage-flow > li[data-active] article,
+html[data-playback='paused'] .stage-flow > li[data-active] article {
+  border-color: rgba(94, 234, 212, 0.35);
+  box-shadow: 0 0 0 1px rgba(94, 234, 212, 0.12);
+}
+
+/* During the trailer, keep the platform intro from competing with captions. */
+html[data-playback='playing'] #platform > div > :not(.stage-flow):not(ol),
+html[data-playback='paused'] #platform > div > :not(.stage-flow):not(ol) {
+  opacity: 0.25;
+  transition: opacity 0.4s ease;
+}

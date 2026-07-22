@@ -4,7 +4,7 @@ import { profile } from '@/content/profile';
 
 export function About() {
   return (
-    <Section id="about" className="relative px-6 py-32" aria-labelledby="about-heading">
+    <Section id="about" className="relative px-6 py-16 md:py-20" aria-labelledby="about-heading">
       <div className="mx-auto max-w-6xl">
         <Reveal>
           <p className="mono-label">03 / about</p>

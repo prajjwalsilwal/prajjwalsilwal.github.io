@@ -4,7 +4,7 @@ import { skills, skillsIntro } from '@/content/resume';
 
 export function Skills() {
   return (
-    <Section id="skills" className="relative px-6 py-32" aria-labelledby="skills-heading">
+    <Section id="skills" className="relative px-6 py-16 md:py-20" aria-labelledby="skills-heading">
       <div className="mx-auto max-w-4xl">
         <Reveal>
           <p className="mono-label">{skillsIntro.eyebrow}</p>

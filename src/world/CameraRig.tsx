@@ -4,6 +4,11 @@ import { useMemo, useRef } from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 import { makeCurves, type Beat } from './locations';
+import {
+  isPlaybackDriving,
+  playCurveT,
+  playTick,
+} from './playStore';
 import { clamp01, damp, scroll, type SectionRect } from './scrollStore';
 
 interface Props {
@@ -13,12 +18,11 @@ interface Props {
 }
 
 /**
- * Flies the camera along the beat curve against scroll progress.
+ * Flies the camera along the beat curve.
  *
- * Beats are anchored to real DOM sections rather than spread evenly down the
- * document, so the camera arrives at a location exactly when that section is
- * being read. This is what makes the six pipeline stages a long slow flight and
- * the contact portal a short hop — the pacing comes from the writing.
+ * During the platform trailer, progress comes from playStore time (home →
+ * platform-end). After that, beats are anchored to DOM sections so Work →
+ * Contact still tracks scroll — without inventing a 20-viewport runway.
  *
  * All vectors are allocated once and reused; the anchor table is rebuilt only
  * when the sections are remeasured, never per frame.
@@ -98,29 +102,41 @@ export function CameraRig({ beats, parallax = 1.6 }: Props) {
     // Clamp dt so a backgrounded tab returning does not fling the camera.
     const dt = Math.min(delta, 1 / 30);
 
-    scroll.eased = damp(scroll.eased, scroll.progress, 4.5, dt);
-    const t = curveParam(clamp01(scroll.eased));
+    let t: number;
+    if (isPlaybackDriving()) {
+      playTick(dt * 1000);
+      t = playCurveT(beats.length);
+    } else {
+      scroll.eased = damp(scroll.eased, scroll.progress, 4.5, dt);
+      t = curveParam(clamp01(scroll.eased));
+    }
 
     curves.position.getPointAt(t, scratch.pos);
     curves.target.getPointAt(t, scratch.look);
 
     // Pointer parallax, damped so the camera never twitches with the cursor.
+    // Disabled during the trailer so the flight stays locked on rails.
+    const parallaxAmt = isPlaybackDriving() ? 0 : parallax;
     scratch.px = damp(scratch.px, scroll.pointer.x, 3, dt);
     scratch.py = damp(scratch.py, scroll.pointer.y, 3, dt);
-    scratch.offset.set(scratch.px * parallax, scratch.py * parallax * 0.6, 0);
+    scratch.offset.set(scratch.px * parallaxAmt, scratch.py * parallaxAmt * 0.6, 0);
+
+    // Snappier follow during the trailer so the shot reads as video, not lag.
+    const posLambda = isPlaybackDriving() ? 14 : 8;
+    const lookLambda = isPlaybackDriving() ? 10 : 6;
 
     if (!scratch.initialised) {
       camera.position.copy(scratch.pos).add(scratch.offset);
       scratch.smoothLook.copy(scratch.look);
       scratch.initialised = true;
     } else {
-      camera.position.x = damp(camera.position.x, scratch.pos.x + scratch.offset.x, 8, dt);
-      camera.position.y = damp(camera.position.y, scratch.pos.y + scratch.offset.y, 8, dt);
-      camera.position.z = damp(camera.position.z, scratch.pos.z, 8, dt);
+      camera.position.x = damp(camera.position.x, scratch.pos.x + scratch.offset.x, posLambda, dt);
+      camera.position.y = damp(camera.position.y, scratch.pos.y + scratch.offset.y, posLambda, dt);
+      camera.position.z = damp(camera.position.z, scratch.pos.z, posLambda, dt);
 
-      scratch.smoothLook.x = damp(scratch.smoothLook.x, scratch.look.x, 6, dt);
-      scratch.smoothLook.y = damp(scratch.smoothLook.y, scratch.look.y, 6, dt);
-      scratch.smoothLook.z = damp(scratch.smoothLook.z, scratch.look.z, 6, dt);
+      scratch.smoothLook.x = damp(scratch.smoothLook.x, scratch.look.x, lookLambda, dt);
+      scratch.smoothLook.y = damp(scratch.smoothLook.y, scratch.look.y, lookLambda, dt);
+      scratch.smoothLook.z = damp(scratch.smoothLook.z, scratch.look.z, lookLambda, dt);
     }
 
     camera.lookAt(scratch.smoothLook);
@@ -132,7 +148,10 @@ export function CameraRig({ beats, parallax = 1.6 }: Props) {
     const frac = fovIndex - i;
     const a = curves.fovs[Math.min(i, curves.fovs.length - 1)];
     const b = curves.fovs[Math.min(i + 1, curves.fovs.length - 1)];
-    const targetFov = a + (b - a) * frac + Math.min(Math.abs(scroll.velocity) * 260, 8);
+    const velocityBoost = isPlaybackDriving()
+      ? 0
+      : Math.min(Math.abs(scroll.velocity) * 260, 8);
+    const targetFov = a + (b - a) * frac + velocityBoost;
 
     if (Math.abs(camera.fov - targetFov) > 0.01) {
       camera.fov = damp(camera.fov, targetFov, 5, dt);

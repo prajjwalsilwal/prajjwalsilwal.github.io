@@ -8,7 +8,7 @@ export function Hero() {
   return (
     <Section
       id="home"
-      className="beat relative flex min-h-screen items-center px-6 pb-24 pt-32"
+      className="beat relative flex min-h-0 items-center px-6 pb-16 pt-28 md:pb-20 md:pt-32"
       aria-labelledby="hero-heading"
     >
       <div className="mx-auto grid w-full max-w-6xl gap-16 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">

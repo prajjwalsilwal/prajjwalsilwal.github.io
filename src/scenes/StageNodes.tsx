@@ -5,6 +5,7 @@ import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import { stages } from '@/content/platform';
 import { PIPELINE_CURVE, STAGE_NODES } from '@/world/layout';
+import { isPlaybackDriving, play } from '@/world/playStore';
 import { scroll } from '@/world/scrollStore';
 
 /**
@@ -29,13 +30,17 @@ function StageNode({ index, color }: { index: number; color: THREE.Color }) {
     const dt = Math.min(delta, 1 / 30);
     const t = state.clock.elapsedTime;
 
-    const platform = scroll.sections.find((s) => s.id === 'platform');
     // Proximity of the journey to this node, 1 at the node, falling off away.
     let focus = 0;
-    if (platform) {
-      const within =
-        (scroll.eased - platform.start) / Math.max(platform.end - platform.start, 1e-6);
-      focus = Math.max(0, 1 - Math.abs(within - nodeT) * 4.5);
+    if (isPlaybackDriving()) {
+      focus = Math.max(0, 1 - Math.abs(play.t - nodeT) * 4.5);
+    } else {
+      const platform = scroll.sections.find((s) => s.id === 'platform');
+      if (platform) {
+        const within =
+          (scroll.eased - platform.start) / Math.max(platform.end - platform.start, 1e-6);
+        focus = Math.max(0, 1 - Math.abs(within - nodeT) * 4.5);
+      }
     }
 
     if (shell.current) {

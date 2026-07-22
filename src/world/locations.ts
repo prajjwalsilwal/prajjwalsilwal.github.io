@@ -34,8 +34,7 @@ const v = (x: number, y: number, z: number) => new THREE.Vector3(x, y, z);
 
 /** The home-page journey. */
 export const HOME_BEATS: readonly Beat[] = [
-  // Hero — the constellation hangs just ahead of the camera. Anchored a little
-  // past the section top so the hero holds still while it is being read.
+  // Hero — holds for the start of the trailer, then the flight enters the pipeline.
   {
     id: 'home',
     position: v(0, 0, 26),
@@ -44,23 +43,22 @@ export const HOME_BEATS: readonly Beat[] = [
     anchor: { section: 'home', at: 0.45 },
   },
 
-  // Approach into the mouth of the pipeline.
+  // Approach into the mouth of the pipeline (trailer mid-flight).
   {
     id: 'platform',
     position: v(0, 1.5, 8),
     target: v(0, 0, -14),
     fov: 62,
-    anchor: { section: 'platform', at: 0.06 },
+    anchor: { section: 'platform', at: 0.08 },
   },
 
-  // The six stage nodes lie along -Z from about -20 to -140; this beat and the
-  // one above bracket the flight past them.
+  // Exit of the six stage nodes — end of the time-driven trailer segment.
   {
     id: 'platform-end',
     position: v(0, 0, -150),
     target: v(0, 0, -172),
     fov: 60,
-    anchor: { section: 'platform', at: 0.94 },
+    anchor: { section: 'platform', at: 0.92 },
   },
 
   // Break out of the pipeline into open space where the monoliths float.
@@ -69,7 +67,7 @@ export const HOME_BEATS: readonly Beat[] = [
     position: v(0, 4, -196),
     target: v(0, 0, -226),
     fov: 58,
-    anchor: { section: 'work', at: 0.5 },
+    anchor: { section: 'work', at: 0.35 },
   },
 
   // Drift down past the gallery into the quieter closing half.
@@ -78,28 +76,28 @@ export const HOME_BEATS: readonly Beat[] = [
     position: v(-6, -8, -252),
     target: v(2, -10, -276),
     fov: 52,
-    anchor: { section: 'about', at: 0.5 },
+    anchor: { section: 'about', at: 0.45 },
   },
   {
     id: 'experience',
     position: v(4, -20, -292),
     target: v(-2, -24, -316),
     fov: 52,
-    anchor: { section: 'experience', at: 0.5 },
+    anchor: { section: 'experience', at: 0.45 },
   },
   {
     id: 'skills',
     position: v(-3, -34, -330),
     target: v(0, -38, -352),
     fov: 54,
-    anchor: { section: 'skills', at: 0.5 },
+    anchor: { section: 'skills', at: 0.45 },
   },
   {
     id: 'education',
     position: v(2, -46, -366),
     target: v(0, -50, -388),
     fov: 54,
-    anchor: { section: 'education', at: 0.5 },
+    anchor: { section: 'education', at: 0.45 },
   },
 
   // Contact — the final portal, dead ahead.
@@ -108,7 +106,7 @@ export const HOME_BEATS: readonly Beat[] = [
     position: v(0, -58, -404),
     target: v(0, -60, -432),
     fov: 50,
-    anchor: { section: 'contact', at: 0.55 },
+    anchor: { section: 'contact', at: 0.5 },
   },
 ];
 

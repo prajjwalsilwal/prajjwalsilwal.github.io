@@ -5,6 +5,7 @@ import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useFx } from './FxProvider';
+import { play, subscribePlay } from './playStore';
 import { clamp01, measureSections, scroll, updateActiveSection } from './scrollStore';
 
 /**
@@ -13,6 +14,9 @@ import { clamp01, measureSections, scroll, updateActiveSection } from './scrollS
  * Lenis runs off GSAP's ticker rather than its own rAF so the scroll position,
  * ScrollTrigger and the R3F render loop all advance against the same clock —
  * mixing two rAF loops is what produces the classic one-frame camera judder.
+ *
+ * During the platform trailer Lenis is stopped so the time-driven flight is not
+ * fighting wheel input.
  */
 export function SmoothScroll() {
   const { level, ready } = useFx();
@@ -23,11 +27,12 @@ export function SmoothScroll() {
     gsap.registerPlugin(ScrollTrigger);
 
     const cleanups: (() => void)[] = [];
+    let lenis: Lenis | null = null;
 
     // With FX off we still track scroll (nav highlighting depends on it) but we
     // never hijack it — that layout is a plain readable document.
     if (level !== 'off') {
-      const lenis = new Lenis({
+      lenis = new Lenis({
         duration: 1.05,
         easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         smoothWheel: true,
@@ -37,17 +42,27 @@ export function SmoothScroll() {
 
       lenis.on('scroll', ScrollTrigger.update);
 
-      const tick = (time: number) => lenis.raf(time * 1000);
+      const tick = (time: number) => lenis!.raf(time * 1000);
       gsap.ticker.add(tick);
       gsap.ticker.lagSmoothing(0);
 
       cleanups.push(() => {
         gsap.ticker.remove(tick);
-        lenis.destroy();
+        lenis?.destroy();
+        lenis = null;
       });
     }
 
+    const syncLenisLock = () => {
+      if (!lenis) return;
+      if (play.scrollLocked) lenis.stop();
+      else lenis.start();
+    };
+    syncLenisLock();
+    cleanups.push(subscribePlay(syncLenisLock));
+
     const readScroll = () => {
+      if (play.scrollLocked) return;
       const scrollable = document.documentElement.scrollHeight - window.innerHeight;
       const y = window.scrollY;
       const prev = scroll.progress;

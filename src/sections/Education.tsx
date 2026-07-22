@@ -6,7 +6,7 @@ export function Education() {
   const { school, certs } = education;
 
   return (
-    <Section id="education" className="relative px-6 py-32" aria-labelledby="education-heading">
+    <Section id="education" className="relative px-6 py-16 md:py-20" aria-labelledby="education-heading">
       <div className="mx-auto max-w-5xl">
         <Reveal>
           <p className="mono-label">{education.eyebrow}</p>

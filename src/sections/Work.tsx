@@ -23,7 +23,7 @@ export function Work() {
   );
 
   return (
-    <Section id="work" className="relative px-6 py-32" aria-labelledby="work-heading">
+    <Section id="work" className="relative px-6 py-16 md:py-20" aria-labelledby="work-heading">
       <div className="mx-auto max-w-6xl">
         <Reveal>
           <p className="mono-label">{workIntro.eyebrow}</p>

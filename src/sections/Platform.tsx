@@ -7,14 +7,13 @@ import { platformActions, platformIntro, stages, surfaces } from '@/content/plat
 /**
  * The flagship.
  *
- * Each stage is a tall block so the camera has room to arrive at its node and
- * hold there while the copy is read — the pinning is a product of section
- * height rather than a scroll hijack, which keeps it usable when the world is
- * switched off.
+ * Stage cards stay readable for SEO / FX-off. The long 40vh gaps that used to
+ * invent camera runway are gone — the trailer drives that flight in time, and
+ * post-trailer scroll stays short.
  */
 export function Platform() {
   return (
-    <Section id="platform" className="relative px-6 py-32" aria-labelledby="platform-heading">
+    <Section id="platform" className="relative px-6 py-16 md:py-20" aria-labelledby="platform-heading">
       <div className="mx-auto max-w-6xl">
         <Reveal>
           <p className="inline-flex items-center gap-2 rounded-full border border-accent/25 bg-accent/[0.06] px-3.5 py-1.5">
@@ -66,7 +65,7 @@ export function Platform() {
 
         {/* The six stages */}
         <Reveal>
-          <div className="mt-32 max-w-2xl">
+          <div className="mt-16 max-w-2xl">
             <h3 className="font-display text-2xl font-light">{platformIntro.pipelineHeading}</h3>
             <p className="mt-3 text-sm leading-relaxed text-ink-dim">
               {platformIntro.pipelineSub}
@@ -74,11 +73,11 @@ export function Platform() {
           </div>
         </Reveal>
 
-        <ol className="stage-flow mt-16 space-y-[40vh]">
+        <ol className="stage-flow mt-10 space-y-8 md:space-y-10">
           {stages.map((stage) => (
-            <li key={stage.id} id={`stage-${stage.id}`}>
+            <li key={stage.id} id={`stage-${stage.id}`} data-stage={stage.id}>
               <Reveal>
-                <article className="glass max-w-xl p-8 lg:ml-auto lg:mr-0 lg:max-w-lg">
+                <article className="glass max-w-xl p-8 transition-[border-color,box-shadow] duration-300 lg:ml-auto lg:mr-0 lg:max-w-lg">
                   <div className="flex items-baseline gap-4">
                     <span className="font-mono text-[11px] text-accent">{stage.num}</span>
                     <span className="mono-label text-accent">{stage.kicker}</span>

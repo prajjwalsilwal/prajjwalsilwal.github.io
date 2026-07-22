@@ -13,7 +13,7 @@ export function Contact() {
   return (
     <Section
       id="contact"
-      className="beat relative flex min-h-screen items-center px-6 py-32"
+      className="beat relative flex min-h-0 items-center px-6 py-16 md:py-20"
       aria-labelledby="contact-heading"
     >
       <div className="mx-auto max-w-3xl text-center">

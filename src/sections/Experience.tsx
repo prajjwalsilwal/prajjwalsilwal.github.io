@@ -4,7 +4,7 @@ import { experience } from '@/content/resume';
 
 export function Experience() {
   return (
-    <Section id="experience" className="relative px-6 py-32" aria-labelledby="experience-heading">
+    <Section id="experience" className="relative px-6 py-16 md:py-20" aria-labelledby="experience-heading">
       <div className="mx-auto max-w-4xl">
         <Reveal>
           <p className="mono-label">04 / experience</p>

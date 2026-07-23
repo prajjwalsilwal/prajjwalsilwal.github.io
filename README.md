@@ -4,13 +4,15 @@ Portfolio of **Prajjwal Silwal** — Automation & Data Platform Engineer, Monroe
 
 🌐 **Live**: [prajjwalsilwal.github.io](https://prajjwalsilwal.github.io)
 
-The site is one continuous dark WebGL world. The first visit plays a **~15s platform
-trailer** (camera flight through the six Braud Data Platform stages) with Play / Pause /
-Skip — then unlocks a **short scroll** through Work, About, Experience, Skills, Education,
-and Contact. Case studies are chaptered scenes inside that same world rather than separate
-articles.
+The site is one continuous dark WebGL world. Visitors can opt into a **~15s
+platform trailer** (camera flight through the six Braud Data Platform stages)
+via **Watch platform flight** — Play / Pause / Skip, no scroll lock. Otherwise
+the page scrolls freely through Work, About, Experience, Skills, Education,
+and Contact. Case studies are chaptered scenes inside that same world rather
+than separate articles.
 
-Reduced-motion / FX `off` skips the trailer and shows a compact HTML document.
+Reduced-motion / FX `off` skips WebGL and the trailer and shows a compact HTML
+document. The Three.js chunk mounts on idle (~2s) or when Play is pressed.
 
 ---
 
@@ -23,6 +25,7 @@ npm run dev          # http://localhost:3000
 
 ```bash
 npm run build        # static export to ./out
+npm run analyze      # same build with @next/bundle-analyzer (ANALYZE=true)
 npm run typecheck    # tsc --noEmit
 ```
 
@@ -35,8 +38,8 @@ There is no server in production — `next build` writes a fully static site to 
 
 | Value  | What renders |
 | ------ | ------------ |
-| `full` | Everything — 24k particles, pipeline nodes, monoliths, portals, bloom + chromatic aberration + vignette + noise. The default. |
-| `lite` | Particle backdrop only at 4k particles, no post-processing, no scene geometry. |
+| `full` | Everything — up to 24k particles (8k under 900px), pipeline nodes, monoliths, portals, bloom + chromatic aberration + vignette + noise. DPR capped at 1.5. The default. |
+| `lite` | Particle backdrop only (4k / 2k under 900px), no post-processing, no scene geometry. |
 | `off`  | No WebGL at all. The site renders as a plain, compact HTML document. |
 
 ```bash

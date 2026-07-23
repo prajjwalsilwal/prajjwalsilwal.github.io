@@ -1,6 +1,7 @@
 import { Section } from '@/components/Section';
 import { Counter } from '@/components/Counter';
 import { Reveal } from '@/components/Reveal';
+import { TrailerCTA } from '@/components/TrailerCTA';
 import { heroStats, profile } from '@/content/profile';
 import { architectureManifest } from '@/content/platform';
 
@@ -60,6 +61,7 @@ export function Hero() {
               <a href={profile.liveSite} target="_blank" rel="noopener" className="btn btn-ghost">
                 See it live ↗
               </a>
+              <TrailerCTA />
             </div>
           </Reveal>
 

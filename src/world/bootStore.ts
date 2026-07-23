@@ -33,6 +33,10 @@ export function resolveMilestone(m: Milestone): void {
   listeners.forEach((fn) => fn());
 }
 
+export function isMilestoneResolved(m: Milestone): boolean {
+  return done.has(m);
+}
+
 export function bootProgress(): number {
   let total = 0;
   ALL.forEach((m) => {

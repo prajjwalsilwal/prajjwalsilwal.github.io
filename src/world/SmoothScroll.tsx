@@ -15,8 +15,8 @@ import { clamp01, measureSections, scroll, updateActiveSection } from './scrollS
  * ScrollTrigger and the R3F render loop all advance against the same clock —
  * mixing two rAF loops is what produces the classic one-frame camera judder.
  *
- * During the platform trailer Lenis is stopped so the time-driven flight is not
- * fighting wheel input.
+ * During the platform trailer Lenis stays running — scroll is never locked —
+ * while the camera samples playStore time instead of scroll progress.
  */
 export function SmoothScroll() {
   const { level, ready } = useFx();

@@ -9,7 +9,7 @@ import './globals.css';
 
 const sans = DM_Sans({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600'],
+  weight: ['400', '500'],
   variable: '--font-sans',
   display: 'swap',
 });
@@ -23,7 +23,7 @@ const mono = JetBrains_Mono({
 
 const display = Fraunces({
   subsets: ['latin'],
-  weight: ['300', '400', '600', '700'],
+  weight: ['300', '400'],
   variable: '--font-display',
   display: 'swap',
 });

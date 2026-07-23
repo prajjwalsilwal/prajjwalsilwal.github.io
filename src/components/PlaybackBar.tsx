@@ -2,38 +2,53 @@
 
 import { useEffect, useState } from 'react';
 import { stages } from '@/content/platform';
-import { boot } from '@/world/bootStore';
+import { isMilestoneResolved, subscribeBoot } from '@/world/bootStore';
 import { useFx } from '@/world/FxProvider';
 import {
   play,
   playBypass,
-  playComplete,
   playConfigure,
+  playPause,
   playSkip,
   playStart,
   playToggle,
   subscribePlay,
 } from '@/world/playStore';
+import { readTrailerPref, writeTrailerPref } from '@/world/trailerPrefs';
+import {
+  clearPlayPending,
+  subscribeWorldGate,
+  worldGate,
+} from '@/world/worldGate';
+
+const READY_TIMEOUT_MS = 2500;
 
 /**
- * Platform trailer controls.
+ * Platform trailer controls — click-to-play only.
  *
- * After the loader boots, full (and lite) FX autoplay a short flight through
- * the six pipeline stages. Scroll stays locked until Skip or the trailer ends,
- * then the page lands on Work for a short manual scroll.
+ * Never auto-starts, never locks scroll. Play waits for the first WebGL frame
+ * (or bypasses after READY_TIMEOUT_MS). Background tabs pause and stay paused.
  */
 export function PlaybackBar() {
   const { level, ready } = useFx();
   const [mode, setMode] = useState(play.mode);
   const [stageIndex, setStageIndex] = useState(play.stageIndex);
   const [pct, setPct] = useState(0);
-  const [booted, setBooted] = useState(false);
+  const [pending, setPending] = useState(false);
 
   useEffect(
     () =>
       subscribePlay(() => {
         setMode(play.mode);
         setStageIndex(play.stageIndex);
+      }),
+    [],
+  );
+
+  useEffect(
+    () =>
+      subscribeWorldGate(() => {
+        setPending(worldGate.playPending);
       }),
     [],
   );
@@ -66,47 +81,66 @@ export function PlaybackBar() {
     });
   }, [mode, stageIndex]);
 
-  // Wait for the loader to release before starting — otherwise the trailer
-  // plays behind the overlay and feels broken.
+  // Intentional Play: wait for first frame, else bypass after timeout.
   useEffect(() => {
-    if (!ready) return;
-    if (boot.booted) {
-      setBooted(true);
-      return;
-    }
-    const id = window.setInterval(() => {
-      if (boot.booted) {
-        setBooted(true);
-        window.clearInterval(id);
-      }
-    }, 100);
-    return () => window.clearInterval(id);
-  }, [ready]);
-
-  useEffect(() => {
-    if (!ready || !booted) return;
+    if (!ready || !pending) return;
 
     if (level === 'off') {
+      clearPlayPending();
       playBypass();
       return;
     }
 
-    // Lite gets a shorter cut; full gets the ~15s trailer.
     playConfigure(level === 'lite' ? 8000 : 15000);
 
-    // Let the loader dissolve finish before locking scroll again.
-    const delay = window.setTimeout(() => {
-      if (play.mode === 'idle') playStart();
-    }, 900);
+    let cancelled = false;
+    let started = false;
 
-    return () => window.clearTimeout(delay);
-  }, [ready, booted, level]);
+    const tryStart = () => {
+      if (cancelled || started) return;
+      if (!isMilestoneResolved('frame')) return;
+      started = true;
+      clearPlayPending();
+      if (play.mode === 'idle') playStart();
+    };
+
+    if (isMilestoneResolved('frame')) {
+      tryStart();
+      return () => {
+        cancelled = true;
+      };
+    }
+
+    const unsub = subscribeBoot(tryStart);
+    const timeout = window.setTimeout(() => {
+      if (cancelled || started) return;
+      started = true;
+      clearPlayPending();
+      playBypass();
+    }, READY_TIMEOUT_MS);
+
+    return () => {
+      cancelled = true;
+      unsub();
+      window.clearTimeout(timeout);
+    };
+  }, [ready, pending, level]);
+
+  // Background tab: pause and stay paused (no surprise resume).
+  useEffect(() => {
+    const onVisibility = () => {
+      if (document.hidden && play.mode === 'playing') playPause();
+    };
+    document.addEventListener('visibilitychange', onVisibility);
+    return () => document.removeEventListener('visibilitychange', onVisibility);
+  }, []);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (play.mode !== 'playing' && play.mode !== 'paused') return;
       if (e.key === 'Escape') {
         e.preventDefault();
+        writeTrailerPref('skipped');
         playSkip();
       } else if (e.key === ' ' || e.code === 'Space') {
         e.preventDefault();
@@ -117,18 +151,12 @@ export function PlaybackBar() {
     return () => window.removeEventListener('keydown', onKey);
   }, []);
 
-  // Block wheel / touch while locked so Lenis and native scroll cannot fight.
+  // Persist completion so the hero CTA does not reappear.
   useEffect(() => {
-    const block = (e: Event) => {
-      if (play.scrollLocked) e.preventDefault();
-    };
-    window.addEventListener('wheel', block, { passive: false });
-    window.addEventListener('touchmove', block, { passive: false });
-    return () => {
-      window.removeEventListener('wheel', block);
-      window.removeEventListener('touchmove', block);
-    };
-  }, []);
+    if (mode !== 'done') return;
+    if (readTrailerPref() === 'skipped') return;
+    writeTrailerPref('done');
+  }, [mode]);
 
   if (!ready || level === 'off') return null;
   if (mode !== 'playing' && mode !== 'paused') return null;
@@ -183,7 +211,10 @@ export function PlaybackBar() {
 
           <button
             type="button"
-            onClick={playComplete}
+            onClick={() => {
+              writeTrailerPref('skipped');
+              playSkip();
+            }}
             className="rounded-full border border-accent/30 bg-accent/10 px-4 py-1.5 font-mono text-[11px] uppercase tracking-wider2 text-accent transition hover:bg-accent/20"
             aria-label="Skip trailer"
           >

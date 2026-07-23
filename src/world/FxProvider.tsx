@@ -1,7 +1,7 @@
 'use client';
 
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
-import { BUDGETS, probeLevel, type FxBudget, type FxLevel } from './fx';
+import { BUDGETS, budgetFor, probeLevel, type FxBudget, type FxLevel } from './fx';
 
 interface FxState {
   level: FxLevel;
@@ -31,7 +31,7 @@ export function FxProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const value = useMemo<FxState>(
-    () => ({ level, budget: BUDGETS[level], ready }),
+    () => ({ level, budget: budgetFor(level), ready }),
     [level, ready],
   );
 

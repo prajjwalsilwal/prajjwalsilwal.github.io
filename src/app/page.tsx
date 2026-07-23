@@ -1,33 +1,18 @@
-import { HomeWorldMount } from '@/scenes/HomeWorldMount';
-import { Hero } from '@/sections/Hero';
-import { Platform } from '@/sections/Platform';
-import { Work } from '@/sections/Work';
-import { About } from '@/sections/About';
-import { Experience } from '@/sections/Experience';
-import { Skills } from '@/sections/Skills';
-import { Education } from '@/sections/Education';
-import { Contact } from '@/sections/Contact';
+import { HomeWorldChrome } from '@/components/HomeWorldChrome';
 import { Footer } from '@/components/Footer';
-import { PlaybackBar } from '@/components/PlaybackBar';
+import { Hero } from '@/sections/Hero';
+import { HomeBelowFold } from '@/sections/HomeBelowFold';
 
 export default function Home() {
   return (
     <>
-      <HomeWorldMount />
-      {/* WHY: Home-only trailer controls — case studies keep their own scroll */}
-      <PlaybackBar />
+      <HomeWorldChrome />
 
       {/* The readable document. Sits above the canvas; is the entire site when
           the world is switched off. */}
       <main id="main" className="relative z-10">
         <Hero />
-        <Platform />
-        <Work />
-        <About />
-        <Experience />
-        <Skills />
-        <Education />
-        <Contact />
+        <HomeBelowFold />
       </main>
 
       <Footer />

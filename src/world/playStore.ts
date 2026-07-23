@@ -1,15 +1,12 @@
-import { clamp01, measureSections, scroll, updateActiveSection } from './scrollStore';
-
 /**
  * Platform trailer playback.
  *
  * While `playing` / `paused`, the camera rig samples the home→platform-end
  * segment of the beat curve from `t` (time) instead of document scroll. That
- * is what makes the first visit feel like a short video rather than a long
- * scroll homework assignment.
+ * is what makes the flight feel like a short video.
  *
- * Kept outside React for the same reason as scrollStore: the R3F frame loop
- * reads this every frame and must not re-render the tree to do so.
+ * Scroll is never locked — the page stays usable; the trailer is opt-in.
+ * Kept outside React so the R3F frame loop can read this every frame.
  */
 
 export type PlayMode = 'idle' | 'playing' | 'paused' | 'done';
@@ -22,7 +19,10 @@ export const play = {
   durationMs: 15000,
   /** Active pipeline stage caption index, 0–5. */
   stageIndex: 0,
-  /** True while scroll must stay locked for the trailer. */
+  /**
+   * Legacy flag kept false always. SmoothScroll still checks it; trailer
+   * no longer jacks scroll.
+   */
   scrollLocked: false,
 };
 
@@ -62,10 +62,9 @@ export function playConfigure(durationMs: number): void {
 export function playStart(): void {
   if (play.mode === 'done') return;
   play.mode = 'playing';
-  play.scrollLocked = true;
+  play.scrollLocked = false;
   if (typeof document !== 'undefined') {
     document.documentElement.dataset.playback = 'playing';
-    document.body.style.overflow = 'hidden';
   }
   notify();
 }
@@ -108,50 +107,36 @@ export function playTick(dtMs: number): void {
   if (play.stageIndex !== prevStage) notify();
 }
 
-function unlockScroll(): void {
-  play.scrollLocked = false;
-  if (typeof document !== 'undefined') {
-    document.body.style.overflow = '';
-    document.documentElement.dataset.playback = 'done';
-  }
+function clearPlaybackAttr(done: boolean): void {
+  if (typeof document === 'undefined') return;
+  if (done) document.documentElement.dataset.playback = 'done';
+  else delete document.documentElement.dataset.playback;
 }
 
-/** End of trailer or user Skip — unlock and land on Work. */
+/** Natural end of trailer — stay where the user is; do not force-scroll. */
 export function playComplete(): void {
   if (play.mode === 'done') return;
   play.t = 1;
   syncStageIndex();
   play.mode = 'done';
-  unlockScroll();
-
-  // Instant jump so the camera never snaps back to the hero for a frame
-  // between unlocking scroll and reaching Work.
-  if (typeof window !== 'undefined') {
-    const work = document.getElementById('work');
-    if (work) {
-      const top = Math.max(0, work.offsetTop - 8);
-      window.scrollTo({ top, behavior: 'auto' });
-      measureSections();
-      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
-      scroll.y = window.scrollY;
-      scroll.progress = scrollable > 0 ? clamp01(window.scrollY / scrollable) : 0;
-      scroll.eased = scroll.progress;
-      scroll.velocity = 0;
-      updateActiveSection();
-    }
-  }
-
+  play.scrollLocked = false;
+  clearPlaybackAttr(true);
   notify();
 }
 
+/** User Skip — stop trailer, stay put. */
 export function playSkip(): void {
   playComplete();
 }
 
-/** Mark done without scrolling — used when FX is off / reduced motion. */
+/** Abort without starting — FX off / timeout / reduced motion. Leaves idle so CTA can retry. */
 export function playBypass(): void {
-  play.mode = 'done';
-  play.t = 1;
-  unlockScroll();
+  play.mode = 'idle';
+  play.t = 0;
+  play.stageIndex = 0;
+  play.scrollLocked = false;
+  if (typeof document !== 'undefined') {
+    delete document.documentElement.dataset.playback;
+  }
   notify();
 }

@@ -6,29 +6,38 @@ import { useFx } from '@/world/FxProvider';
 import {
   allResolved,
   bootProgress,
+  isMilestoneResolved,
   markBooted,
   resolveAll,
   resolveMilestone,
   subscribeBoot,
 } from '@/world/bootStore';
+import { subscribeWorldGate, worldGate } from '@/world/worldGate';
 
 /**
- * Intro loader.
+ * Intro loader — non-blocking overlay.
  *
- * Sits over the canvas while the world initialises, then dissolves rather than
- * cutting — the particle sphere behind it disperses into the hero constellation
- * at the same moment, so the handoff reads as one continuous motion.
+ * Does not lock body scroll. When the world is still deferred, dissolves as
+ * soon as fonts resolve so the prerendered hero is interactive immediately.
+ * World/frame milestones still gate the trailer Play path separately.
  */
 export function Loader() {
   const { level, ready } = useFx();
   const [pct, setPct] = useState(0);
   const [leaving, setLeaving] = useState(false);
   const [gone, setGone] = useState(false);
+  const [worldMounted, setWorldMounted] = useState(false);
   const shown = useRef(0);
 
-  // With FX off there is no world to build, so never show a preloader — the
-  // plain layout is readable immediately.
   const skip = !ready || level === 'off';
+
+  useEffect(
+    () =>
+      subscribeWorldGate(() => {
+        setWorldMounted(worldGate.mount);
+      }),
+    [],
+  );
 
   useEffect(() => {
     if (skip) {
@@ -42,9 +51,16 @@ export function Loader() {
       .then(() => resolveMilestone('fonts'))
       .catch(() => resolveMilestone('fonts'));
 
-    // Watchdog: if a milestone never lands (blocked font CDN, a driver that
-    // never reports a frame), release anyway rather than trapping the reader.
-    const watchdog = window.setTimeout(() => resolveAll(), 8000);
+    // Soft watchdog — never trap the reader behind a stalled overlay.
+    const watchdog = window.setTimeout(() => {
+      resolveMilestone('fonts');
+      if (!worldGate.mount) {
+        markBooted();
+        setLeaving(true);
+      } else {
+        resolveAll();
+      }
+    }, 4000);
 
     const unsub = subscribeBoot(() => {
       if (allResolved()) window.clearTimeout(watchdog);
@@ -56,19 +72,25 @@ export function Loader() {
     };
   }, [skip]);
 
-  // Animate the displayed percentage toward real progress. Easing the number
-  // up rather than snapping keeps it from jumping 0 → 70 in one frame.
+  // Deferred world: release on fonts alone. Mounted world: wait for milestones.
   useEffect(() => {
-    if (skip || gone) return;
+    if (skip || gone || leaving) return;
     let raf = 0;
 
     const tick = () => {
-      const target = bootProgress() * 100;
+      const deferredRelease = !worldMounted && isMilestoneResolved('fonts');
+      const target = deferredRelease ? 100 : bootProgress() * 100;
       shown.current += (target - shown.current) * 0.08;
       const rounded = Math.min(100, Math.round(shown.current));
       setPct(rounded);
 
-      if (allResolved() && rounded >= 99) {
+      if (deferredRelease && rounded >= 99) {
+        markBooted();
+        setLeaving(true);
+        return;
+      }
+
+      if (worldMounted && allResolved() && rounded >= 99) {
         markBooted();
         setLeaving(true);
         return;
@@ -78,21 +100,11 @@ export function Loader() {
 
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [skip, gone]);
-
-  // Hold scroll while the loader is up so nobody scrolls past the intro.
-  useEffect(() => {
-    if (skip || gone) return;
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-    return () => {
-      document.body.style.overflow = prev;
-    };
-  }, [skip, gone]);
+  }, [skip, gone, leaving, worldMounted]);
 
   useEffect(() => {
     if (!leaving) return;
-    const t = window.setTimeout(() => setGone(true), 1200);
+    const t = window.setTimeout(() => setGone(true), 900);
     return () => window.clearTimeout(t);
   }, [leaving]);
 
@@ -105,8 +117,12 @@ export function Loader() {
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-void transition-opacity duration-[1100ms] ease-out"
-      style={{ opacity: leaving ? 0 : 1, pointerEvents: leaving ? 'none' : 'auto' }}
+      className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-void transition-opacity duration-[900ms] ease-out"
+      style={{
+        opacity: leaving ? 0 : 1,
+        // Allow interaction with prerendered HTML once fade starts; never trap.
+        pointerEvents: leaving ? 'none' : 'auto',
+      }}
       role="progressbar"
       aria-label="Loading experience"
       aria-valuemin={0}

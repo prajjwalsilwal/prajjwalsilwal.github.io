@@ -83,7 +83,7 @@ export interface FxBudget {
 export const BUDGETS: Record<FxLevel, FxBudget> = {
   full: {
     particles: 24000,
-    maxDpr: 2,
+    maxDpr: 1.5,
     postprocessing: true,
     bloom: true,
     chromaticAberration: true,
@@ -109,3 +109,18 @@ export const BUDGETS: Record<FxLevel, FxBudget> = {
     sceneGeometry: false,
   },
 };
+
+/**
+ * Runtime budget with a narrower particle count on small viewports
+ * (even when the tier is still `full` via build ceiling).
+ */
+export function budgetFor(level: FxLevel): FxBudget {
+  const base = BUDGETS[level];
+  if (level === 'off' || typeof window === 'undefined') return base;
+
+  if (window.innerWidth < 900) {
+    if (level === 'full') return { ...base, particles: 8000 };
+    if (level === 'lite') return { ...base, particles: 2000 };
+  }
+  return base;
+}

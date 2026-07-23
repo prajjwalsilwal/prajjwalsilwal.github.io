@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { CaseWorldMount } from '@/scenes/CaseWorldMount';
 import { Section } from '@/components/Section';
 import { Reveal } from '@/components/Reveal';
 import { Footer } from '@/components/Footer';
@@ -45,12 +44,6 @@ export default async function CaseStudyPage({
 
   return (
     <>
-      <CaseWorldMount
-        color={study.color}
-        colorAlt={study.colorAlt}
-        chapterCount={study.chapters.length}
-      />
-
       <main id="main" className="relative z-10">
         {/* ── Arrival ─────────────────────────────────────────────── */}
         <Section

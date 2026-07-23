@@ -1,18 +1,25 @@
-import { HomeWorldChrome } from '@/components/HomeWorldChrome';
 import { Footer } from '@/components/Footer';
 import { Hero } from '@/sections/Hero';
-import { HomeBelowFold } from '@/sections/HomeBelowFold';
+import { Platform } from '@/sections/Platform';
+import { Work } from '@/sections/Work';
+import { About } from '@/sections/About';
+import { Experience } from '@/sections/Experience';
+import { Skills } from '@/sections/Skills';
+import { Education } from '@/sections/Education';
+import { Contact } from '@/sections/Contact';
 
 export default function Home() {
   return (
     <>
-      <HomeWorldChrome />
-
-      {/* The readable document. Sits above the canvas; is the entire site when
-          the world is switched off. */}
       <main id="main" className="relative z-10">
         <Hero />
-        <HomeBelowFold />
+        <Platform />
+        <Work />
+        <About />
+        <Experience />
+        <Skills />
+        <Education />
+        <Contact />
       </main>
 
       <Footer />

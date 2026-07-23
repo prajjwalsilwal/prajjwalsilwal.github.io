@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useRef } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 import { makeCurves, type Beat } from './locations';
@@ -49,6 +49,15 @@ export function CameraRig({ beats, parallax = 1.6 }: Props) {
     builtFrom: null as SectionRect[] | null,
     valid: false,
   }).current;
+
+  // New journey (home ↔ case study): snap the camera instead of lerping across
+  // two unrelated curves for a frame.
+  useEffect(() => {
+    scratch.initialised = false;
+    anchors.builtFrom = null;
+    anchors.valid = false;
+    scroll.eased = scroll.progress;
+  }, [beats, scratch, anchors]);
 
   if (anchors.values.length !== beats.length) {
     anchors.values = new Float64Array(beats.length);

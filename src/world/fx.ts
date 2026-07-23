@@ -82,17 +82,19 @@ export interface FxBudget {
 
 export const BUDGETS: Record<FxLevel, FxBudget> = {
   full: {
-    particles: 24000,
+    particles: 12000,
     maxDpr: 1.5,
-    postprocessing: true,
-    bloom: true,
-    chromaticAberration: true,
-    noise: true,
+    // Post stack caused GPU ReadPixels stalls in Chrome — atmosphere comes
+    // from particles + fog alone.
+    postprocessing: false,
+    bloom: false,
+    chromaticAberration: false,
+    noise: false,
     sceneGeometry: true,
   },
   lite: {
-    particles: 4000,
-    maxDpr: 1.5,
+    particles: 3000,
+    maxDpr: 1.25,
     postprocessing: false,
     bloom: false,
     chromaticAberration: false,
@@ -119,8 +121,8 @@ export function budgetFor(level: FxLevel): FxBudget {
   if (level === 'off' || typeof window === 'undefined') return base;
 
   if (window.innerWidth < 900) {
-    if (level === 'full') return { ...base, particles: 8000 };
-    if (level === 'lite') return { ...base, particles: 2000 };
+    if (level === 'full') return { ...base, particles: 6000 };
+    if (level === 'lite') return { ...base, particles: 1500 };
   }
   return base;
 }

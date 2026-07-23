@@ -4,6 +4,7 @@ import { FxProvider } from '@/world/FxProvider';
 import { SmoothScroll } from '@/world/SmoothScroll';
 import { Loader } from '@/components/Loader';
 import { Nav } from '@/components/Nav';
+import { WorldChrome } from '@/components/WorldChrome';
 import { profile } from '@/content/profile';
 import './globals.css';
 
@@ -82,6 +83,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               3D layer is off. */}
           <SmoothScroll />
           <Loader />
+          <WorldChrome />
           <Nav />
           {children}
         </FxProvider>

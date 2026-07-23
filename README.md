@@ -38,8 +38,8 @@ There is no server in production — `next build` writes a fully static site to 
 
 | Value  | What renders |
 | ------ | ------------ |
-| `full` | Everything — up to 24k particles (8k under 900px), pipeline nodes, monoliths, portals, bloom + chromatic aberration + vignette + noise. DPR capped at 1.5. The default. |
-| `lite` | Particle backdrop only (4k / 2k under 900px), no post-processing, no scene geometry. |
+| `full` | Up to 12k particles (6k under 900px), pipeline nodes, monoliths, portals. DPR capped at 1.5. No post-processing stack. The default. |
+| `lite` | Particle backdrop only (3k / 1.5k under 900px), no scene geometry. |
 | `off`  | No WebGL at all. The site renders as a plain, compact HTML document. |
 
 ```bash

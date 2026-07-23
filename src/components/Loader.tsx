@@ -4,40 +4,25 @@ import { useEffect, useRef, useState } from 'react';
 import { loaderCopy } from '@/content/nav';
 import { useFx } from '@/world/FxProvider';
 import {
-  allResolved,
-  bootProgress,
-  isMilestoneResolved,
   markBooted,
   resolveAll,
   resolveMilestone,
+  isMilestoneResolved,
   subscribeBoot,
 } from '@/world/bootStore';
-import { subscribeWorldGate, worldGate } from '@/world/worldGate';
 
 /**
- * Intro loader — non-blocking overlay.
- *
- * Does not lock body scroll. When the world is still deferred, dissolves as
- * soon as fonts resolve so the prerendered hero is interactive immediately.
- * World/frame milestones still gate the trailer Play path separately.
+ * Brief non-blocking intro. Never locks scroll. Dissolves as soon as fonts
+ * are ready — the WebGL world mounts on its own schedule behind the page.
  */
 export function Loader() {
   const { level, ready } = useFx();
   const [pct, setPct] = useState(0);
   const [leaving, setLeaving] = useState(false);
   const [gone, setGone] = useState(false);
-  const [worldMounted, setWorldMounted] = useState(false);
   const shown = useRef(0);
 
   const skip = !ready || level === 'off';
-
-  useEffect(
-    () =>
-      subscribeWorldGate(() => {
-        setWorldMounted(worldGate.mount);
-      }),
-    [],
-  );
 
   useEffect(() => {
     if (skip) {
@@ -51,46 +36,21 @@ export function Loader() {
       .then(() => resolveMilestone('fonts'))
       .catch(() => resolveMilestone('fonts'));
 
-    // Soft watchdog — never trap the reader behind a stalled overlay.
-    const watchdog = window.setTimeout(() => {
-      resolveMilestone('fonts');
-      if (!worldGate.mount) {
-        markBooted();
-        setLeaving(true);
-      } else {
-        resolveAll();
-      }
-    }, 4000);
-
-    const unsub = subscribeBoot(() => {
-      if (allResolved()) window.clearTimeout(watchdog);
-    });
-
-    return () => {
-      window.clearTimeout(watchdog);
-      unsub();
-    };
+    const watchdog = window.setTimeout(() => resolveMilestone('fonts'), 2500);
+    return () => window.clearTimeout(watchdog);
   }, [skip]);
 
-  // Deferred world: release on fonts alone. Mounted world: wait for milestones.
   useEffect(() => {
     if (skip || gone || leaving) return;
     let raf = 0;
 
     const tick = () => {
-      const deferredRelease = !worldMounted && isMilestoneResolved('fonts');
-      const target = deferredRelease ? 100 : bootProgress() * 100;
-      shown.current += (target - shown.current) * 0.08;
+      const target = isMilestoneResolved('fonts') ? 100 : 35;
+      shown.current += (target - shown.current) * 0.12;
       const rounded = Math.min(100, Math.round(shown.current));
       setPct(rounded);
 
-      if (deferredRelease && rounded >= 99) {
-        markBooted();
-        setLeaving(true);
-        return;
-      }
-
-      if (worldMounted && allResolved() && rounded >= 99) {
+      if (isMilestoneResolved('fonts') && rounded >= 99) {
         markBooted();
         setLeaving(true);
         return;
@@ -99,12 +59,19 @@ export function Loader() {
     };
 
     raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [skip, gone, leaving, worldMounted]);
+    const unsub = subscribeBoot(() => {
+      /* wake tick via state on next frame */
+    });
+
+    return () => {
+      cancelAnimationFrame(raf);
+      unsub();
+    };
+  }, [skip, gone, leaving]);
 
   useEffect(() => {
     if (!leaving) return;
-    const t = window.setTimeout(() => setGone(true), 900);
+    const t = window.setTimeout(() => setGone(true), 700);
     return () => window.clearTimeout(t);
   }, [leaving]);
 
@@ -117,11 +84,10 @@ export function Loader() {
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-void transition-opacity duration-[900ms] ease-out"
+      className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-void transition-opacity duration-700 ease-out"
       style={{
         opacity: leaving ? 0 : 1,
-        // Allow interaction with prerendered HTML once fade starts; never trap.
-        pointerEvents: leaving ? 'none' : 'auto',
+        pointerEvents: 'none',
       }}
       role="progressbar"
       aria-label="Loading experience"
@@ -145,10 +111,6 @@ export function Loader() {
         <span>{stage}</span>
         <span className="tabular-nums text-accent">{pct}%</span>
       </div>
-
-      <p className="mt-10 max-w-xs text-center font-mono text-[10px] uppercase tracking-wider2 text-ink-faint/60">
-        {loaderCopy.building}
-      </p>
     </div>
   );
 }
